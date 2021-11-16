@@ -1,11 +1,19 @@
-// 0.121s
-var startEpoch = 1087500
-var endEpoch = 1087557
-var minerAddr = '022373'
-var methodname = "ApplyRewards"
+// 3.158s
+var startEpoch = 1090000
+var endEpoch = 1097835
+var minerAddr = '0519333'
 
 db.ExecTrace.aggregate([
-    { $match: { 'Epoch': { $gt: startEpoch, $lte: endEpoch } } },
+    { $match:
+            {
+                'Epoch': { $gt: startEpoch, $lte: endEpoch },
+                'Depth': 2,
+                'Msg.From': "02",
+                'Msg.To': minerAddr,
+                'Msg.Method': 14,
+                'SubCallCount': 1
+            }
+    },
     { $lookup:
             {
                 'from': "Message",
@@ -16,8 +24,6 @@ db.ExecTrace.aggregate([
                                 $expr: {
                                     $and: [
                                         { $eq: ["$$cid", "$_id"] },
-                                        { $eq: ["$To", minerAddr] },
-                                        { $eq: ["$Detail.Method", methodname]}
                                     ]
                                 }
                             }
@@ -29,7 +35,11 @@ db.ExecTrace.aggregate([
     {
         $unwind: "$blockrewardMatches"
     },
-    {$project:{totalBlockReward:{$sum:{$toDecimal:"$blockrewardMatches.Value"}}, blockcount:{$sum:1}, _id:0}}
+    {$group:{
+        _id: "$Msg.To",
+        totalBlockReward:{$sum:{$divide:[{$toDecimal:"$blockrewardMatches.Value"}, 1e18]}},
+        blockcount:{$sum:1}
+    }}
 ])
 
 
@@ -39,15 +49,21 @@ db.ExecTrace.aggregate([
 
 
 
-
-// 0.048s
-var minerAddr = "022373"
-var startEpoch = 1087500
-var endEpoch = 1087557
-var methodname = "AwardBlockReward"
+//2.198s
+var minerAddr = "0764901"
+var startEpoch = 1087000
+var endEpoch = 1088000
 
 db.ExecTrace.aggregate([
-    {$match:{"Epoch": {$gt: startEpoch, $lte: endEpoch}, "Depth": 1}},
+    {$match:
+            {
+                "Epoch": {$gt: startEpoch, $lte: endEpoch},
+                "Depth": 1,
+                "Msg.From": "00",
+                "Msg.To": "02",
+                "Msg.Method": 2
+            }
+    },
     {$lookup:{
             'from':"Message",
             'let':{cid:"$Cid"},
@@ -56,8 +72,7 @@ db.ExecTrace.aggregate([
                         $expr:{
                             $and:[
                                 {$eq:["$$cid", "$_id"]},
-                                {$eq: ["$Detail.Params.Miner",minerAddr]},
-                                {$eq:["$Detail.Method",methodname]}
+                                {$eq: ["$Detail.Params.Miner",minerAddr]}
                             ]
                         }
                     }}
@@ -66,5 +81,10 @@ db.ExecTrace.aggregate([
         }
     },
     {$unwind:"$wincountMatches"},
-    {$project:{totalWincount:{$sum:"$wincountMatches.Detail.Params.WinCount"}, "_id" :0}}
+    {
+        $group: {
+            _id: "$wincountMatches.Detail.Params.Miner",
+            totalWincount: {$sum: "$wincountMatches.Detail.Params.WinCount"}
+        }
+    }
 ])

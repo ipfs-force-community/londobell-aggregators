@@ -1,3 +1,4 @@
+// 11.59s
 var startEpoch = 1246320;
 var endEpoch = 1249200;
 var res = db.ExecTrace.aggregate(
