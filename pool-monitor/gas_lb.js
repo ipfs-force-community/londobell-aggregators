@@ -1,4 +1,3 @@
-// 10.18s
 var startEpoch = 1246320;
 var endEpoch = 1249200;
 var res = db.ExecTrace.aggregate([
@@ -14,17 +13,12 @@ var res = db.ExecTrace.aggregate([
     },
     {
         $group: {
-            _id: {
-                "to": "$Msg.To",
-                "exit_code": "$MsgRct.ExitCode"
+            _id: { "to": "$Msg.To", "exit_code": {$cond:{if:{$eq:["$MsgRct.ExitCode",0]},then:0,else:-1}} },
+            gas_fee: {
+                $sum: {   $toDouble: "$GasCost.TotalCost" }
             },
-            gasSum: {
-                $sum: {
-                    $toDouble: "$GasCost.TotalCost"
-                }
-            },
-            MsgCount: {
-                $sum: 1
+            message_count: {
+                $sum:1
             }
         }
     }
