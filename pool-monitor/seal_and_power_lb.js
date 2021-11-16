@@ -1,3 +1,4 @@
+// 7.9s
 var startEpoch = 1246320;
 var endEpoch = 1249200;
 var arr = new Array();

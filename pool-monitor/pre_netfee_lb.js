@@ -1,8 +1,6 @@
+// 10.08s
 var startEpoch = 1269360;
-var endEpoch = 1274478;
-//var startEpoch = 1274188;
-//var endEpoch = 1274388;
-var miner = new Array("049911")
+var endEpoch = 1274480;
 var res = db.ExecTrace.aggregate([
     {
         $match: {
@@ -11,11 +9,9 @@ var res = db.ExecTrace.aggregate([
                 $lte: endEpoch,
 
             },
+            "Msg.Method":25,
             "MsgRct.ExitCode": 0,
             "Depth": 1,
-            "Msg.To": {
-                $in: miner
-            }
         }
     },
     {
@@ -56,7 +52,6 @@ var res = db.ExecTrace.aggregate([
                 }
             ],
             as: "ParentRaw",
-
         }
     },
     {
@@ -71,7 +66,6 @@ var res = db.ExecTrace.aggregate([
     },
     {
         $unwind: "$ParentRaw",
-
     },
     {
         $group: {
@@ -92,5 +86,3 @@ var res = db.ExecTrace.aggregate([
     }
 ]);
 res.forEach(printjson);
-
-
