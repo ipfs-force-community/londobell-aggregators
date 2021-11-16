@@ -6,8 +6,7 @@ var res = db.ExecTrace.aggregate([
         $match: {
             Epoch: {
                 $gt: startEpoch,
-                $lte: endEpoch,
-
+                $lte: endEpoch
             },
             "Msg.To": "099",
             "Msg.Method": 0,
@@ -24,7 +23,6 @@ var res = db.ExecTrace.aggregate([
             localField: "Cid",
             foreignField: "_id",
             as: "SelfRaw",
-
         }
     },
     {

@@ -12,16 +12,14 @@ var res = db.ExecTrace.aggregate(
                 },
                 "Msg.To": "099",
                 "Msg.Method": 0,
-                "Depth": 2,
-
+                "Depth": 2
             }
         },
         {
             $project: {
                 Seq: 1,
                 Cid: 1,
-                Epoch: 1,
-
+                Epoch: 1
             }
         },
         {
@@ -49,32 +47,27 @@ var res = db.ExecTrace.aggregate(
                                             $first: "$$seq"
                                         }]
                                     },
-
                                 ]
                             }
                         }
                     },
                     {
                         $project: {
-                            Cid: 1,
-
+                            Cid: 1
                         }
                     }
                 ],
-                as: "Parent",
-
+                as: "Parent"
             }
         },
         {
-            $unwind: "$Parent",
-
+            $unwind: "$Parent"
         },
         {
             $lookup: {
                 from: "Message",
                 let: {
-                    mcid: "$Parent.Cid",
-
+                    mcid: "$Parent.Cid"
                 },
                 pipeline: [
                     {
@@ -82,12 +75,10 @@ var res = db.ExecTrace.aggregate(
                             $expr: {
                                 $and: [
                                     {
-                                        $eq: ["$_id", "$$mcid"],
-
+                                        $eq: ["$_id", "$$mcid"]
                                     },
                                     {
-                                        $eq: ["$Detail.Method", "ProveCommitAggregate"],
-
+                                        $eq: ["$Detail.Method", "ProveCommitAggregate"]
                                     }
                                 ]
                             }
@@ -97,31 +88,26 @@ var res = db.ExecTrace.aggregate(
                         $project: {
                             _id: 1,
                             "Detail.Method": 1,
-                            "Detail.Actor": 1,
-
+                            "Detail.Actor": 1
                         }
                     }
                 ],
-                as: "ParentRaw",
-
+                as: "ParentRaw"
             }
         },
         {
-            $unwind: "$ParentRaw",
-
+            $unwind: "$ParentRaw"
         },
         {
             $lookup: {
                 from: "Message",
                 localField: "Cid",
                 foreignField: "_id",
-                as: "SelfRaw",
-
+                as: "SelfRaw"
             }
         },
         {
-            $unwind: "$SelfRaw",
-
+            $unwind: "$SelfRaw"
         },
         {
             $group: {
@@ -135,11 +121,10 @@ var res = db.ExecTrace.aggregate(
                             $toDecimal: "$SelfRaw.Value"
                         }, 1e18]
                     }
-                },
-
+                }
             }
-        },
-
+        }
     ]
 );
+
 res.forEach(printjson);

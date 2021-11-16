@@ -2,28 +2,32 @@
 var startEpoch = 1246320;
 var endEpoch = 1249200;
 var arr = new Array();
-db.MinerSectorHealth.aggregate([{
-    $match: {
-        "Epoch": {
-            $gte: startEpoch,
-            $lte: endEpoch
+db.MinerSectorHealth.aggregate([
+    {
+        $match: {
+            "Epoch": {
+                $gte: startEpoch,
+                $lte: endEpoch
+            }
+        }
+    },
+    {
+        $sort: {
+            Epoch: - 1
+        }
+    },
+    {
+        $group: {
+            _id: "$Addr",
+            maxData: {
+                $first: "$$ROOT"
+            },
+            minData: {
+                $last: "$$ROOT"
+            }
         }
     }
-}, {
-    $sort: {
-        Epoch: - 1
-    }
-}, {
-    $group: {
-        _id: "$Addr",
-        maxData: {
-            $first: "$$ROOT"
-        },
-        minData: {
-            $last: "$$ROOT"
-        }
-    }
-}]).forEach(function (item) {
+]).forEach(function(item) {
     var endSectors = item.maxData.Detail.Active + item.maxData.Detail.Faults + item.maxData.Detail.Unproven + item.maxData.Detail.TerminatedSectors;
     var startSectors = item.minData.Detail.Active + item.minData.Detail.Faults + item.minData.Detail.Unproven + item.minData.Detail.TerminatedSectors;
     var data = new Object();

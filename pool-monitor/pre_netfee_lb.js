@@ -7,26 +7,23 @@ var res = db.ExecTrace.aggregate([
             Epoch: {
                 $gt: startEpoch,
                 $lte: endEpoch,
-
             },
             "Msg.Method":25,
             "MsgRct.ExitCode": 0,
-            "Depth": 1,
+            "Depth": 1
         }
     },
     {
         $project: {
             Cid: 1,
-            Msg: 1,
-
+            Msg: 1
         }
     },
     {
         $lookup: {
             from: "Message",
             let: {
-                mcid: "$Cid",
-
+                mcid: "$Cid"
             },
             pipeline: [
                 {
@@ -46,8 +43,7 @@ var res = db.ExecTrace.aggregate([
                 {
                     $project: {
                         Detail: 1,
-                        To: 1,
-
+                        To: 1
                     }
                 }
             ],
@@ -85,4 +81,5 @@ var res = db.ExecTrace.aggregate([
         }
     }
 ]);
+
 res.forEach(printjson);
