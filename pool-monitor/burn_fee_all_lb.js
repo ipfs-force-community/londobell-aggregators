@@ -42,4 +42,3 @@ var res = db.ExecTrace.aggregate([
 
 res.forEach(printjson);
 
-
