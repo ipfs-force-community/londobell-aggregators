@@ -23,11 +23,6 @@ var res = db.ExecTrace.aggregate([
                     $toDouble: "$GasCost.TotalCost"
                 }
             },
-            gas_penalty: { // 打包消息惩罚
-                $sum: {
-                    $toDouble: "$GasCost.MinerPenalty"
-                }
-            },
             MsgCount: {
                 $sum: 1
             }
