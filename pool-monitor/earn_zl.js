@@ -20,22 +20,8 @@ db.ExecTrace.aggregate([
   {
     $lookup: {
       from: "Message",
-      let: {
-        cid: "$Cid",
-      },
-      pipeline: [
-        {
-          $match: {
-            $expr: {
-              $and: [
-                {
-                  $eq: ["$$cid", "$_id"],
-                },
-              ],
-            },
-          },
-        },
-      ],
+      localField: "Cid",
+      foreignField: "_id",
       as: "blockrewardMatches",
     },
   },
