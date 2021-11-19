@@ -1,14 +1,9 @@
-//2.198s
-var minerAddr = "0764901";
-var startEpoch = 1087000;
-var endEpoch = 1088000;
-
-db.ExecTrace.aggregate([
+[
   {
     $match: {
       Epoch: {
-        $gt: startEpoch,
-        $lte: endEpoch,
+        $gt: ctx.StartEpoch,
+        $lte: ctx.EndEpoch,
       },
       Depth: 1,
       "Msg.From": "00",
@@ -31,7 +26,7 @@ db.ExecTrace.aggregate([
                   $eq: ["$$cid", "$_id"],
                 },
                 {
-                  $eq: ["$Detail.Params.Miner", minerAddr],
+                  $eq: ["$Detail.Params.Miner", ctx.MinerAddr],
                 },
               ],
             },
@@ -52,4 +47,4 @@ db.ExecTrace.aggregate([
       },
     },
   },
-]);
+]

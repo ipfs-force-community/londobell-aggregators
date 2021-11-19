@@ -1,12 +1,9 @@
-// 10.08s
-var startEpoch = 1269360;
-var endEpoch = 1274480;
-var res = db.ExecTrace.aggregate([
+[
   {
     $match: {
       Epoch: {
-        $gt: startEpoch,
-        $lte: endEpoch,
+        $gt: ctx.StartEpoch,
+        $lte: ctx.EndEpoch,
       },
       "Msg.Method": 25,
       "MsgRct.ExitCode": 0,
@@ -80,6 +77,4 @@ var res = db.ExecTrace.aggregate([
       },
     },
   },
-]);
-
-res.forEach(printjson);
+]

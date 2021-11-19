@@ -1,12 +1,9 @@
-// 1.04s
-var startEpoch = 1246320;
-var endEpoch = 1249200;
-db.MinerFunds.aggregate([
+[
   {
     $match: {
       Epoch: {
-        $gte: startEpoch,
-        $lte: endEpoch,
+        $gte: ctx.StartEpoch,
+        $lte: ctx.EndEpoch,
       },
     },
   },
@@ -26,4 +23,4 @@ db.MinerFunds.aggregate([
       },
     },
   },
-]);
+]

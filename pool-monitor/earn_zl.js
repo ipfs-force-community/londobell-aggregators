@@ -1,18 +1,13 @@
-// 3.158s
-var startEpoch = 1090000;
-var endEpoch = 1097835;
-var minerAddr = "0519333";
-
-db.ExecTrace.aggregate([
+[
   {
     $match: {
       Epoch: {
-        $gt: startEpoch,
-        $lte: endEpoch,
+        $gt: ctx.StartEpoch,
+        $lte: ctx.EndEpoch,
       },
       Depth: 2,
       "Msg.From": "02",
-      "Msg.To": minerAddr,
+      "Msg.To": ctx.MinerAddr,
       "Msg.Method": 14,
       SubCallCount: 1,
     },
@@ -46,4 +41,4 @@ db.ExecTrace.aggregate([
       },
     },
   },
-]);
+]
