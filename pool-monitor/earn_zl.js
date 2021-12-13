@@ -2,8 +2,8 @@
   {
     $match: {
       Epoch: {
-        $gt: ctx.StartEpoch,
-        $lte: ctx.EndEpoch,
+        $gte: ctx.StartEpoch,
+        $lt: ctx.EndEpoch,
       },
       Depth: 2,
       "Msg.From": "02",
@@ -25,7 +25,7 @@
   },
   {
     $group: {
-      _id: "$Msg.To",
+      _id: "$Epoch",
       totalBlockReward: {
         $sum: {
           $divide: [
