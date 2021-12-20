@@ -9,7 +9,6 @@
       "Msg.From": "02",
       "Msg.To": ctx.MinerAddr,
       "Msg.Method": 14,
-      SubCallCount: 1,
     },
   },
   {
