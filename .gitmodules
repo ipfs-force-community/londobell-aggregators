@@ -1,0 +1,3 @@
+[submodule "chain-data/extern/filecoin-ffi"]
+	path = chain-data/extern/filecoin-ffi
+	url = https://github.com/filecoin-project/filecoin-ffi.git
