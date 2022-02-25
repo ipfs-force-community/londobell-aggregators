@@ -4,20 +4,16 @@ import (
 	"fmt"
 
 	"github.com/filecoin-project/go-address"
+	"github.com/filecoin-project/lotus/blockstore"
+	"github.com/filecoin-project/lotus/chain/actors/builtin"
+	"github.com/filecoin-project/lotus/chain/actors/builtin/miner"
+	"github.com/filecoin-project/lotus/chain/store"
+	cliutil "github.com/filecoin-project/lotus/cli/util"
 	mbuiltin "github.com/filecoin-project/specs-actors/v6/actors/builtin"
+	miner6 "github.com/filecoin-project/specs-actors/v6/actors/builtin/miner"
 	"github.com/filecoin-project/specs-actors/v7/actors/util/adt"
 	"github.com/urfave/cli/v2"
 	"golang.org/x/xerrors"
-
-	"github.com/filecoin-project/lotus/chain/actors/builtin"
-
-	"github.com/filecoin-project/lotus/blockstore"
-	"github.com/filecoin-project/lotus/chain/store"
-
-	miner6 "github.com/filecoin-project/specs-actors/v6/actors/builtin/miner"
-
-	"github.com/filecoin-project/lotus/chain/actors/builtin/miner"
-	cliutil "github.com/filecoin-project/lotus/cli/util"
 )
 
 var minersCmd = &cli.Command{
@@ -96,14 +92,6 @@ var minersCmd = &cli.Command{
 		fmt.Printf("vesting_funds:\t%v\n", lockedFunds.VestingFunds)
 		fmt.Printf("locked_funds:\t%v\n", lockedFunds.PreCommitDeposits) //不算init_pledge?
 		fmt.Printf("initial_pledge_requirement:\t%v\n", lockedFunds.InitialPledgeRequirement)
-
-		//if err := mas.ForEachDeadline(func(dlIdx uint64, dl miner.Deadline) error {
-		//	return dl.ForEachPartition(func(partIdx uint64, part miner.Partition) error {
-		//
-		//	})
-		//}); err != nil {
-		//	return err
-		//}
 
 		var state miner6.State
 		err = stor.Get(cctx.Context, mact.Head, &state)
