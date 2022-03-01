@@ -18,6 +18,7 @@ func main() {
 		Commands: []*cli.Command{
 			minersCmd,
 			sectorsCmd,
+			epochCmd,
 		},
 	}
 

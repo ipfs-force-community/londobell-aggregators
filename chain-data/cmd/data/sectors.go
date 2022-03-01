@@ -49,19 +49,19 @@ var sectorsCmd = &cli.Command{
 		}
 
 		type sectorInfo struct {
-			date time.Time
-			sector_number abi.SectorNumber
-			version string
-			size abi.SectorSize
-			activation abi.ChainEpoch
-			expiration abi.ChainEpoch
-			pledge abi.TokenAmount
-			deal_weight abi.DealWeight
-			verified_deal_weight abi.DealWeight
-			expected_day_reward abi.TokenAmount
+			date                    time.Time
+			sector_number           abi.SectorNumber
+			version                 string
+			size                    abi.SectorSize
+			activation              abi.ChainEpoch
+			expiration              abi.ChainEpoch
+			pledge                  abi.TokenAmount
+			deal_weight             abi.DealWeight
+			verified_deal_weight    abi.DealWeight
+			expected_day_reward     abi.TokenAmount
 			expected_storage_pledge abi.TokenAmount
-			replaced_sector_age abi.ChainEpoch
-			replaced_day_reward abi.TokenAmount
+			replaced_sector_age     abi.ChainEpoch
+			replaced_day_reward     abi.TokenAmount
 		}
 
 		err = state.ForEachSector(stor, func(info *miner6.SectorOnChainInfo) {

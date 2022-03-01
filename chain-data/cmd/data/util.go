@@ -1,14 +1,14 @@
 package main
 
 import (
-	logging "github.com/ipfs/go-log/v2"
 	"time"
+
+	logging "github.com/ipfs/go-log/v2"
 )
 
 const (
-	mainnetBeginTime  = "2020-08-25T06:00:00+08:00" // 高度0时的时间
+	mainnetBeginTime = "2020-08-25T06:00:00+08:00" // 高度0时的时间
 )
-
 
 var (
 	log   = logging.Logger("data")
