@@ -37,7 +37,9 @@ var minersCmd = &cli.Command{
 		if err != nil {
 			return err
 		}
+
 		fmt.Printf("epoch:\t%v\n", ts.Height())
+		fmt.Printf("miner:\t%v\n", maddr)
 
 		mi, err := api.StateMinerInfo(cctx.Context, maddr, ts.Key()) //ts
 		if err != nil {

@@ -19,7 +19,37 @@ func main() {
 			minersCmd,
 			sectorsCmd,
 			epochCmd,
+			actorsCmd,
 		},
+		//Action: func(cctx *cli.Context) error {
+		//	api, closer, err := lcli.GetFullNodeAPI(cctx)
+		//	if err != nil {
+		//		return err
+		//	}
+		//	defer closer()
+		//
+		//	ts, err := api.ChainHead(cctx.Context)
+		//	if err != nil {
+		//		return err
+		//	}
+		//
+		//	actors, err := api.StateListActors(cctx.Context, ts.Key())
+		//	if err != nil {
+		//		return err
+		//	}
+		//
+		//	i := 0
+		//	for _, a := range actors {
+		//		if i == 30 {
+		//			return nil
+		//		}
+		//		i++
+		//		fmt.Println(a.String())
+		//	}
+		//
+		//	return nil
+		//
+		//},
 	}
 
 	app.Setup()
