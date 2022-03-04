@@ -26,7 +26,7 @@
                   $eq: ["$$cid", "$_id"],
                 },
                 {
-                  $eq: ["$Detail.Params.Miner", ctx.MinerAddr],
+                  $eq: ["$Detail.Params.Miner", ctx.Addr],
                 },
               ],
             },

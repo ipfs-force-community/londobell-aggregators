@@ -7,7 +7,7 @@
       },
       Depth: 2,
       "Msg.From": "02",
-      "Msg.To": ctx.MinerAddr,
+      "Msg.To": ctx.Addr,
       "Msg.Method": 14,
     },
   },
@@ -31,7 +31,7 @@
             {
               $toDecimal: "$blockrewardMatches.Value",
             },
-            1e18,
+            1,
           ],
         },
       },
