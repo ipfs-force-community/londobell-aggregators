@@ -14,6 +14,7 @@
     $project: {
       Cid: 1,
       Msg: 1,
+      Epoch: 1,
     },
   },
   {
@@ -61,20 +62,43 @@
     $unwind: "$ParentRaw",
   },
   {
-    $group: {
-      _id: "$ParentRaw.To",
-      sectorsSum: {
+    $lookup: {
+      from: "Tipset",
+      localField: "Epoch",
+      foreignField: "ChildEpoch",
+      as: "BaseFee",
+    },
+  },
+  {
+    $unwind: "$BaseFee",
+  },
+  {
+    $project: {
+      miner: "$ParentRaw.To",
+      epoch: "$Epoch",
+      sectorCount: {
         $sum: {
           $size: "$ParentRaw.Detail.Params.Sectors",
         },
+      },
+      signedCid: "$Cid",
+      methodName: "$ParentRaw.Detail.Method",
+      baseFee: {
+        $toDecimal: "$BaseFee.BaseFee",
       },
     },
   },
   {
     $addFields: {
-      preAggGasFee: {
-        $multiply: ["$sectorsSum", 4.108331e15],
+      aggFee: {
+        $multiply: [
+          "$sectorCount",
+          { $multiply: [821666.2, { $max: [5000000000, "$baseFee"] }] },
+        ],
+      },
+      blockTime: {
+        $add: [1598306400, { $multiply: ["$epoch", 30] }],
       },
     },
   },
-]
+];

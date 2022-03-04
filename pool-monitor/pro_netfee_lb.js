@@ -108,21 +108,48 @@
     $unwind: "$SelfRaw",
   },
   {
-    $group: {
-      _id: "$SelfRaw.From",
-      MsgCount: {
-        $sum: 1,
+    $lookup: {
+      from: "Tipset",
+      localField: "Epoch",
+      foreignField: "ChildEpoch",
+      as: "BaseFee",
+    },
+  },
+  {
+    $unwind: "$BaseFee",
+  },
+  {
+    $project: {
+      cid: "$ParentRaw._id",
+      epoch: "$Epoch",
+      aggFee: "$SelfRaw.Value",
+      methodName: "$ParentRaw.Detail.Method",
+      miner: "$SelfRaw.From",
+      SectorCount: {
+        $divide: [
+          {
+            $toDecimal: "$SelfRaw.Value",
+          },
+          {
+            $multiply: [
+              2464998.65,
+              {
+                $max: [5000000000, "$baseFee"],
+              },
+            ],
+          },
+        ],
       },
-      BurntFee: {
-        $sum: {
-          $divide: [
-            {
-              $toDecimal: "$SelfRaw.Value",
-            },
-            1e18,
-          ],
-        },
+      baseFee: {
+        $toDecimal: "$BaseFee.BaseFee",
       },
     },
   },
-]
+  {
+    $addFields: {
+      blockTime: {
+        $add: [1598306400, { $multiply: ["$epoch", 30] }],
+      },
+    },
+  },
+];
