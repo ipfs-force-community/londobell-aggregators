@@ -2,8 +2,12 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/filecoin-project/go-address"
 	"github.com/filecoin-project/go-state-types/abi"
+	"github.com/filecoin-project/specs-actors/v6/actors/builtin"
+	"github.com/urfave/cli/v2"
+
 	"github.com/filecoin-project/lotus/blockstore"
 	"github.com/filecoin-project/lotus/chain/actors"
 	"github.com/filecoin-project/lotus/chain/actors/builtin/account"
@@ -20,12 +24,10 @@ import (
 	"github.com/filecoin-project/lotus/chain/types"
 	lcli "github.com/filecoin-project/lotus/cli"
 	cliutil "github.com/filecoin-project/lotus/cli/util"
-	"github.com/filecoin-project/specs-actors/v6/actors/builtin"
-	"github.com/urfave/cli/v2"
 )
 
 var actorsCmd = &cli.Command{
-	Name: "actors",
+	Name:  "actors",
 	Usage: "list actor info",
 	Flags: []cli.Flag{
 		&cli.StringFlag{
@@ -37,7 +39,7 @@ var actorsCmd = &cli.Command{
 			Required: true,
 		},
 		&cli.StringFlag{
-			Name:     "tskey",
+			Name:  "tskey",
 			Usage: "tipsetkey, Separated by ','",
 		},
 	},
@@ -52,7 +54,7 @@ var actorsCmd = &cli.Command{
 		if err != nil {
 			return err
 		}
-		//防止输入非id address
+		//todo:防止输入非id address
 
 		fmt.Printf("actor_id:\t%v\n", addr)
 
@@ -79,7 +81,7 @@ var actorsCmd = &cli.Command{
 		fmt.Printf("epoch:\t%v\n", ts.Height())
 		fmt.Printf("block_time:\t%v\n", CalcTimeByEpoch(uint64(ts.Height())))
 
-		//builtin0-7版本？
+		//todo:builtin0-7版本？
 		var actor_type string
 		if addr == builtin.BurntFundsActorAddr {
 			actor_type = "burnt"
@@ -148,7 +150,7 @@ var actorsCmd = &cli.Command{
 		case builtin.SystemActorCodeID:
 			//system没有state？？
 			actor_type = "system"
-			st, err := system.MakeState(stor, actors.Version7) //actor版本？？
+			st, err := system.MakeState(stor, actors.Version7) //todo:actor版本？？
 			if err != nil {
 				return err
 			}
@@ -169,11 +171,11 @@ var actorsCmd = &cli.Command{
 			state = st.GetState()
 		}
 
-		fmt.Printf("actor_type:\t%v\n",actor_type)
-		fmt.Printf("balance:\t%v\n",act.Balance)
-		fmt.Printf("code:\t%v\n",act.Code)
-		fmt.Printf("head:\t%v\n",act.Head)
-		fmt.Printf("state:\t%v\n",state)
+		fmt.Printf("actor_type:\t%v\n", actor_type)
+		fmt.Printf("balance:\t%v\n", act.Balance)
+		fmt.Printf("code:\t%v\n", act.Code)
+		fmt.Printf("head:\t%v\n", act.Head)
+		fmt.Printf("state:\t%v\n", state)
 
 		return nil
 	},

@@ -4,6 +4,10 @@ import (
 	"fmt"
 
 	"github.com/filecoin-project/go-state-types/big"
+	power6 "github.com/filecoin-project/specs-actors/v6/actors/builtin/power"
+	reward6 "github.com/filecoin-project/specs-actors/v6/actors/builtin/reward"
+	"github.com/urfave/cli/v2"
+
 	"github.com/filecoin-project/lotus/blockstore"
 	"github.com/filecoin-project/lotus/chain/actors/builtin/power"
 	"github.com/filecoin-project/lotus/chain/actors/builtin/reward"
@@ -11,9 +15,6 @@ import (
 	"github.com/filecoin-project/lotus/chain/store"
 	"github.com/filecoin-project/lotus/chain/types"
 	cliutil "github.com/filecoin-project/lotus/cli/util"
-	power6 "github.com/filecoin-project/specs-actors/v6/actors/builtin/power"
-	reward6 "github.com/filecoin-project/specs-actors/v6/actors/builtin/reward"
-	"github.com/urfave/cli/v2"
 )
 
 var epochCmd = &cli.Command{
@@ -59,7 +60,7 @@ var epochCmd = &cli.Command{
 		fmt.Printf("net_power:\t%v\n", pst.TotalRawBytePower)
 		fmt.Printf("net_quality_power:\t%v\n", pst.TotalQualityAdjPower)
 
-		var rst reward6.State
+		var rst reward6.State //todo:版本？
 		ract, err := api.StateGetActor(cctx.Context, reward.Address, ts.Key())
 		if err != nil {
 			return err

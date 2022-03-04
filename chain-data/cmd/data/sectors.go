@@ -6,11 +6,12 @@ import (
 
 	"github.com/filecoin-project/go-address"
 	"github.com/filecoin-project/go-state-types/abi"
+	miner6 "github.com/filecoin-project/specs-actors/v6/actors/builtin/miner"
+	"github.com/urfave/cli/v2"
+
 	"github.com/filecoin-project/lotus/blockstore"
 	"github.com/filecoin-project/lotus/chain/store"
 	cliutil "github.com/filecoin-project/lotus/cli/util"
-	miner6 "github.com/filecoin-project/specs-actors/v6/actors/builtin/miner"
-	"github.com/urfave/cli/v2"
 )
 
 var sectorsCmd = &cli.Command{
@@ -42,7 +43,7 @@ var sectorsCmd = &cli.Command{
 
 		stor := store.ActorStore(cctx.Context, blockstore.NewAPIBlockstore(api))
 
-		var state miner6.State
+		var state miner6.State //todo:版本？
 		err = stor.Get(cctx.Context, mact.Head, &state)
 		if err != nil {
 			return err
