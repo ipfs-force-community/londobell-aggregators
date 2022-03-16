@@ -91,10 +91,12 @@
   {
     $addFields: {
       aggFee: {
-        $multiply: [
-          "$sectorCount",
-          { $multiply: [821666.2, { $max: [5000000000, "$baseFee"] }] },
-        ],
+        $toDecimal: {
+          $multiply: [
+            "$sectorCount",
+            {$multiply: [821666.2, {$max: [5000000000, "$baseFee"]}]},
+          ],
+        }
       },
       blockTime: {
         $add: [1598306400, { $multiply: ["$epoch", 30] }],
