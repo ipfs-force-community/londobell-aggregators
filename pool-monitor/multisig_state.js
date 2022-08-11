@@ -1,0 +1,7 @@
+[
+    {
+        $match:{
+            "Epoch": ctx.Epoch,
+        }
+    }
+]
