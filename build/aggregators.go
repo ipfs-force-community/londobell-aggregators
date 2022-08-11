@@ -1,5 +1,9 @@
 package build
 
+import (
+	_ "embed"
+)
+
 //go:embed pool-monitor/address.js
 var addressAggregator []byte
 
