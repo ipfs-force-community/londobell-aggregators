@@ -122,23 +122,25 @@
     $project: {
       cid: "$ParentRaw._id",
       epoch: "$Epoch",
-      aggFee: "$SelfRaw.Value",
+      aggFee: {$toDecimal: "$SelfRaw.Value"},
       methodName: "$ParentRaw.Detail.Method",
       miner: "$SelfRaw.From",
-      SectorCount: {
-        $divide: [
-          {
-            $toDecimal: "$SelfRaw.Value",
-          },
-          {
-            $multiply: [
-              2464998.65,
-              {
-                $max: [5000000000, "$baseFee"],
-              },
-            ],
-          },
-        ],
+      sectorCount: {
+        $toInt: {
+          $divide: [
+            {
+              $toDecimal: "$SelfRaw.Value",
+            },
+            {
+              $multiply: [
+                2464998.65,
+                {
+                  $max: [5000000000, "$baseFee"],
+                },
+              ],
+            },
+          ],
+        }
       },
       baseFee: {
         $toDecimal: "$BaseFee.BaseFee",
