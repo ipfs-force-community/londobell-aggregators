@@ -1,61 +1,61 @@
-package build
+package pool_monitor
 
 import (
 	_ "embed"
 )
 
-//go:embed pool-monitor/address.js
+//go:embed address.js
 var addressAggregator []byte
 
-//go:embed pool-monitor/agg_pre_netfee.js
+//go:embed agg_pre_netfee.js
 var aggPreNetfeeAggregator []byte
 
-//go:embed pool-monitor/agg_pro_netfee.js
+//go:embed agg_pro_netfee.js
 var aggProNetfeeAggregator []byte
 
-//go:embed pool-monitor/block.js
+//go:embed block.js
 var blockAggregator []byte
 
-//go:embed pool-monitor/burn_fee_all_lb.js
+//go:embed burn_fee_all_lb.js
 var burnFeeAllLbAggregator []byte
 
-//go:embed pool-monitor/final_height.js
+//go:embed final_height.js
 var finalHeightAggregator []byte
 
-//go:embed pool-monitor/gas_lb.js
+//go:embed gas_lb.js
 var gasLbAggregator []byte
 
-//go:embed pool-monitor/miner_blockreward.js
+//go:embed miner_blockreward.js
 var minerBlockrewardAggregator []byte
 
-//go:embed pool-monitor/miners_info.js
+//go:embed miners_info.js
 var minersInfoAggregator []byte
 
-//go:embed pool-monitor/miners_mined.js
+//go:embed miners_mined.js
 var minersMinedAggregator []byte
 
-//go:embed pool-monitor/multisig_message.js
+//go:embed multisig_message.js
 var multisigMessageAggregator []byte
 
-//go:embed pool-monitor/multisig_state.js
+//go:embed multisig_state.js
 var multisigStateAggregator []byte
 
-//go:embed pool-monitor/pledge_lb.js
+//go:embed pledge_lb.js
 var pledgeLbAggregator []byte
 
-//go:embed pool-monitor/pre_netfee_lb.js
+//go:embed pre_netfee_lb.js
 var preNetfeeLbAggregator []byte
 
-//go:embed pool-monitor/pro_netfee_lb.js
+//go:embed pro_netfee_lb.js
 var proNetfeeLbAggregator []byte
 
-//go:embed pool-monitor/punishment.js
+//go:embed punishment.js
 var punishmentAggregator []byte
 
-//go:embed pool-monitor/seal_and_power_lb.js
+//go:embed seal_and_power_lb.js
 var sealAndPowerLbAggregator []byte
 
-//go:embed pool-monitor/wincount_zl.js
+//go:embed wincount_zl.js
 var wincountZlAggregator []byte
 
 func GetAddressAggregator() []byte {
