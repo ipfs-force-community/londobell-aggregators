@@ -2,8 +2,8 @@
   {
     $match: {
       Epoch: {
-        $gt: ctx.StartEpoch,
-        $lte: ctx.EndEpoch,
+        $gte: ctx.StartEpoch,
+        $lt: ctx.EndEpoch,
       },
       "Msg.To": "099",
       "Msg.Method": 0,

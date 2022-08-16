@@ -2,8 +2,8 @@
   {
     $match: {
       Epoch: {
-        $gt: ctx.StartEpoch,
-        $lte: ctx.EndEpoch,
+        $gte: ctx.StartEpoch,
+        $lt: ctx.EndEpoch,
       },
       Depth: 1,
       "Msg.From": "00",

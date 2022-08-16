@@ -3,8 +3,8 @@
     $match: {
       Depth: 1,
       Epoch: {
-        $gt: ctx.StartEpoch,
-        $lte: ctx.EndEpoch,
+        $gte: ctx.StartEpoch,
+        $lt: ctx.EndEpoch,
       },
       "Msg.To": /^0/,
     },

@@ -3,7 +3,7 @@
     $match: {
       Epoch: {
         $gte: ctx.StartEpoch,
-        $lte: ctx.EndEpoch,
+        $lt: ctx.EndEpoch,
       },
     },
   },
