@@ -61,6 +61,9 @@ var wincountZlAggregator []byte
 //go:embed traces.js
 var tracesAggregator []byte
 
+//go:embed child_epoch.js
+var childEpochAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -135,4 +138,8 @@ func GetWincountZlAggregator() []byte {
 
 func GetTracesAggregator() []byte {
 	return tracesAggregator
+}
+
+func GetChildEpochAggregator() []byte {
+	return childEpochAggregator
 }
