@@ -105,7 +105,7 @@
                             }
                         }}, {$multiply: ["$Epoch", 30*1000]}]}
             },
-            value: {$divide: [{$toDecimal:"$burnMessage.Value"}, 1e18]},
+            value: "$burnMessage.Value",
             penalty_type: {
                 $cond:{
                     if:{
