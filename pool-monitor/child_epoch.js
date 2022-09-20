@@ -5,8 +5,34 @@
         }
     },
     {
+        $lookup: {
+            from: "Tipset",
+            let: {
+                epoch: "$ChildEpoch"
+            },
+            pipeline: [
+                {
+                    $match:
+                        {
+                            $expr: {
+                                $and: [
+                                    {$eq: ["$$epoch", "$_id"]}
+                                ]
+                            }
+                        }
+                }
+            ],
+            as: "child"
+        }
+    },
+    {
+        $unwind: "$child"
+    },
+    {
         $project: {
-            ChildEpoch: "$ChildEpoch"
+            CurrentTipset: "$Cids",
+            ChildEpoch: "$ChildEpoch",
+            ChildTipset: "$child.Cids"
         }
     }
 ]
