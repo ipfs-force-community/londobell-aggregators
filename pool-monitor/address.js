@@ -1,11 +1,7 @@
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$eq:[{$in: [ctx.Addr, "$Addresses"]}, true]}
-                ]
-            }
+            "Addresses":{$in: [ctx.Addr]}
         }
     },
     {
