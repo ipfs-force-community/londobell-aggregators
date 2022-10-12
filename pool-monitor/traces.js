@@ -28,5 +28,34 @@
     },
     {
         $unwind: "$message"
+    },
+    {
+        $project: {
+            Cid: "$Cid",
+            SignedCid: "$SignedCid",
+            Epoch: "$Epoch",
+            Seq: "$Seq",
+            Depth: "$Depth",
+            Ver: "$Ver",
+            Msg: "$Msg",
+            MsgRct: "$MsgRct",
+            Error: "$Error",
+            SeqIndex: "$SeqIndex",
+            SubCallCount: "$SubCallCount",
+            GasCost: "$GasCost",
+            Return: "$MsgRct.Return",
+            Version: "$message.Version",
+            To: "$message.To",
+            From: "$message.From",
+            Nonce: "$message.Nonce",
+            Value: "$message.Value",
+            GasLimit: "$message.GasLimit",
+            GasFeeCap: "$message.GasFeeCap",
+            GasPremium: "$message.GasPremium",
+            Method: "$message.Method",
+            Params: "$message.Params",
+            Detail: "$message.Detail",
+            Actor: "$message.Detail.Actor"
+        }
     }
 ]
