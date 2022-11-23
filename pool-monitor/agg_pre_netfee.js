@@ -5,7 +5,7 @@
         $gte: ctx.StartEpoch,
         $lt: ctx.EndEpoch,
       },
-      "Msg.Method": 25,
+      "Msg.Method": {$in: [25, 28]},
       "MsgRct.ExitCode": 0,
       Depth: 1,
     },
@@ -32,7 +32,10 @@
                   $eq: ["$_id", "$$mcid"],
                 },
                 {
-                  $eq: ["$Detail.Method", "PreCommitSectorBatch"],
+                  $or: [
+                    {$eq: ["$Detail.Method", "PreCommitSectorBatch"]},
+                    {$eq: ["$Detail.Method", "PreCommitSectorBatch2"]}
+                  ]
                 },
               ],
             },
