@@ -58,6 +58,9 @@
             precommit_sector_count: "$miner.Info.PrecommitSectorCount",
             initial_pledge: "$miner.Detail.InitialPledge",
             pre_commit_deposits: "$miner.Detail.PreCommitDeposits",
+            beneficiary: "$miner.Info.Beneficiary",
+            beneficiary_term: "$miner.Info.BeneficiaryTerm",
+            pending_beneficiary_term: "$miner.Info.PendingBeneficiaryTerm",
             states: "$miner.Info.State"
         }
     }
