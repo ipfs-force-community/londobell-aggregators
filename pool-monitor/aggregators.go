@@ -64,6 +64,9 @@ var tracesAggregator []byte
 //go:embed child_epoch.js
 var childEpochAggregator []byte
 
+//go:embed miners_blockreward.js
+var minersBlockRewardAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -142,4 +145,8 @@ func GetTracesAggregator() []byte {
 
 func GetChildEpochAggregator() []byte {
 	return childEpochAggregator
+}
+
+func GetMinersBlockRewardAggregator() []byte {
+	return minersBlockRewardAggregator
 }
