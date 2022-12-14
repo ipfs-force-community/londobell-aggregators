@@ -1,0 +1,80 @@
+// aggregate not included
+[
+    {
+        $match: {
+            Epoch: {
+                $gte: ctx.StartEpoch,
+                $lt: ctx.EndEpoch,
+            },
+            "Msg.From": ctx.Addr,
+            "Msg.To": "099",
+            "Msg.Method": 0
+        }
+    },
+    {
+        $lookup: {
+            from: "Message",
+            localField: "Cid",
+            foreignField: "_id",
+            as: "message",
+        }
+    },
+    {
+        $unwind: "$message"
+    },
+    {
+        $lookup: {
+            from: "ExecTrace",
+            let: {epoch: "$Epoch", depth: "$Depth", seq: "$Seq"},
+            pipeline: [
+                {
+                    $match:
+                        {
+                            $expr: {
+                                $and: [
+                                    {$eq: ["$Epoch", "$$epoch"]},
+                                    {$eq: ["$Depth", {$add: ["$$depth", -1]}]},
+                                    {$eq: ["$Seq", {$slice: ["$$seq", {$add: [{$size: "$$seq"}, -1]}]}]},
+                                ]
+                            }
+                        }
+                }
+            ],
+            as: "parentTrace",
+        }
+    },
+    {
+        $unwind: "$parentTrace"
+    },
+    {
+        $lookup: {
+            from: "Message",
+            let: {cid: "$parentTrace.Cid"},
+            pipeline: [
+                {
+                    $match:
+                        {
+                            $expr: {
+                                $and: [
+                                    {$eq: ["$_id", "$$cid"]},
+                                    {$not:{$in: ["$Method", [25, 26, 28]]}},
+                                ]
+                            }
+                        }
+                }
+            ],
+            as: "parentMessage",
+        }
+    },
+    {
+        $unwind: "$parentMessage"
+    },
+    {
+        $project: {
+            _id: 0,
+            from: "$message.From",
+            value: "$message.Value",
+            type: "burn"
+        }
+    }
+]
