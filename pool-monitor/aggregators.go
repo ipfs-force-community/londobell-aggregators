@@ -70,6 +70,12 @@ var minersBlockRewardAggregator []byte
 //go:embed burn_monitor.js
 var burnMonitorAggregator []byte
 
+//go:embed increased_datacap.js
+var increasedDataCapAggregator []byte
+
+//go:embed increased_terminated_sectorsize.js
+var increasedTerminatedSectorSizeAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -156,4 +162,12 @@ func GetMinersBlockRewardAggregator() []byte {
 
 func GetBurnMonitorAggregator() []byte {
 	return burnMonitorAggregator
+}
+
+func GetIncreasedDataCapAggregator() []byte {
+	return increasedDataCapAggregator
+}
+
+func GetIncreasedTerminatedSectorSizeAggregator() []byte {
+	return increasedTerminatedSectorSizeAggregator
 }
