@@ -1,11 +1,8 @@
-// todo: 历史出块数
+// ExecTrace
 [
   {
     $match: {
-      Epoch: {
-        $gte: ctx.StartEpoch,
-        $lt: ctx.EndEpoch,
-      },
+      Epoch: ctx.StartEpoch,
       Depth: 1,
       "Msg.From": "00",
       "Msg.To": "02",
@@ -34,21 +31,18 @@
           },
         },
       ],
-      as: "wincountMatches",
+      as: "message",
     },
   },
   {
-    $unwind: "$wincountMatches",
+    $unwind: "$message",
   },
   {
     $group: {
-      _id: "$wincountMatches.Detail.Params.Miner",
+      _id: "$message.Detail.Params.Miner",
       totalWincount: {
-        $sum: "$wincountMatches.Detail.Params.WinCount",
+        $sum: "$message.Detail.Params.WinCount",
       },
-      totalGasReward: { //get for per epoch
-        $sum: "$wincountMatches.Detail.Params.GasReward"
-      }
     },
   },
 ]
