@@ -217,3 +217,7 @@ func GetMinersBlockRewardAggregator() []byte {
 func GetBurnMonitorAggregator() []byte {
 	return burnMonitorAggregator
 }
+
+func GetGasCostForSectorAggregator() []byte {
+	return gasCostForSectorAggregator
+}
