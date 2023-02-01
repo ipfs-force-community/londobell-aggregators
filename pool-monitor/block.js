@@ -4,7 +4,8 @@
             "Epoch": {
                 $gte: ctx.StartEpoch,
                 $lt: ctx.EndEpoch,
-            }
+            },
+            "Depth": 1
         }
     },
     {
@@ -31,7 +32,7 @@
     {
         $match: {
             $expr: {
-                $or: [
+                $or: [ //todo: 4
                     {$eq: ["1", {$substrBytes: ["$blockmessage.From", 0, 1] }]},
                     {$eq: ["3", {$substrBytes: ["$blockmessage.From", 0, 1] }]},
                 ]

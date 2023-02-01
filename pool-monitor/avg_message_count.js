@@ -20,11 +20,17 @@
 [
     {
         $match: {
-            Epoch: {
-                $gte: ctx.StartEpoch,
-                $lt: ctx.EndEpoch,
-            },
-            Depth: 1,
+            $expr: {
+                $and: [
+                    {$gte: ["$Epoch", ctx.StartEpoch]},
+                    {$lt: ["$Epoch", ctx.EndEpoch]},
+                    {$eq: ["$Depth", 1]},
+                    {$or: [ //todo: 4
+                        {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1]}]},
+                        {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1]}]},
+                    ]}
+                ]
+            }
         }
     },
     {

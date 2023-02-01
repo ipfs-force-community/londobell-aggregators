@@ -1,4 +1,5 @@
 // MinerFunds
+// todo: for miners
 [
     {
         $match: {

@@ -1,4 +1,5 @@
 // ActorState
+// reward, power
 [
     {
         $match: {

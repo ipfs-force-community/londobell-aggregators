@@ -70,6 +70,66 @@ var minersBlockRewardAggregator []byte
 //go:embed burn_monitor.js
 var burnMonitorAggregator []byte
 
+//go:embed account_message_count.js
+var accountMessageCountAggregator []byte
+
+//go:embed actor_state.js
+var actorStateAggregator []byte
+
+//go:embed all_owners.js
+var allOwnerAggregator []byte
+
+// todo: 单个区块消息平均 BlockHeader
+
+//go:embed balance.js
+var balanceAggregator []byte
+
+//go:embed claimed_power_for_miner.js
+var claimedPowerForMinerAggregator []byte
+
+//go:embed gascost_for_sector.js
+var gasCostForSectorAggregator []byte
+
+//go:embed messagses_for_actor.js
+var messagesForActorAggregator []byte
+
+// todo: minerfunds/power for owner: first get miners for owner, then add values of all miners
+
+//go:embed minerfunds_for_owner.js
+var minerFundsForOwnerAggregator []byte
+
+//go:embed miners_for_owner.js
+var minersForOwnerAggregator []byte
+
+//go:embed power_for_owner.js
+var powerForOwnerAggregator []byte
+
+// todo: sector state get from adapter
+
+//go:embed time_of_trace.js
+var timeOfTraceAggregator []byte
+
+//go:embed tipset.js
+var tipsetAggregator []byte
+
+//go:embed total_block_count.js
+var totalBlockCountAggregator []byte
+
+//go:embed traces_for_message.js
+var tracesForMessageAggregator []byte
+
+//go:embed transfer_messages.js
+var transferMessagesAggregator []byte
+
+//go:embed deal.js
+var dealAggregator []byte
+
+//go:embed detail_for_deal.js
+var detailForDealAggregator []byte
+
+//go:embed transfer_message_for_large_amount.js
+var transferMessageForLargeAmountAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }

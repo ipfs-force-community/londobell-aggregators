@@ -2,9 +2,17 @@
 [
     {
         $match: {
-            Epoch: ctx.StartEpoch,
-            Depth: 1,
-            "Msg.From": ctx.Addr
+            $expr: {
+                $and:[
+                    {$eq: ["$Epoch", ctx.StartEpoch]},
+                    {$eq: ["$Depth", 1]},
+                    {$eq: ["$Msg.From", ctx.Addr]},
+                    {$or: [ // todo: 4
+                        {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1]}]},
+                        {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1]}]},
+                    ]}
+                ],
+            }
         }
     },
     {
