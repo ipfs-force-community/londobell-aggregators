@@ -3,10 +3,7 @@
 [
     {
         $match: {
-            _id: {$gte: ctx.StartEpoch}
+            _id: ctx.StartEpoch
         }
-    },
-    {
-        $limit: 1
     }
 ]

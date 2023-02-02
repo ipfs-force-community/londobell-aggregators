@@ -73,9 +73,6 @@ var burnMonitorAggregator []byte
 //go:embed account_message_count.js
 var accountMessageCountAggregator []byte
 
-//go:embed actor_state.js
-var actorStateAggregator []byte
-
 //go:embed all_owners.js
 var allOwnerAggregator []byte
 
@@ -109,9 +106,6 @@ var powerForOwnerAggregator []byte
 //go:embed time_of_trace.js
 var timeOfTraceAggregator []byte
 
-//go:embed tipset.js
-var tipsetAggregator []byte
-
 //go:embed total_block_count.js
 var totalBlockCountAggregator []byte
 
@@ -132,6 +126,12 @@ var transferMessageForLargeAmountAggregator []byte
 
 //go:embed latest_tipset.js
 var latestTipSetAggregator []byte
+
+//go:embed actor_state.js
+var actorStateAggregator []byte
+
+//go:embed tipset.js
+var tipsetAggregator []byte
 
 func GetAddressAggregator() []byte {
 	return addressAggregator
@@ -227,4 +227,16 @@ func GetGasCostForSectorAggregator() []byte {
 
 func GetLatestTipSetAggregator() []byte {
 	return latestTipSetAggregator
+}
+
+func GetTotalBlockCountAggregator() []byte {
+	return totalBlockCountAggregator
+}
+
+func GetActorStateAggregator() []byte {
+	return actorStateAggregator
+}
+
+func GetTipSetAggregator() []byte {
+	return tipsetAggregator
 }
