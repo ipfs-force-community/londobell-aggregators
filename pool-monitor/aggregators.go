@@ -130,6 +130,9 @@ var detailForDealAggregator []byte
 //go:embed transfer_message_for_large_amount.js
 var transferMessageForLargeAmountAggregator []byte
 
+//go:embed latest_tipset.js
+var latestTipSetAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -220,4 +223,8 @@ func GetBurnMonitorAggregator() []byte {
 
 func GetGasCostForSectorAggregator() []byte {
 	return gasCostForSectorAggregator
+}
+
+func GetLatestTipSetAggregator() []byte {
+	return latestTipSetAggregator
 }
