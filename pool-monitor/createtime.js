@@ -6,7 +6,7 @@
     {
         $match: {
             "Msg.To": ctx.To,
-            "Msg.Method": ctx,Method,
+            "Msg.Method": ctx.Method,
             "Detail.Return.RobustAddress": ctx.Addr
         }
     },
