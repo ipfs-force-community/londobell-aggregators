@@ -136,6 +136,9 @@ var dealsAggregator []byte
 //go:embed detail_for_deal.js
 var detailForDealAggregator []byte
 
+//go:embed blockheader.js
+var blockHeaderAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -282,4 +285,8 @@ func GetDealsAggregator() []byte {
 
 func GetDetailForDealAggregator() []byte {
 	return detailForDealAggregator
+}
+
+func GetBlockHeaderAggregator() []byte {
+	return blockHeaderAggregator
 }
