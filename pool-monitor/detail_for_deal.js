@@ -31,6 +31,23 @@
     },
     {
         $unwind: "$trace"
+    },
+    {
+        $project: {
+            DealID: "$_id",
+            Epoch: "$trace.Epoch",
+            Cid: "$trace.Cid",
+            PieceCID: "$PieceCID",
+            VerifiedDeal: "$VerifiedDeal",
+            Client: "$Client",
+            Provider: "$Provider",
+            ProviderCollateral: "$ProviderCollateral",
+            ClientCollateral: "$ClientCollateral",
+            StartEpoch: "$StartEpoch",
+            EndEpoch: "$EndEpoch",
+            PieceSize: "$PieceSize",
+            StoragePricePerEpoch: "$StoragePricePerEpoch"
+        }
     }
 
 ]

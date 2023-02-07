@@ -94,12 +94,6 @@ var totalBlockCountAggregator []byte
 //go:embed traces_for_message.js
 var tracesForMessageAggregator []byte
 
-//go:embed deal.js
-var dealAggregator []byte
-
-//go:embed detail_for_deal.js
-var detailForDealAggregator []byte
-
 //go:embed latest_tipset.js
 var latestTipSetAggregator []byte
 
@@ -135,6 +129,12 @@ var gasCostForSectorAggregator []byte
 
 //go:embed transfer_message_for_large_amount.js
 var transferMessageForLargeAmountAggregator []byte
+
+//go:embed deals.js
+var dealsAggregator []byte
+
+//go:embed detail_for_deal.js
+var detailForDealAggregator []byte
 
 func GetAddressAggregator() []byte {
 	return addressAggregator
@@ -274,4 +274,12 @@ func GetGasCostForSectorAggregator() []byte {
 
 func GetTransferMessageForLargeAmountAggregator() []byte {
 	return transferMessageForLargeAmountAggregator
+}
+
+func GetDealsAggregator() []byte {
+	return dealsAggregator
+}
+
+func GetDetailForDealAggregator() []byte {
+	return detailForDealAggregator
 }

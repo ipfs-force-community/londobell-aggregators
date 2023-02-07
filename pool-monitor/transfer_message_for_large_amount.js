@@ -1,4 +1,5 @@
 // ExecTrace
+// todo: 内部调用方法value较大（比如引入智能合约后）？
 [
     {
         $match: {
@@ -23,7 +24,7 @@
                         $expr: {
                             $and: [
                                 {$eq: ["$_id", "$$mcid"]},
-                                {$gte: [{$toInt: "$Value"}, 2e22]},
+                                {$gte: [{$toDecimal: "$Value"}, 2e22]},
                             ],
                         },
                     },
@@ -49,7 +50,8 @@
             epoch: "$Epoch",
             from: "$message.From",
             to: "$message.To",
-            value: "$message.Value"
+            value: "$message.Value",
+            method: "$message.Detail.Method"
         }
     }
 ]
