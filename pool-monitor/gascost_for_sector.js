@@ -8,8 +8,8 @@
                 $gte: ctx.StartEpoch,
                 $lt: ctx.EndEpoch,
             },
-            "Msg.Method": {$in: [5, 6, 7, 25, 26, 28]},
-            "MsgRct.ExitCode": 0, //todo
+            "Msg.Method": {$in: [/*5,*/ 6, 7, 25, 26, 28]},
+            // "MsgRct.ExitCode": 0, //todo
             Depth: 1,
         },
     },
@@ -29,7 +29,7 @@
                                 },
                                 {
                                     $or: [
-                                        {$eq: ["$Detail.Method", "SubmitWindowedPoSt"]},
+                                        // {$eq: ["$Detail.Method", "SubmitWindowedPoSt"]},
                                         {$eq: ["$Detail.Method", "PreCommitSector"]},
                                         {$eq: ["$Detail.Method", "ProveCommitSector"]},
                                         {$eq: ["$Detail.Method", "PreCommitSectorBatch"]},

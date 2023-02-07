@@ -23,7 +23,7 @@
                         $expr: {
                             $and: [
                                 {$eq: ["$_id", "$$mcid"]},
-                                {$gte: [{$toInt: "$Value"}, 2*10e22]},
+                                {$gte: [{$toInt: "$Value"}, 2e22]},
                             ],
                         },
                     },
@@ -34,5 +34,22 @@
     },
     {
         $unwind: "$message"
+    },
+    {
+        $project: {
+            _id: 0,
+            signed_cid: {
+                $cond: {
+                    if:{
+                        $eq:["$message.SignedCid", null]
+                    }, then: "$message._id",
+                    else: "$message.SignedCid"
+                }
+            },
+            epoch: "$Epoch",
+            from: "$message.From",
+            to: "$message.To",
+            value: "$message.Value"
+        }
     }
 ]

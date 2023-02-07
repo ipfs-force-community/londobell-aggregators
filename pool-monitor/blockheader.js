@@ -1,5 +1,5 @@
 // BlockHeader
-// bcid, mcid, messagecount, Ticket, ElectionProof
+// bcid, miner, messagecount, Ticket, ElectionProof
 
 // 平均每高度消息数（可能有空块）
 [

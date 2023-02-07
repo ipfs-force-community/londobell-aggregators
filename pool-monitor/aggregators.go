@@ -78,33 +78,15 @@ var allOwnerAggregator []byte
 
 // todo: 单个区块消息平均 BlockHeader
 
-//go:embed balance.js
-var balanceAggregator []byte
-
-//go:embed claimed_power_for_miner.js
-var claimedPowerForMinerAggregator []byte
-
-//go:embed gascost_for_sector.js
-var gasCostForSectorAggregator []byte
-
-//go:embed messagses_for_actor.js
-var messagesForActorAggregator []byte
-
 // todo: minerfunds/power for owner: first get miners for owner, then add values of all miners
 
 //go:embed minerfunds_for_owner.js
 var minerFundsForOwnerAggregator []byte
 
-//go:embed miners_for_owner.js
-var minersForOwnerAggregator []byte
-
 //go:embed power_for_owner.js
 var powerForOwnerAggregator []byte
 
 // todo: sector state get from adapter
-
-//go:embed time_of_trace.js
-var timeOfTraceAggregator []byte
 
 //go:embed total_block_count.js
 var totalBlockCountAggregator []byte
@@ -112,17 +94,11 @@ var totalBlockCountAggregator []byte
 //go:embed traces_for_message.js
 var tracesForMessageAggregator []byte
 
-//go:embed transfer_messages.js
-var transferMessagesAggregator []byte
-
 //go:embed deal.js
 var dealAggregator []byte
 
 //go:embed detail_for_deal.js
 var detailForDealAggregator []byte
-
-//go:embed transfer_message_for_large_amount.js
-var transferMessageForLargeAmountAggregator []byte
 
 //go:embed latest_tipset.js
 var latestTipSetAggregator []byte
@@ -132,6 +108,33 @@ var actorStateAggregator []byte
 
 //go:embed tipset.js
 var tipsetAggregator []byte
+
+//go:embed miner_info.js
+var minerInfoAggregator []byte
+
+//go:embed balance.js
+var balanceAggregator []byte
+
+//go:embed miners_for_owner.js
+var minersForOwnerAggregator []byte
+
+//go:embed messagses_for_actor.js
+var messagesForActorAggregator []byte
+
+//go:embed transfer_messages.js
+var transferMessagesAggregator []byte
+
+//go:embed time_of_trace.js
+var timeOfTraceAggregator []byte
+
+//go:embed createtime.js
+var createTimeAggregator []byte
+
+//go:embed gascost_for_sector.js
+var gasCostForSectorAggregator []byte
+
+//go:embed transfer_message_for_large_amount.js
+var transferMessageForLargeAmountAggregator []byte
 
 func GetAddressAggregator() []byte {
 	return addressAggregator
@@ -221,10 +224,6 @@ func GetBurnMonitorAggregator() []byte {
 	return burnMonitorAggregator
 }
 
-func GetGasCostForSectorAggregator() []byte {
-	return gasCostForSectorAggregator
-}
-
 func GetLatestTipSetAggregator() []byte {
 	return latestTipSetAggregator
 }
@@ -239,4 +238,40 @@ func GetActorStateAggregator() []byte {
 
 func GetTipSetAggregator() []byte {
 	return tipsetAggregator
+}
+
+func GetMinerInfoAggregator() []byte {
+	return minerInfoAggregator
+}
+
+func GetBalanceAggregator() []byte {
+	return balanceAggregator
+}
+
+func GetMinersForOwnerAggregator() []byte {
+	return minersForOwnerAggregator
+}
+
+func GetMessagesForActorAggregator() []byte {
+	return messagesForActorAggregator
+}
+
+func GetTransferMessagesAggregator() []byte {
+	return transferMessagesAggregator
+}
+
+func GetTimeOfTraceAggregator() []byte {
+	return timeOfTraceAggregator
+}
+
+func GetCreateTimeAggregator() []byte {
+	return createTimeAggregator
+}
+
+func GetGasCostForSectorAggregator() []byte {
+	return gasCostForSectorAggregator
+}
+
+func GetTransferMessageForLargeAmountAggregator() []byte {
+	return transferMessageForLargeAmountAggregator
 }
