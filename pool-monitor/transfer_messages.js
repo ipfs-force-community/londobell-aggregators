@@ -11,8 +11,7 @@
                     },
                     {$eq: ["$Msg.Method", 0]},
                     {$eq: ["$MsgRct.ExitCode", 0]},
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]}
+                    {$eq: ["$Epoch", ctx.StartEpoch]}
                 ]
             }
         }
