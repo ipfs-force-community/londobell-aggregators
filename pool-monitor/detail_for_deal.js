@@ -5,12 +5,19 @@
             _id: ctx.ID,
         },
     },
+    // {
+    //     $sort: {
+    //         "Epoch": -1,
+    //     }
+    // },
+    // {
+    //     $limit: 1
+    // },
     {
         $lookup: {
             from: "ExecTrace",
             let: {
                 id: "$_id",
-                epoch: "$Epoch"
             },
             pipeline: [
                 {
@@ -19,8 +26,7 @@
                             $and: [
                                 {$eq: ["$Msg.To", "05"]},
                                 {$eq: ["$Msg.Method", 4]},
-                                {$eq: ["$Epoch", "$$epoch"]},
-                                {$in: ["$$id", "$Detail.Return.IDs"]}
+                                {$eq: [true, {$in: ["$$id", "$Detail.Return.IDs"]}]}
                             ],
                         },
                     },
@@ -49,5 +55,13 @@
             StoragePricePerEpoch: "$StoragePricePerEpoch"
         }
     }
-
 ]
+
+
+[
+    {
+        $match: {
+            "Detail.Return.IDs": {$in: 8425}
+        }
+    }
+    ]

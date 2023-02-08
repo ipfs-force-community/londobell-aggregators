@@ -1,5 +1,4 @@
 // ExecTrace
-// just for send method
 [
     {
         $match: {
@@ -30,14 +29,40 @@
         $unwind: "$message"
     },
     {
+        $lookup: {
+            from: "ExecTrace",
+            let: {
+                ids: {$split: ["$_id", "-"]},
+                epoch: "$Epoch"
+            },
+            pipeline: [
+                {
+                    $match: {
+                        $expr: {
+                            $and: [
+                                {$eq: ["$Depth", 1]},
+                                {$eq: ["$Epoch", "$$epoch"]},
+                                {$eq: ["$_id", {$concat: [{$arrayElemAt: ["$$ids", 0]}, "-", {$arrayElemAt: ["$$ids", 1]}]}]},
+                            ],
+                        },
+                    },
+                },
+            ],
+            as: "parentTrace",
+        }
+    },
+    {
+        $unwind: "$parentTrace"
+    },
+    {
         $project: {
             _id: 0,
             signed_cid: {
                 $cond: {
                     if:{
-                        $eq:["$message.SignedCid", null]
-                    }, then: "$message._id",
-                    else: "$message.SignedCid"
+                        $eq:["$parentTrace.SignedCid", null]
+                    }, then: "$parentTrace._id",
+                    else: "$parentTrace.SignedCid"
                 }
             },
             epoch: "$Epoch",
