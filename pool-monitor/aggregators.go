@@ -91,9 +91,6 @@ var powerForOwnerAggregator []byte
 //go:embed total_block_count.js
 var totalBlockCountAggregator []byte
 
-//go:embed traces_for_message.js
-var tracesForMessageAggregator []byte
-
 //go:embed latest_tipset.js
 var latestTipSetAggregator []byte
 
@@ -138,6 +135,9 @@ var detailForDealAggregator []byte
 
 //go:embed blockheader.js
 var blockHeaderAggregator []byte
+
+//go:embed traces_for_message.js
+var tracesForMessageAggregator []byte
 
 func GetAddressAggregator() []byte {
 	return addressAggregator
@@ -289,4 +289,8 @@ func GetDetailForDealAggregator() []byte {
 
 func GetBlockHeaderAggregator() []byte {
 	return blockHeaderAggregator
+}
+
+func GetTracesForMessageAggregator() []byte {
+	return tracesForMessageAggregator
 }

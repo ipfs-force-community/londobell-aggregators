@@ -4,9 +4,27 @@
 [
     {
         $match: {
-            Cid: ctx.Cid,
-            Depth: 1 // not inclued cron, which may contained burn pledge
+            $expr: {
+                $and: [
+                    {$or: [
+                        {$eq: ["$Cid", ctx.Cid]},
+                        {$eq: ["$SignedCid", ctx.Cid]}
+                    ]},
+                    {$eq: ["$Depth", 1]} // not inclued cron, which may contained burn pledge
+                ]
+            }
         }
+    },
+    {
+        $lookup: {
+            from: "Message",
+            localField: "Cid",
+            foreignField: "_id",
+            as: "message",
+        },
+    },
+    {
+        $unwind: "$message"
     },
     {
         $lookup: {
@@ -22,37 +40,86 @@
                             $and: [
                                 {$eq: ["$Epoch", "$$epoch"]},
                                 {$ne: ["$_id", "$$id"]},
-                                {$ne: [{$indexOfBytes: ["$_id", "$$id"]}, -1]},
+                                {$eq: [{$indexOfBytes: ["$_id", "$$id"]}, 0]},
                             ]
                         }
                     }
                 }
             ],
-            as: "trace",
+            as: "childTrace",
         }
     },
     {
-        $unwind: "$trace"
+        $unwind: "$childTrace"
     },
     {
         $lookup: {
             from: "Message",
-            let: {cid: "$trace.Cid"},
+            let: {cid: "$childTrace.Cid"},
             pipeline: [
                 {
                     $match: {
                         $expr: {
                             $and: [
-                                {$eq: ["$_id", "$$cid"]}
+                                {$eq: ["$_id", "$$cid"]},
+                                {$gt: [{$toDecimal: "$Value"}, 0]}
                             ]
                         }
                     }
                 }
             ],
-            as: "message"
+            as: "childMessage"
         }
     },
     {
-        $unwind: "$message"
+        $unwind: "$childMessage"
+    },
+    {
+        $group: {
+            _id: "$Epoch",
+            TransferList: {$addToSet: "$childMessage"},
+            rawMessage: {$addToSet: "$message"},
+            GasCost: {$addToSet: "$GasCost"},
+            rawMsgRct: {$addToSet: "$MsgRct"},
+            rawDetail: {$addToSet: "$Detail"}
+        }
+    },
+    {
+        $unwind: "$rawMessage"
+    },
+    {
+        $unwind: "$GasCost"
+    },
+    {
+        $unwind: "$rawMsgRct"
+    },
+    {
+        $unwind: "$rawDetail"
+    },
+    {
+        $addFields: {
+            Cid: {
+                $cond: {
+                    if:{
+                        $eq:["$rawMessage.SignedCid", null]
+                    }, then: "$rawMessage._id",
+                    else: "$rawMessage.SignedCid"
+                }
+            },
+            Value: "$rawMessage.Value",
+            From: "$rawMessage.From",
+            To: "$rawMessage.To",
+            ExitCode: "$rawMsgRct.ExitCode",
+            Method: "$rawMessage.Detail.Method",
+            Params: "$rawMessage.Params", // []byte
+            Return: "$rawMsgRct.Return",
+            ParamsDetail: "$rawMessage.Detail.Params",
+            ReturnDetail: "$rawDetail.Return",
+            Version: "$rawMessage.Version",
+            Nonce: "$rawMessage.Nonce",
+            GasLimit: "$rawMessage.GasLimit",
+            GasFeeCap: "$rawMessage.GasFeeCap",
+            GasPremium: "$rawMessage.GasPremium",
+        }
     }
 ]

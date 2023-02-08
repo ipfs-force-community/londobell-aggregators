@@ -60,7 +60,7 @@
                 $cond: {
                     if:{
                         $eq:["$parentTrace.SignedCid", null]
-                    }, then: "$parentTrace._id",
+                    }, then: "$parentTrace.Cid",
                     else: "$parentTrace.SignedCid"
                 }
             },
