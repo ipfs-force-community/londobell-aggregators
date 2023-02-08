@@ -1,15 +1,11 @@
 // ExecTrace
-// todo: 内部调用方法value较大（比如引入智能合约后）？
+// todo: 只包含显式Send方法？ 内部调用方法value较大（比如引入智能合约后）？
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$eq: ["$Msg.Method", 0]},
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]}
-                ]
-            }
+            "Msg.Method": 0,
+            "Depth": 1,
+            "Epoch": ctx.StartEpoch,
         }
     },
     {
