@@ -1,18 +1,11 @@
 // DealProposal
+// todo: 有些订单的PublishStorageDeals消息太早，未存在现数据库
 [
     {
         $match: {
             _id: ctx.ID,
         },
     },
-    // {
-    //     $sort: {
-    //         "Epoch": -1,
-    //     }
-    // },
-    // {
-    //     $limit: 1
-    // },
     {
         $lookup: {
             from: "ExecTrace",
@@ -26,7 +19,7 @@
                             $and: [
                                 {$eq: ["$Msg.To", "05"]},
                                 {$eq: ["$Msg.Method", 4]},
-                                {$eq: [true, {$in: ["$$id", "$Detail.Return.IDs"]}]}
+                                {$in: ["$$id", "$Detail.Return.IDs"]}
                             ],
                         },
                     },
@@ -56,12 +49,3 @@
         }
     }
 ]
-
-
-[
-    {
-        $match: {
-            "Detail.Return.IDs": {$in: 8425}
-        }
-    }
-    ]

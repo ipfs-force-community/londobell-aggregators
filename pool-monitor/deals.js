@@ -1,4 +1,6 @@
 // DealProposal
+// 每小时记录一次
+// todo: 未来订单能续期后，主键需更改epoch-id
 [
     {
         $match: {
