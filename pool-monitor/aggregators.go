@@ -73,9 +73,6 @@ var burnMonitorAggregator []byte
 //go:embed account_message_count.js
 var accountMessageCountAggregator []byte
 
-//go:embed all_owners.js
-var allOwnerAggregator []byte
-
 // todo: 单个区块消息平均 BlockHeader
 
 // todo: minerfunds/power for owner: first get miners for owner, then add values of all miners
@@ -138,6 +135,9 @@ var blockHeaderAggregator []byte
 
 //go:embed traces_for_message.js
 var tracesForMessageAggregator []byte
+
+//go:embed all_owners.js
+var allOwnerAggregator []byte
 
 func GetAddressAggregator() []byte {
 	return addressAggregator
@@ -293,4 +293,8 @@ func GetBlockHeaderAggregator() []byte {
 
 func GetTracesForMessageAggregator() []byte {
 	return tracesForMessageAggregator
+}
+
+func GetAllOwnerAggregator() []byte {
+	return allOwnerAggregator
 }
