@@ -9,7 +9,6 @@
                             {$eq: ["$Msg.To", ctx.Addr]}
                         ]
                     },
-                    {$eq: ["$Msg.Method", 0]},
                     {$eq: ["$MsgRct.ExitCode", 0]},
                     {$eq: ["$Epoch", ctx.StartEpoch]}
                 ]
@@ -19,8 +18,20 @@
     {
         $lookup: {
             from: "Message",
-            localField: "Cid",
-            foreignField: "_id",
+            let: {cid: "$Cid"},
+            pipeline: [
+                {
+                    $match:
+                        {
+                            $expr: {
+                                $and: [
+                                    {$eq: ["$_id", "$$cid"]},
+                                    {$gt: [{$toDecimal: "$Value"}, 0]}
+                                ]
+                            }
+                        }
+                }
+            ],
             as: "message",
         }
     },
