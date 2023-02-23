@@ -139,6 +139,9 @@ var tracesForMessageAggregator []byte
 //go:embed all_owners.js
 var allOwnerAggregator []byte
 
+//go:embed parent_tipset.js
+var parentTipSetAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -297,4 +300,8 @@ func GetTracesForMessageAggregator() []byte {
 
 func GetAllOwnerAggregator() []byte {
 	return allOwnerAggregator
+}
+
+func GetParentTipSetAggregator() []byte {
+	return parentTipSetAggregator
 }
