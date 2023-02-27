@@ -62,7 +62,7 @@
             beneficiary_term: "$miner.Info.BeneficiaryTerm",
             pending_beneficiary_term: "$miner.Info.PendingBeneficiaryTerm",
             states: "$miner.Info.State",
-            multiaddrs: "$Info.Multiaddrs"
+            multiaddrs: "$miner.Info.Multiaddrs"
         }
     }
 ]
