@@ -60,7 +60,8 @@
             beneficiary: "$Info.Beneficiary",
             beneficiary_term: "$Info.BeneficiaryTerm",
             pending_beneficiary_term: "$Info.PendingBeneficiaryTerm",
-            states: "$Info.State"
+            states: "$Info.State",
+            multiaddrs: "$Info.Multiaddrs"
         }
     }
 ]
