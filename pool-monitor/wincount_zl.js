@@ -47,7 +47,7 @@
         $sum: "$wincountMatches.Detail.Params.WinCount",
       },
       totalGasReward: { //get for per epoch
-        $sum: "$wincountMatches.Detail.Params.GasReward"
+        $sum: {$toDecimal: "$wincountMatches.Detail.Params.GasReward"}
       }
     },
   },
