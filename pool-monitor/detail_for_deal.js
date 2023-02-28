@@ -17,6 +17,8 @@
                     $match: {
                         $expr: {
                             $and: [
+                                {$eq: ["$Depth", 1]},
+                                {$eq: ["$MsgRct.ExitCode", 0]},
                                 {$eq: ["$Msg.To", "05"]},
                                 {$eq: ["$Msg.Method", 4]},
                                 {$in: ["$$id", "$Detail.Return.IDs"]}
