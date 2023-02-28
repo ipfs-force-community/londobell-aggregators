@@ -142,6 +142,9 @@ var allOwnerAggregator []byte
 //go:embed parent_tipset.js
 var parentTipSetAggregator []byte
 
+//go:embed blockheader_by_cid.js
+var blockHeaderByCidAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -304,4 +307,8 @@ func GetAllOwnerAggregator() []byte {
 
 func GetParentTipSetAggregator() []byte {
 	return parentTipSetAggregator
+}
+
+func GetBlockHeaderByCidAggregator() []byte {
+	return blockHeaderByCidAggregator
 }

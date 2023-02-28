@@ -61,7 +61,8 @@
             beneficiary_term: "$Info.BeneficiaryTerm",
             pending_beneficiary_term: "$Info.PendingBeneficiaryTerm",
             states: "$Info.State",
-            multiaddrs: "$Info.Multiaddrs"
+            multiaddrs: "$Info.Multiaddrs",
+            peer_id: "$Info.PeerId"
         }
     }
 ]
