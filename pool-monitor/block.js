@@ -17,17 +17,17 @@
             }
         }
     },
-    {
-        $sort: {
-            Epoch: -1
-        }
-    },
-    {
-        $skip: ctx.Skip
-    },
-    {
-        $limit: ctx.Limit
-    },
+    // {
+    //     $sort: {
+    //         Epoch: -1
+    //     }
+    // },
+    // {
+    //     $skip: ctx.Skip
+    // },
+    // {
+    //     $limit: ctx.Limit
+    // },
     {
         $lookup:
             {

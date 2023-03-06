@@ -145,6 +145,9 @@ var parentTipSetAggregator []byte
 //go:embed blockheader_by_cid.js
 var blockHeaderByCidAggregator []byte
 
+//go:embed messages_by_methodname.js
+var messagesByMethodNameAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -311,4 +314,8 @@ func GetParentTipSetAggregator() []byte {
 
 func GetBlockHeaderByCidAggregator() []byte {
 	return blockHeaderByCidAggregator
+}
+
+func GetMessagesByMethodNameAggregator() []byte {
+	return messagesByMethodNameAggregator
 }
