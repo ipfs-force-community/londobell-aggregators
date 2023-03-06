@@ -154,6 +154,9 @@ var actorMessagesByMethodNameAggregator []byte
 //go:embed blockheaders_by_miner.js
 var blockHeadersByMinerAggregator []byte
 
+//go:embed deals_by_addr.js
+var dealsByAddrAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -332,4 +335,8 @@ func GetActorMessagesByMethodNameAggregator() []byte {
 
 func GetBlockHeadersByMinerAggregator() []byte {
 	return blockHeadersByMinerAggregator
+}
+
+func GetDealsByAddrAggregator() []byte {
+	return dealsByAddrAggregator
 }
