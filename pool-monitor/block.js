@@ -1,12 +1,32 @@
+// ExecTrace
 [
     {
         $match: {
-            "Epoch": {
-                $gte: ctx.StartEpoch,
-                $lt: ctx.EndEpoch,
-            },
-            "Depth": 1
+            $expr: {
+                $and: [
+                    {$eq: ["$Depth", 1]},
+                    {$gte: ["$Epoch", ctx.StartEpoch]},
+                    {$lt: ["$Epoch", ctx.EndEpoch]},
+                    {$or: [
+                        {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
+                        {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
+                        {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
+                        ]
+                    }
+                ]
+            }
         }
+    },
+    {
+        $sort: {
+            Epoch: -1
+        }
+    },
+    {
+        $skip: ctx.Skip
+    },
+    {
+        $limit: ctx.Limit
     },
     {
         $lookup:
@@ -28,16 +48,6 @@
     },
     {
         $unwind: "$blockmessage"
-    },
-    {
-        $match: {
-            $expr: {
-                $or: [ //todo: 4
-                    {$eq: ["1", {$substrBytes: ["$blockmessage.From", 0, 1] }]},
-                    {$eq: ["3", {$substrBytes: ["$blockmessage.From", 0, 1] }]},
-                ]
-            }
-        }
     },
     {
         $project: {

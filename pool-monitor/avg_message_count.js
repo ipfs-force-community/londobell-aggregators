@@ -25,9 +25,10 @@
                     {$gte: ["$Epoch", ctx.StartEpoch]},
                     {$lt: ["$Epoch", ctx.EndEpoch]},
                     {$eq: ["$Depth", 1]},
-                    {$or: [ //todo: 4
+                    {$or: [
                         {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1]}]},
                         {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1]}]},
+                        {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1]}]},
                     ]}
                 ]
             }
