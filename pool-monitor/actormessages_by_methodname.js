@@ -5,8 +5,8 @@
             $expr: {
                 $and: [
                     {$eq: ["$Depth", 1]},
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]},
+                    {$eq: ["$Epoch", ctx.StartEpoch]},
+                    // {$lt: ["$Epoch", ctx.EndEpoch]}, // todo: range epoch query too slow
                     {$or: [
                             {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
                             {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
