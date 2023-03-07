@@ -161,7 +161,7 @@ var dealsByAddrAggregator []byte
 var allMethodsAggregator []byte
 
 //go:embed all_methods_for_actor.js
-var allMethodForActorAggregator []byte
+var allMethodsForActorAggregator []byte
 
 func GetAddressAggregator() []byte {
 	return addressAggregator
@@ -351,6 +351,6 @@ func GetAllMethodsAggregator() []byte {
 	return allMethodsAggregator
 }
 
-func GetAllMethodForActorAggregator() []byte {
-	return allMethodForActorAggregator
+func GetAllMethodsForActorAggregator() []byte {
+	return allMethodsForActorAggregator
 }
