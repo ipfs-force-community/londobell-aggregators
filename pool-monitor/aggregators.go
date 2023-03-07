@@ -157,6 +157,12 @@ var blockHeadersByMinerAggregator []byte
 //go:embed deals_by_addr.js
 var dealsByAddrAggregator []byte
 
+//go:embed all_methods.js
+var allMethodsAggregator []byte
+
+//go:embed all_methods_for_actor.js
+var allMethodForActorAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -339,4 +345,12 @@ func GetBlockHeadersByMinerAggregator() []byte {
 
 func GetDealsByAddrAggregator() []byte {
 	return dealsByAddrAggregator
+}
+
+func GetAllMethodsAggregator() []byte {
+	return allMethodsAggregator
+}
+
+func GetAllMethodForActorAggregator() []byte {
+	return allMethodForActorAggregator
 }
