@@ -2,7 +2,7 @@
 [
     {
         $match: {
-            Block: {$in: [ctx.Cid]},
+            Blocks: {$in: [ctx.Cid]},
             Epoch: ctx.StartEpoch
         }
     },
