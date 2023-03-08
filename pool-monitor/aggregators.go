@@ -163,6 +163,12 @@ var allMethodsAggregator []byte
 //go:embed all_methods_for_actor.js
 var allMethodsForActorAggregator []byte
 
+//go:embed blocks_for_message.js
+var blocksForMessageAggregator []byte
+
+//go:embed messages_for_block.js
+var messagesForBlockAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -353,4 +359,12 @@ func GetAllMethodsAggregator() []byte {
 
 func GetAllMethodsForActorAggregator() []byte {
 	return allMethodsForActorAggregator
+}
+
+func GetBlocksForMessageAggregator() []byte {
+	return blocksForMessageAggregator
+}
+
+func GetMessagesForBlockAggregator() []byte {
+	return messagesForBlockAggregator
 }
