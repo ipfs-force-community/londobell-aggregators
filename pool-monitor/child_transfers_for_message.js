@@ -1,6 +1,7 @@
 // ExecTrace
 // Sort by method name
 // todo: 分库查询
+// todo: db.ExecTrace.createIndex({"Epoch":1,"SubCallCount":1}, {"sparse": true});
 [
     {
         $match: {
@@ -10,7 +11,8 @@
                         {$eq: ["$Cid", ctx.Cid]},
                         {$eq: ["$SignedCid", ctx.Cid]}
                     ]},
-                    {$eq: ["$Depth", 1]} // not inclued cron, which may contained burn pledge
+                    {$eq: ["$Depth", 1]}, // not inclued cron, which may contained burn pledge
+                    {$gt: ["$SubCallCount", 0]}
                 ]
             }
         }
@@ -31,7 +33,7 @@
             from: "ExecTrace",
             let: {
                 id: "$_id",
-                epoch: "$Epoch"
+                epoch: "$Epoch",
             },
             pipeline: [
                 {

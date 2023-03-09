@@ -133,8 +133,11 @@ var detailForDealAggregator []byte
 //go:embed blockheader.js
 var blockHeaderAggregator []byte
 
-//go:embed traces_for_message.js
-var tracesForMessageAggregator []byte
+//go:embed trace_for_message.js
+var traceForMessageAggregator []byte
+
+//go:embed child_transfers_for_message.js
+var childTransfersForMessage []byte
 
 //go:embed all_owners.js
 var allOwnerAggregator []byte
@@ -321,8 +324,12 @@ func GetBlockHeaderAggregator() []byte {
 	return blockHeaderAggregator
 }
 
-func GetTracesForMessageAggregator() []byte {
-	return tracesForMessageAggregator
+func GetTraceForMessageAggregator() []byte {
+	return traceForMessageAggregator
+}
+
+func GetChildTransfersForMessage() []byte {
+	return childTransfersForMessage
 }
 
 func GetAllOwnerAggregator() []byte {
