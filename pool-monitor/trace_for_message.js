@@ -37,6 +37,7 @@
                     else: "$message.SignedCid"
                 }
             },
+            Epoch: "$Epoch",
             Value: "$message.Value",
             From: "$message.From",
             To: "$message.To",
@@ -51,6 +52,7 @@
             GasLimit: "$message.GasLimit",
             GasFeeCap: "$message.GasFeeCap",
             GasPremium: "$message.GasPremium",
+            GasCost: "$GasCost"
         }
     }
 ]
