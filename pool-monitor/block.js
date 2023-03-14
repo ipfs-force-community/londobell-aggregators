@@ -85,4 +85,4 @@
             gascost: "$GasCost"
         }
     }
-], {hint:{Epoch:1,Depth:1,"Msg.From":1}}
+], {$hint:{Epoch:1,Depth:1,"Msg.From":1}}
