@@ -85,4 +85,7 @@
             gascost: "$GasCost"
         }
     }
-], {hint:{"Epoch":1}}
+],{
+    allowDiskUse: true
+}
+// , {hint:{"Epoch":1,"Depth":1,"Msg.From":1}}
