@@ -34,6 +34,7 @@
                 $or: [
                     {$eq: ["1", {$substrBytes: ["$blockmessage.From", 0, 1] }]},
                     {$eq: ["3", {$substrBytes: ["$blockmessage.From", 0, 1] }]},
+                    {$eq: ["4", {$substrBytes: ["$blockmessage.From", 0, 1] }]},
                 ]
             }
         }
