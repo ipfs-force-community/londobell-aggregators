@@ -1,28 +1,28 @@
-// Message
-[
-    {
-        $match: {
-            $expr:
-                {$and: [
-                        {$gt: ["$Nonce", 0]},
-                    {$gte: ["$Detail.PackedHeight", ctx.StartEpoch]},
-                    {$lt: ["$Detail.PackedHeight", ctx.EndEpoch]},
-                    {$or: [
-                            {$eq: ["1", {$substrBytes: ["$From", 0, 1] }]},
-                            {$eq: ["3", {$substrBytes: ["$From", 0, 1] }]},
-                            {$eq: ["4", {$substrBytes: ["$From", 0, 1] }]}
-                        ]
-                    }
-                ]}
-        }
-    },
-    {
-        $group: {
-            _id: 0,
-            all_methods: {$addToSet: "$Detail.Method"}
-        }
-    }
-]
+//// Message
+// [
+//     {
+//         $match: {
+//             $expr:
+//                 {$and: [
+//                         {$gt: ["$Nonce", 0]},
+//                     {$gte: ["$Detail.PackedHeight", ctx.StartEpoch]},
+//                     {$lt: ["$Detail.PackedHeight", ctx.EndEpoch]},
+//                     {$or: [
+//                             {$eq: ["1", {$substrBytes: ["$From", 0, 1] }]},
+//                             {$eq: ["3", {$substrBytes: ["$From", 0, 1] }]},
+//                             {$eq: ["4", {$substrBytes: ["$From", 0, 1] }]}
+//                         ]
+//                     }
+//                 ]}
+//         }
+//     },
+//     {
+//         $group: {
+//             _id: 0,
+//             all_methods: {$addToSet: "$Detail.Method"}
+//         }
+//     }
+// ]
 
     // todo: epoch range还是全表扫描？
 // ExecTrace
@@ -67,9 +67,12 @@
     },
     {
         $group: {
-            _id: 0,
-            all_methods: {$addToSet: "$Detail.Method"}
+            _id: { // todo: 未暴露？
+                from: "$Msg.From",
+                to: "$Msg.To"
+            },
+            all_methods: {$addToSet: "$blockmessage.Detail.Method"}
         }
-    }
+    },
 ]
 
