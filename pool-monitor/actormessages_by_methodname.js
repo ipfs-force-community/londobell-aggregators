@@ -48,7 +48,7 @@
     {
         $project: {
             _id: 0,
-            signed_cid:
+            cid:
                 {$cond: {
                         if:{
                             $eq:["$message.SignedCid", null]
