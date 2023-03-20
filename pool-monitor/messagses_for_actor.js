@@ -17,7 +17,8 @@
                         ]
                     },
                     {$eq: ["$Depth", 1]},
-                    {$eq: ["$Epoch", ctx.StartEpoch]}
+                    {$lte: ["$Epoch", ctx.StartEpoch]},
+                    {$gt: ["$Epoch", ctx.EndEpoch]}
                 ]
             }
         }
