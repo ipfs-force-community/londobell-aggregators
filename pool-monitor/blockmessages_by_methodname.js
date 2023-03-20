@@ -5,8 +5,8 @@
             $expr: {
                 $and: [
                     {$eq: ["$Depth", 1]},
-                    {$eq: ["$Epoch", ctx.StartEpoch]},
-                    // {$lt: ["$Epoch", ctx.EndEpoch]},
+                    {$gte: ["$Epoch", ctx.StartEpoch]},
+                    {$lt: ["$Epoch", ctx.EndEpoch]},
                     {$or: [
                             {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
                             {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
@@ -15,6 +15,11 @@
                     }
                 ]
             }
+        }
+    },
+    {
+        $sort: {
+            Epoch: -1
         }
     },
     {
@@ -41,6 +46,12 @@
         $unwind: "$message"
     },
     {
+        $skip: ctx.Skip
+    },
+    {
+        $limit: ctx.Limit
+    },
+    {
         $project: {
             _id: 0,
             cid:
@@ -60,3 +71,5 @@
         }
     }
 ]
+
+// todo: skip或limit变大 变慢
