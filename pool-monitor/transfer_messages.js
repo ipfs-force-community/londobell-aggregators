@@ -1,4 +1,5 @@
 // ExecTrace
+// todo: parent_from 不为f1、f3、f4时，不显示cid
 [
     {
         $match: {
@@ -10,9 +11,15 @@
                         ]
                     },
                     {$eq: ["$MsgRct.ExitCode", 0]},
-                    {$eq: ["$Epoch", ctx.StartEpoch]}
+                    {$gte: ["$Epoch", ctx.StartEpoch]},
+                    {$lt: ["$Epoch", ctx.EndEpoch]}
                 ]
             }
+        }
+    },
+    {
+        $sort: {
+            "Epoch": -1
         }
     },
     {
@@ -65,16 +72,23 @@
         $unwind: "$parentTrace"
     },
     {
+        $skip: ctx.Skip
+    },
+    {
+        $limit: ctx.Limit
+    },
+    {
         $project: {
             _id: 0,
-            signed_cid: {
-                $cond: {
-                    if:{
-                        $eq:["$parentTrace.SignedCid", null]
-                    }, then: "$parentTrace.Cid",
-                    else: "$parentTrace.SignedCid"
-                }
-            },
+            // signed_cid: {
+            //     $cond: {
+            //         if:{
+            //             $eq:["$parentTrace.SignedCid", null]
+            //         }, then: "$parentTrace.Cid",
+            //         else: "$parentTrace.SignedCid"
+            //     }
+            // },
+            parent_from: "$parentTrace.Msg.From",
             epoch: "$Epoch",
             from: "$message.From",
             to: "$message.To",
@@ -90,5 +104,29 @@
             } // 0: send; 1: receive;
             // for miner method=1 & from="02":区块奖励; method=0:其他惩罚(暂不细分)
         }
+    },
+    {
+        $addFields: {
+            signed_cid: {
+                $cond: {
+                    if: {
+                        $or: [
+                            {$eq: ["1", {$substrBytes: ["$parent_from", 0, 1] }]},
+                            {$eq: ["3", {$substrBytes: ["$parent_from", 0, 1] }]},
+                            {$eq: ["4", {$substrBytes: ["$parent_from", 0, 1] }]}
+                        ]
+                    }, then: {
+                        $cond: {
+                            if:{
+                                $eq:["$parentTrace.SignedCid", null]
+                            }, then: "$parentTrace.Cid",
+                            else: "$parentTrace.SignedCid"
+                        }
+                    },
+                    else: ""
+                }
+            }
+        }
     }
+
 ]

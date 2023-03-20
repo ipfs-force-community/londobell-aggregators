@@ -10,5 +10,10 @@
                 $lt: ctx.EndEpoch,
             },
         }
+    },
+    {
+        $sort: {
+            "Epoch": -1
+        }
     }
 ]
