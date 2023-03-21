@@ -1,4 +1,6 @@
 // ExecTrace
+// {hint:{"Epoch":1,"Depth":1,"Msg.From":1}}
+// todo: cold dbs skip过多慢；热库epoch sort慢，感觉是索引没用好
 [
     {
         $match: {
@@ -86,6 +88,3 @@
         }
     }
 ]
-// , {hint:{"Epoch":1,"Depth":1,"Msg.From":1}}
-
-// todo: cold dbs skip过多慢；热库epoch sort慢，感觉是索引没用好
