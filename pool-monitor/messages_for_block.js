@@ -12,5 +12,5 @@
             totalCount: {$sum: 1},
             messages: {$addToSet: "$_id"}
         }
-    }
+    },
 ]

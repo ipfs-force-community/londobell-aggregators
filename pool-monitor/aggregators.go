@@ -172,6 +172,12 @@ var blocksForMessageAggregator []byte
 //go:embed messages_for_block.js
 var messagesForBlockAggregator []byte
 
+//go:embed all_actors_for_blockmessage.js
+var allActorsForBlockMessageAggregator []byte
+
+//go:embed transfer_count_for_actor.js
+var transferCountForActorAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -374,4 +380,12 @@ func GetBlocksForMessageAggregator() []byte {
 
 func GetMessagesForBlockAggregator() []byte {
 	return messagesForBlockAggregator
+}
+
+func GetAllActorsForBlockMessageAggregator() []byte {
+	return allActorsForBlockMessageAggregator
+}
+
+func GetTransferCountForActorAggregator() []byte {
+	return transferCountForActorAggregator
 }
