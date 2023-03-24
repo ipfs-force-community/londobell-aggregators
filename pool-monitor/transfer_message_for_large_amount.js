@@ -3,8 +3,18 @@
 [
     {
         $match: {
-            "Epoch": ctx.StartEpoch,
-            "MsgRct.ExitCode": 0
+            $expr: {
+                $and: [
+                    {$gte: ["$Epoch", ctx.StartEpoch]},
+                    {$lt: ["$Epoch", ctx.EndEpoch]},
+                    {$eq: ["$MsgRct.ExitCode", 0]}
+                ]
+            }
+        }
+    },
+    {
+        $sort: {
+            Epoch : -1
         }
     },
     {

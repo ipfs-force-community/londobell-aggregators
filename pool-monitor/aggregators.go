@@ -178,6 +178,15 @@ var allActorsForBlockMessageAggregator []byte
 //go:embed transfer_count_for_actor.js
 var transferCountForActorAggregator []byte
 
+//go:embed minedcount_for_miners.js
+var minedCountForMinersAggregator []byte
+
+//go:embed all_methods_for_fromactors.js
+var allMethodsForFromActorsAggregator []byte
+
+//go:embed all_methods_for_toactors.js
+var allMethodsForToActorsAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -388,4 +397,16 @@ func GetAllActorsForBlockMessageAggregator() []byte {
 
 func GetTransferCountForActorAggregator() []byte {
 	return transferCountForActorAggregator
+}
+
+func GetMinedCountForMinersAggregator() []byte {
+	return minedCountForMinersAggregator
+}
+
+func GetAllMethodsForFromActorsAggregator() []byte {
+	return allMethodsForFromActorsAggregator
+}
+
+func GetAllMethodsForToActorsAggregator() []byte {
+	return allMethodsForToActorsAggregator
 }
