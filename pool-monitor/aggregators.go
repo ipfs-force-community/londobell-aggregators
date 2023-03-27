@@ -187,6 +187,9 @@ var allMethodsForFromActorsAggregator []byte
 //go:embed all_methods_for_toactors.js
 var allMethodsForToActorsAggregator []byte
 
+//go:embed boundary_of_db.js
+var boundaryOfDBAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -409,4 +412,8 @@ func GetAllMethodsForFromActorsAggregator() []byte {
 
 func GetAllMethodsForToActorsAggregator() []byte {
 	return allMethodsForToActorsAggregator
+}
+
+func GetBoundaryOfDBAggregator() []byte {
+	return boundaryOfDBAggregator
 }
