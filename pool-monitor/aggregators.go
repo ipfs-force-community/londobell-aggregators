@@ -136,6 +136,9 @@ var blockHeaderAggregator []byte
 //go:embed trace_for_message.js
 var traceForMessageAggregator []byte
 
+//go:embed batch_trace_for_message.js
+var batchTraceForMessageAggregator []byte
+
 //go:embed child_transfers_for_message.js
 var childTransfersForMessage []byte
 
@@ -329,6 +332,10 @@ func GetBlockHeaderAggregator() []byte {
 
 func GetTraceForMessageAggregator() []byte {
 	return traceForMessageAggregator
+}
+
+func GetBatchTraceForMessageAggregator() []byte {
+	return batchTraceForMessageAggregator
 }
 
 func GetChildTransfersForMessage() []byte {
