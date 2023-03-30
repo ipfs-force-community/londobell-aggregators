@@ -8,8 +8,8 @@
             $expr: {
                 $and: [
                     {$or: [
-                            {$eq: ["$Cid", ctx.Cid]},
-                            {$eq: ["$SignedCid", ctx.Cid]}
+                            {$in: ["$Cid", ctx.Cids]},
+                            {$in: ["$SignedCid", ctx.Cids]}
                         ]},
                     {$eq: ["$Depth", 1]} // not inclued cron, which may contained burn pledge
                 ]

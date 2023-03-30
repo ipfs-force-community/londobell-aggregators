@@ -172,6 +172,9 @@ var blocksForMessageAggregator []byte
 //go:embed messages_for_block.js
 var messagesForBlockAggregator []byte
 
+//go:embed richlist.js
+var richListAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -374,4 +377,8 @@ func GetBlocksForMessageAggregator() []byte {
 
 func GetMessagesForBlockAggregator() []byte {
 	return messagesForBlockAggregator
+}
+
+func GetRichListAggregator() []byte {
+	return richListAggregator
 }
