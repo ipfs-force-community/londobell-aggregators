@@ -193,6 +193,9 @@ var boundaryOfDBAggregator []byte
 //go:embed count_of_blockmessages_by_methodname.js
 var countOfBlockMessagesByMethodNameAggregator []byte
 
+//go:embed count_of_actormessages_by_methodname.js
+var countOfActorMessagesByMethodNameAggregator []byte
+
 //go:embed count_of_transfers_for_actor2.js
 var countOfTransfersForActor2Aggregator []byte
 
@@ -429,6 +432,10 @@ func GetBoundaryOfDBAggregator() []byte {
 
 func GetCountOfBlockMessagesByMethodNameAggregator() []byte {
 	return countOfBlockMessagesByMethodNameAggregator
+}
+
+func GetCountOfActorMessagesByMethodNameAggregator() []byte {
+	return countOfActorMessagesByMethodNameAggregator
 }
 
 func GetCountOfTransfersForActor2Aggregator() []byte {
