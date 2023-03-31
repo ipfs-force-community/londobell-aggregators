@@ -76,6 +76,7 @@
                                             {$eq: ["$_id", "$$cid"]},
                                             {$eq: ["$SignedCid", "$$cid"]}
                                         ]},
+                                    {$eq: ["$Detail.Method", ctx.MethodName]},
                                 ]
                             }
                         }
