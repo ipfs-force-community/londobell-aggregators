@@ -169,11 +169,14 @@ var allMethodsForActorAggregator []byte
 //go:embed blocks_for_message.js
 var blocksForMessageAggregator []byte
 
-//go:embed count_of_messages_for_blockheader.js
-var countOfMessagesForBlockHeaderAggregator []byte
+//go:embed count_and_methodnames_of_messages_for_blockheader.js
+var countAndMethodNameOfMessagesForBlockHeaderAggregator []byte
 
 //go:embed messages_for_block.js
 var messagesForBlockAggregator []byte
+
+//go:embed blockheadermessages_by_methodname.js
+var blockHeaderMessagesByMethodNameAggregator []byte
 
 //go:embed all_actors_for_blockmessage.js
 var allActorsForBlockMessageAggregator []byte
@@ -204,9 +207,6 @@ var countOfTransfersForActor2Aggregator []byte
 
 //go:embed count_of_largeamount_transfers.js
 var countOfLargeAmountTransfersAggregator []byte
-
-//go:embed blockheadermessages_by_methodname.js
-var blockHeaderMessagesByMethodNameAggregator []byte
 
 //go:embed richlist.js
 var richListAggregator []byte
@@ -411,14 +411,6 @@ func GetBlocksForMessageAggregator() []byte {
 	return blocksForMessageAggregator
 }
 
-func GetCountOfMessagesForBlockHeaderAggregator() []byte {
-	return countOfMessagesForBlockHeaderAggregator
-}
-
-func GetMessagesForBlockAggregator() []byte {
-	return messagesForBlockAggregator
-}
-
 func GetAllActorsForBlockMessageAggregator() []byte {
 	return allActorsForBlockMessageAggregator
 }
@@ -457,6 +449,14 @@ func GetCountOfTransfersForActor2Aggregator() []byte {
 
 func GetCountOfLargeAmountTransfersAggregator() []byte {
 	return countOfLargeAmountTransfersAggregator
+}
+
+func GetCountAndMethodNameOfMessagesForBlockHeaderAggregator() []byte {
+	return countAndMethodNameOfMessagesForBlockHeaderAggregator
+}
+
+func GetMessagesForBlockAggregator() []byte {
+	return messagesForBlockAggregator
 }
 
 func GetBlockHeaderMessagesByMethodNameAggregator() []byte {
