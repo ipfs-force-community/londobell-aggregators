@@ -18,10 +18,10 @@
     {
         $limit: 1000
     },
-    // {
-    //     $skip: ctx.Skip
-    // },
-    // {
-    //     $limit: ctx.Limit
-    // }
+    {
+        $skip: ctx.Skip
+    },
+    {
+        $limit: ctx.Limit
+    }
 ]
