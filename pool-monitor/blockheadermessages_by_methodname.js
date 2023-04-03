@@ -52,17 +52,6 @@
         }
     },
     {
-        $sort: {
-            Cid: 1
-        }
-    },
-    {
-        $skip: ctx.Skip
-    },
-    {
-        $limit: ctx.Limit
-    },
-    {
         $lookup: {
             from: "Message",
             let: {cid: "$Cid"},
@@ -87,6 +76,17 @@
     },
     {
         $unwind: "$message"
+    },
+    {
+        $sort: {
+            Cid: 1
+        }
+    },
+    {
+        $skip: ctx.Skip
+    },
+    {
+        $limit: ctx.Limit
     },
     {
         $project: {
