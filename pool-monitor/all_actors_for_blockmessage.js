@@ -20,8 +20,8 @@
     {
         $group: {
             _id: 0,
-            all_froms: {$addToSet: "$Msg.From"},
-            all_tos: {$addToSet: "$Msg.To"},
+            all_froms: {$push: "$Msg.From"},
+            all_tos: {$push: "$Msg.To"},
         }
     }, // todo: 同一actor 地址转换
 ]

@@ -13,8 +13,8 @@
     {
         $group: {
             _id: "$Detail.Method",
-            all_froms: {$addToSet: "$From"},
-            all_tos: {$addToSet: "$To"},
+            all_froms: {$push: "$From"},
+            all_tos: {$push: "$To"},
         }
     }
 ]

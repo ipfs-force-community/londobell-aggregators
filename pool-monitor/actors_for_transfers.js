@@ -38,8 +38,8 @@
     {
         $group: {
             _id: 0,
-            all_froms: {$addToSet: "$Msg.From"},
-            all_tos: {$addToSet: "$Msg.To"}, // todo: 避免自己->自己的消息存两遍 不会，map只存一次
+            all_froms: {$push: "$Msg.From"},
+            all_tos: {$push: "$Msg.To"}, // todo: 避免自己->自己的消息存两遍 不会，map只存一次
         }
     },
 ]
