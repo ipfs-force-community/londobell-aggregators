@@ -12,6 +12,12 @@
         }
     },
     {
+        $project: {
+            _id: 0,
+            Cid: "$Cid"
+        }
+    },
+    {
         $lookup: {
             from: "Message",
             let: {cid: "$Cid"},
@@ -35,10 +41,17 @@
         $unwind: "$message"
     },
     {
+        $project: {
+            _id: 0,
+            From: "$message.From",
+            To: "$message.To"
+        }
+    },
+    {
         $group: {
             _id: 0,
-            all_froms: {$push: "$Msg.From"},
-            all_tos: {$push: "$Msg.To"},
+            all_froms: {$push: "$From"},
+            all_tos: {$push: "$To"},
         }
     }
 ]
