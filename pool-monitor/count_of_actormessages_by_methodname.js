@@ -50,32 +50,3 @@
         }
     }
 ]
-
-// // Message
-// [
-//     {
-//         $match: {
-//             $expr: {
-//                 $and: [
-//                     {$gte: ["$Detail.PackedHeight", ctx.StartEpoch]},
-//                     {$lt: ["$Detail.PackedHeight", ctx.EndEpoch]}
-//                 ]
-//             }
-//         }
-//     },
-//     {
-//         $project: {
-//             _id: 0,
-//             Method: "$Detail.Method",
-//             From: "$From",
-//             To: "$To"
-//         }
-//     },
-//     {
-//         $group: {
-//             _id: "$Method",
-//             all_froms: {$push: "$From"},
-//             all_tos: {$push: "$To"},
-//         }
-//     }
-// ]
