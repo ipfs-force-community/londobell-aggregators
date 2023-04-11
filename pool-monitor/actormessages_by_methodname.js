@@ -15,8 +15,8 @@
                         ]
                     },
                     {$or:[
-                            {$eq: ["$Msg.From", ctx.Addr]},
-                            {$eq: ["$Msg.To", ctx.Addr]}
+                            {$in: ["$Msg.From", ctx.Addrs]},
+                            {$in: ["$Msg.To", ctx.Addrs]}
                         ]
                     },
                 ]
