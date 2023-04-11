@@ -39,6 +39,7 @@
     {
         $unwind: "$trace"
     },
+    //todo: SignedCid始终为替换前的cid, 如果SignedCid为空null，说明该条消息未被替换；block中替换前的消息不应该有epoch和返回值
     {
         $addFields: {
             Cid: {

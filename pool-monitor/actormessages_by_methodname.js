@@ -1,4 +1,5 @@
 // ExecTrace
+// todo: create index
 [
     {
         $match: {
@@ -23,6 +24,11 @@
         }
     },
     {
+        $sort: {
+            Epoch: -1
+        }
+    },
+    {
         $lookup:  {
             from: "Message",
             let: {cid: "$Cid"},
@@ -44,6 +50,12 @@
     },
     {
         $unwind: "$message"
+    },
+    {
+        $skip: ctx.Skip
+    },
+    {
+        $limit: ctx.Limit
     },
     {
         $project: {
