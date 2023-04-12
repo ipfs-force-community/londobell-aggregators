@@ -55,7 +55,7 @@
     {
         $project: {
             _id: 0,
-            signed_cid:
+            SignedCid:
                 {$cond: {
                         if:{
                             $eq:["$message.SignedCid", null]
@@ -63,12 +63,12 @@
                         else: "$message.SignedCid"
                     }
                 },
-            epoch: "$Epoch",
-            from: "$Msg.From",
-            to: "$Msg.To",
-            value: "$message.Value",
-            exit_code: "$MsgRct.ExitCode",
-            method: "$message.Detail.Method"
+            Epoch: "$Epoch",
+            From: "$Msg.From",
+            To: "$Msg.To",
+            Value: "$message.Value",
+            ExitCode: "$MsgRct.ExitCode",
+            Method: "$message.Detail.Method"
         }
     }
 ]
