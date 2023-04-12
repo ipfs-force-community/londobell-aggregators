@@ -31,6 +31,7 @@
     },
     {
         $project: {
+            ID: "$_id",
             Cid: "$Cid",
             SignedCid: "$SignedCid",
             Epoch: "$Epoch",

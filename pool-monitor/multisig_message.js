@@ -28,11 +28,11 @@
                         }
                 }
             ],
-            as: "message"
+            as: "Message"
         }
     },
     {
-        $unwind: "$message"
+        $unwind: "$Message"
     },
     {
         $lookup: {
@@ -55,17 +55,17 @@
                         }
                 }
             ],
-            as: "childTrace"
+            as: "ChildTrace"
         }
     },
     {
-        $unwind: "$childTrace"
+        $unwind: "$ChildTrace"
     },
     {
         $lookup: {
             from: "Message",
             let: {
-                cid: "$childTrace.Cid"
+                cid: "$ChildTrace.Cid"
             },
             pipeline: [
                 {
@@ -78,10 +78,10 @@
                     }
                 }
             ],
-            as: "childMessage"
+            as: "ChildMessage"
         }
     },
     {
-        $unwind: "$childMessage"
+        $unwind: "$ChildMessage"
     },
 ]

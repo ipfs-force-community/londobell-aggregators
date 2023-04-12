@@ -54,12 +54,12 @@
     {
         $project: {
             _id: 0,
-            from: "$blockmessage.From",
-            to: "$blockmessage.To",
-            method: "$blockmessage.Detail.Method",
-            value: "$blockmessage.Value",
-            params: "$blockmessage.Detail.Params",
-            signed_cid:
+            From: "$blockmessage.From",
+            To: "$blockmessage.To",
+            Method: "$blockmessage.Detail.Method",
+            Value: "$blockmessage.Value",
+            Params: "$blockmessage.Detail.Params",
+            SignedCid:
                 {$cond: {
                     if:{
                         $eq:["$blockmessage.SignedCid", null]
@@ -67,8 +67,8 @@
                         else: "$blockmessage.SignedCid"
                     }
                 },
-            gas_used: "$GasCost.GasUsed",
-            block_time: {
+            GasUsed: "$GasCost.GasUsed",
+            BlockTime: {
                 $toDate: {$add: [{$toDecimal: {
                             $dateFromString: {
                                 dateString: "2020-08-25T06:00:00",//格式："2020-08-25T06:00:00"
@@ -76,43 +76,15 @@
                             }
                         }}, {$multiply: ["$Epoch", 30*1000]}]}
             },
-            epoch: "$Epoch",
-            exit_code: "$MsgRct.ExitCode",
-            nonce: "$blockmessage.Nonce",
-            return: "$Detail.Return",
-            gas_limit: "$blockmessage.GasLimit",
-            gas_premium: "$blockmessage.GasPremium",
-            gas_fee_cap: "$blockmessage.GasFeeCap",
-            version: "$blockmessage.Version",
-            gascost: "$GasCost"
+            Epoch: "$Epoch",
+            ExitCode: "$MsgRct.ExitCode",
+            Nonce: "$blockmessage.Nonce",
+            Return: "$Detail.Return",
+            GasLimit: "$blockmessage.GasLimit",
+            GasPremium: "$blockmessage.GasPremium",
+            GasFeeCap: "$blockmessage.GasFeeCap",
+            Version: "$blockmessage.Version",
+            GasCost: "$GasCost"
         }
     }
 ]
-
-
-[
-    {
-        $match: {
-            $expr: {
-                $and: [
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]},
-                    {$eq: ["$Depth", 1]},
-                    {$or: [
-                            {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
-                            {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
-                            {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
-                        ]
-                    },
-                ]
-            }
-        }
-    },
-        {
-            $project: {
-                _id:1
-            }
-        }
-]
-
-

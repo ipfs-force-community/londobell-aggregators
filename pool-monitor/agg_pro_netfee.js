@@ -112,20 +112,20 @@
       from: "Tipset",
       localField: "Epoch",
       foreignField: "ChildEpoch",
-      as: "BaseFee",
+      as: "basefee",
     },
   },
   {
-    $unwind: "$BaseFee",
+    $unwind: "$basefee",
   },
   {
     $project: {
-      cid: "$ParentRaw._id",
-      epoch: "$Epoch",
-      aggFee: {$toDecimal: "$SelfRaw.Value"},
-      methodName: "$ParentRaw.Detail.Method",
-      miner: "$SelfRaw.From",
-      sectorCount: {
+      Cid: "$ParentRaw._id",
+      Epoch: "$Epoch",
+      AggFee: {$toDecimal: "$SelfRaw.Value"},
+      MethodName: "$ParentRaw.Detail.Method",
+      Miner: "$SelfRaw.From",
+      SectorCount: {
         $toInt: {
           $divide: [
             {
@@ -135,25 +135,25 @@
               $multiply: [
                 2464998.65,
                 {
-                  $max: [5000000000, "$baseFee"],
+                  $max: [5000000000, "$BaseFee"],
                 },
               ],
             },
           ],
         }
       },
-      baseFee: {
-        $toDecimal: "$BaseFee.BaseFee",
+      BaseFee: {
+        $toDecimal: "$basefee.BaseFee",
       },
     },
   },
   {
     $addFields: {
-      blockTime: {
+      BlockTime: {
         $add: [
           1598306400,
           {
-            $multiply: ["$epoch", 30],
+            $multiply: ["$Epoch", 30],
           },
         ],
       },
