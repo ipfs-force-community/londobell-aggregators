@@ -93,7 +93,7 @@
     {
         $project: {
             _id: 0,
-            signed_cid: {
+            Cid: {
                 $cond: {
                     if:{
                         $eq:["$parentTrace.SignedCid", null]
@@ -101,11 +101,11 @@
                     else: "$parentTrace.SignedCid"
                 }
             },
-            epoch: "$Epoch",
-            from: "$message.From",
-            to: "$message.To",
-            value: "$message.Value",
-            method: "$parentMessage.Detail.Method"
+            Epoch: "$Epoch",
+            From: "$message.From",
+            To: "$message.To",
+            Value: "$message.Value",
+            Method: "$parentMessage.Detail.Method"
         }
     }
 ]

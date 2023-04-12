@@ -16,7 +16,7 @@
     {
         $group: {
             _id: 0,
-            totalBlockCount: {$sum: 1}
+            TotalBlockCount: {$sum: 1}
         }
     }
 ]

@@ -95,9 +95,9 @@
     {
         $project: {
             _id: 0,
-            miner: "$burnMessage.From",
-            epoch: "$Epoch",
-            block_time: {
+            Miner: "$burnMessage.From",
+            Epoch: "$Epoch",
+            BlockTime: {
                 $toDate: {$add: [{$toDecimal: {
                             $dateFromString: {
                                 dateString: "2020-08-25T06:00:00", //格式："2020-08-25T06:00:00"
@@ -105,8 +105,8 @@
                             }
                         }}, {$multiply: ["$Epoch", 30*1000]}]}
             },
-            value: "$burnMessage.Value",
-            penalty_type: {
+            Value: "$burnMessage.Value",
+            PenaltyType: {
                 $cond:{
                     if:{
                         $eq:["$message.Detail.Method", "ApplyRewards"]
@@ -114,7 +114,7 @@
                     else: "sector"
                 }
             },
-            source: "londobell"
+            Source: "londobell"
         }
     }
 ]

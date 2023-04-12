@@ -72,9 +72,9 @@
     {
         $project: {
             _id: 0,
-            from: "$message.From",
-            value: "$message.Value",
-            type: "burn"
+            From: "$message.From",
+            Value: "$message.Value",
+            Type: "burn"
         }
     }
 ]

@@ -18,8 +18,8 @@
     {
         $group: {
             _id: 0,
-            count: {$sum: 1},
-            allOwners: {$addToSet: "$_id"},
+            Count: {$sum: 1},
+            AllOwners: {$addToSet: "$_id"},
         }
     }
 ]

@@ -78,7 +78,7 @@
     {
         $group: {
             _id: "$Msg.To",
-            gasCost: {$sum: {$toDecimal: "$GasCost.TotalCost"}}
+            GasCost: {$sum: {$toDecimal: "$GasCost.TotalCost"}}
         }
     }
 ]

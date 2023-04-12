@@ -8,7 +8,7 @@
     {
       $project: {
           _id: 0,
-          epoch: "$_id"
+          Epoch: "$_id"
       }
     }
 ]

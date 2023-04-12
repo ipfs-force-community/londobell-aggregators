@@ -88,12 +88,12 @@
             //         else: "$parentTrace.SignedCid"
             //     }
             // },
-            parent_from: "$parentTrace.Msg.From",
-            epoch: "$Epoch",
-            from: "$message.From",
-            to: "$message.To",
-            value: "$message.Value",
-            method: {
+            // parent_from: "$parentTrace.Msg.From",
+            Epoch: "$Epoch",
+            From: "$message.From",
+            To: "$message.To",
+            Value: "$message.Value",
+            Method: {
                 $cond: {
                     if: {
                         $eq: ["$Msg.From", ctx.Addr],
@@ -107,7 +107,7 @@
     },
     {
         $addFields: {
-            signed_cid: {
+            Cid: {
                 $cond: {
                     if: {
                         $or: [

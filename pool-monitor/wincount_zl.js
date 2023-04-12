@@ -43,10 +43,10 @@
   {
     $group: {
       _id: "$wincountMatches.Detail.Params.Miner",
-      totalWincount: {
+      TotalWincount: {
         $sum: "$wincountMatches.Detail.Params.WinCount",
       },
-      totalGasReward: { //get for per epoch
+      TotalGasReward: { //get for per epoch
         $sum: {$toDecimal: "$wincountMatches.Detail.Params.GasReward"}
       }
     },

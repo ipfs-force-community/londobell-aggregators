@@ -25,7 +25,7 @@
   {
     $group: {
       _id: {Epoch: "$Epoch", Miner: "$Msg.To"},
-      totalBlockReward: {
+      TotalBlockReward: {
         $sum: {
           $divide: [
             {
@@ -35,7 +35,7 @@
           ],
         },
       },
-      blockcount: {
+      BlockCount: {
         $sum: 1,
       },
     },

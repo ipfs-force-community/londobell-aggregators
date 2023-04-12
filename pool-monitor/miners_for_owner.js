@@ -14,7 +14,7 @@
     {
         $group: {
             _id: "$Info.Owner",
-            Addrs: {$addToSet: "$Addr"}
+            Miners: {$addToSet: "$Addr"}
         }
     }
 ]
