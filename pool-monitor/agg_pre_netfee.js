@@ -77,23 +77,23 @@
   },
   {
     $project: {
-      miner: "$ParentRaw.To",
-      epoch: "$Epoch",
-      sectorCount: {
+      Miner: "$ParentRaw.To",
+      Epoch: "$Epoch",
+      SectorCount: {
         $sum: {
           $size: "$ParentRaw.Detail.Params.Sectors",
         },
       },
-      signedCid: "$Cid",
-      methodName: "$ParentRaw.Detail.Method",
-      baseFee: {
+      SignedCid: "$Cid",
+      MethodName: "$ParentRaw.Detail.Method",
+      BaseFee: {
         $toDecimal: "$BaseFee.BaseFee",
       },
     },
   },
   {
     $addFields: {
-      aggFee: {
+      AggFee: {
         $toDecimal: {
           $multiply: [
             "$sectorCount",
@@ -101,7 +101,7 @@
           ],
         }
       },
-      blockTime: {
+      BlockTime: {
         $add: [1598306400, { $multiply: ["$epoch", 30] }],
       },
     },
