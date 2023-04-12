@@ -96,13 +96,13 @@
       AggFee: {
         $toDecimal: {
           $multiply: [
-            "$sectorCount",
-            {$multiply: [821666.2, {$max: [5000000000, "$baseFee"]}]},
+            "$SectorCount",
+            {$multiply: [821666.2, {$max: [5000000000, "$BaseFee"]}]},
           ],
         }
       },
       BlockTime: {
-        $add: [1598306400, { $multiply: ["$epoch", 30] }],
+        $add: [1598306400, { $multiply: ["$Epoch", 30] }],
       },
     },
   },
