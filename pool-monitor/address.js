@@ -1,5 +1,4 @@
 // ActorBalance
-// todo: create index: Addresses_1
 [
     {
         $match: {
