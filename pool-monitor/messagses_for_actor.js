@@ -12,8 +12,8 @@
                         {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1]}]},
                     ]},
                     {$or:[
-                        {$eq: ["$Msg.From", ctx.Addr]},
-                        {$eq: ["$Msg.To", ctx.Addr]}
+                        {$in: ["$Msg.From", ctx.Addrs]},
+                        {$in: ["$Msg.To", ctx.Addrs]}
                         ]
                     },
                     {$eq: ["$Depth", 1]},
