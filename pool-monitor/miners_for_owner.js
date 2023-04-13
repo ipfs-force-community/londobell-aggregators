@@ -6,10 +6,10 @@
     {
         $match: {
             "Info.Owner": ctx.Addr,
-            // Epoch: {
-            //     $gte: ctx.StartEpoch,
-            //     $lt: ctx.EndEpoch
-            // }
+            Epoch: {
+                $gte: ctx.StartEpoch,
+                $lt: ctx.EndEpoch
+            }
         }
     },
     {
@@ -19,3 +19,24 @@
         }
     }
 ]
+
+[
+    {$match: {
+        "Epoch": {$gt: 0}
+        }
+    },
+        {
+            $sort: {
+                "Epoch": -1
+            }
+        },
+        {
+            $limit: 1
+        },
+        {
+            $project: {
+                _id: 0,
+                Epoch: "$Epoch"
+            }
+        }
+    ]
