@@ -3,6 +3,7 @@
     {
         $match: {
             "Epoch": ctx.StartEpoch,
+            "Balance": {$ne: "0"}
         }
     },
     {
