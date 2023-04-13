@@ -70,8 +70,8 @@ var minersBlockRewardAggregator []byte
 //go:embed burn_monitor.js
 var burnMonitorAggregator []byte
 
-//go:embed account_message_count.js
-var accountMessageCountAggregator []byte
+////go:embed account_message_count.js
+//var accountMessageCountAggregator []byte
 
 // todo: 单个区块消息平均 BlockHeader
 
@@ -163,8 +163,8 @@ var dealsByAddrAggregator []byte
 //go:embed all_methods.js
 var allMethodsAggregator []byte
 
-//go:embed all_methods_for_actor.js
-var allMethodsForActorAggregator []byte
+////go:embed all_methods_for_actor.js
+//var allMethodsForActorAggregator []byte
 
 //go:embed blocks_for_message.js
 var blocksForMessageAggregator []byte
@@ -190,11 +190,11 @@ var transferCountForActorAggregator []byte
 //go:embed minedcount_for_miners.js
 var minedCountForMinersAggregator []byte
 
-//go:embed all_methods_for_fromactors.js
-var allMethodsForFromActorsAggregator []byte
+////go:embed all_methods_for_fromactors.js
+//var allMethodsForFromActorsAggregator []byte
 
-//go:embed all_methods_for_toactors.js
-var allMethodsForToActorsAggregator []byte
+////go:embed all_methods_for_toactors.js
+//var allMethodsForToActorsAggregator []byte
 
 //go:embed boundary_of_db.js
 var boundaryOfDBAggregator []byte
@@ -406,9 +406,9 @@ func GetAllMethodsAggregator() []byte {
 	return allMethodsAggregator
 }
 
-func GetAllMethodsForActorAggregator() []byte {
-	return allMethodsForActorAggregator
-}
+//func GetAllMethodsForActorAggregator() []byte {
+//	return allMethodsForActorAggregator
+//}
 
 func GetBlocksForMessageAggregator() []byte {
 	return blocksForMessageAggregator
@@ -426,13 +426,13 @@ func GetMinedCountForMinersAggregator() []byte {
 	return minedCountForMinersAggregator
 }
 
-func GetAllMethodsForFromActorsAggregator() []byte {
-	return allMethodsForFromActorsAggregator
-}
+//func GetAllMethodsForFromActorsAggregator() []byte {
+//	return allMethodsForFromActorsAggregator
+//}
 
-func GetAllMethodsForToActorsAggregator() []byte {
-	return allMethodsForToActorsAggregator
-}
+//func GetAllMethodsForToActorsAggregator() []byte {
+//	return allMethodsForToActorsAggregator
+//}
 
 func GetBoundaryOfDBAggregator() []byte {
 	return boundaryOfDBAggregator

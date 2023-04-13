@@ -91,6 +91,12 @@
         $unwind: "$parentMessage",
     },
     {
+        $skip: ctx.Skip
+    },
+    {
+        $limit: ctx.Limit
+    },
+    {
         $project: {
             _id: 0,
             Cid: {

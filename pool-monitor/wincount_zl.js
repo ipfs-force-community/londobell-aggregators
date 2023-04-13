@@ -27,7 +27,7 @@
                   $eq: ["$$cid", "$_id"],
                 },
                 {
-                  $eq: ["$Detail.Params.Miner", ctx.Addr],
+                  $eq: ["$Detail.Params.Miner", ctx.Addr], //todo: f2地址？
                 },
               ],
             },

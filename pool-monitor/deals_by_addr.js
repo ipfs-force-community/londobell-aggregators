@@ -6,8 +6,8 @@
                 $and: [
                     {$eq: ["$Epoch", ctx.StartEpoch]},
                     {$or: [
-                            {$eq: ["$Client", ctx.Addr]},
-                            {$eq: ["$Provider", ctx.Addr]}
+                            {$in: ["$Client", ctx.Addrs]},
+                            {$in: ["$Provider", ctx.Addrs]}
                         ]
                     }
                 ]

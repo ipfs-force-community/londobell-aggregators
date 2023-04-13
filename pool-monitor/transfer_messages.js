@@ -96,7 +96,7 @@
             Method: {
                 $cond: {
                     if: {
-                        $eq: ["$Msg.From", ctx.Addr],
+                        $in: ["$Msg.From", ctx.Addrs],
                     },
                     then: 0,
                     else:1,

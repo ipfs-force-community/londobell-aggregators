@@ -1,9 +1,9 @@
-// ClaimedPower
-[
-    {
-        $match: {
-            Epoch: ctx.StartEpoch,
-            Addr: ctx.Addr,
-        }
-    }
-]
+// // ClaimedPower
+// [
+//     {
+//         $match: {
+//             Epoch: ctx.StartEpoch,
+//             Addr: ctx.Addr,
+//         }
+//     }
+// ]
