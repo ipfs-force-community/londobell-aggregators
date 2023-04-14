@@ -118,6 +118,9 @@ var timeOfTraceAggregator []byte
 //go:embed createtime.js
 var createTimeAggregator []byte
 
+//go:embed create_message.js
+var createMessageAggregator []byte
+
 //go:embed gascost_for_sector.js
 var gasCostForSectorAggregator []byte
 
@@ -344,6 +347,10 @@ func GetTimeOfTraceAggregator() []byte {
 
 func GetCreateTimeAggregator() []byte {
 	return createTimeAggregator
+}
+
+func GetCreateMessageAggregator() []byte {
+	return createMessageAggregator
 }
 
 func GetGasCostForSectorAggregator() []byte {
