@@ -13,5 +13,16 @@
                 ]
             }
         },
+    },
+    {
+        $sort: {
+            _id: -1
+        }
+    },
+    {
+        $skip: ctx.Skip
+    },
+    {
+        $limit: ctx.Limit
     }
 ]
