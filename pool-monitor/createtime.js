@@ -2,6 +2,7 @@
 // f2 actor: created by "01" with "Exec";
 // miner actor: created by "04" with "CreateMiner"
 // evm actor: created by "010" with "CreateExternal"
+// todo: miner actor也会通过"Exec"来创建吗？
 [
     {
         $match: {

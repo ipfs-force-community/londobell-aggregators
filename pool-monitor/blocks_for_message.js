@@ -2,8 +2,7 @@
 [
     {
         $match: {
-            _id: ctx.Cid,
-            Epoch: ctx.StartEpoch
+            _id: ctx.Cid
         }
     }
 ]
