@@ -4,9 +4,13 @@
     {
         $match: {
             $expr: {
-                $or:[
-                    {$eq: ["$Msg.From", ctx.Addr]},
-                    {$eq: ["$Msg.To", ctx.Addr]}
+                $and: [
+                        {$gte: ["$Epoch", ctx.StartEpoch]},
+                        {$lt: ["$Epoch", ctx.EndEpoch]},
+                    {$or:[
+                        {$in: ["$Msg.From", ctx.Addrs]},
+                        {$in: ["$Msg.To", ctx.Addrs]}
+                    ]}
                 ]
             }
         }
