@@ -70,6 +70,123 @@ var minersBlockRewardAggregator []byte
 //go:embed burn_monitor.js
 var burnMonitorAggregator []byte
 
+//go:embed account_message_count.js
+var accountMessageCountAggregator []byte
+
+// todo: 单个区块消息平均 BlockHeader
+
+// todo: minerfunds/power for owner: first get miners for owner, then add values of all miners
+
+//go:embed minerfunds_for_owner.js
+var minerFundsForOwnerAggregator []byte
+
+//go:embed power_for_owner.js
+var powerForOwnerAggregator []byte
+
+// todo: sector state get from adapter
+
+//go:embed total_block_count.js
+var totalBlockCountAggregator []byte
+
+//go:embed latest_tipset.js
+var latestTipSetAggregator []byte
+
+//go:embed actor_state.js
+var actorStateAggregator []byte
+
+//go:embed tipset.js
+var tipsetAggregator []byte
+
+//go:embed miner_info.js
+var minerInfoAggregator []byte
+
+//go:embed balance.js
+var balanceAggregator []byte
+
+//go:embed miners_for_owner.js
+var minersForOwnerAggregator []byte
+
+//go:embed messagses_for_actor.js
+var messagesForActorAggregator []byte
+
+//go:embed transfer_messages.js
+var transferMessagesAggregator []byte
+
+//go:embed time_of_trace.js
+var timeOfTraceAggregator []byte
+
+//go:embed createtime.js
+var createTimeAggregator []byte
+
+//go:embed gascost_for_sector.js
+var gasCostForSectorAggregator []byte
+
+//go:embed transfer_message_for_large_amount.js
+var transferMessageForLargeAmountAggregator []byte
+
+//go:embed deals.js
+var dealsAggregator []byte
+
+//go:embed detail_for_deal.js
+var detailForDealAggregator []byte
+
+//go:embed blockheader.js
+var blockHeaderAggregator []byte
+
+//go:embed trace_for_message.js
+var traceForMessageAggregator []byte
+
+//go:embed batch_trace_for_message.js
+var batchTraceForMessageAggregator []byte
+
+//go:embed child_transfers_for_message.js
+var childTransfersForMessage []byte
+
+//go:embed all_owners.js
+var allOwnerAggregator []byte
+
+//go:embed parent_tipset.js
+var parentTipSetAggregator []byte
+
+//go:embed blockheader_by_cid.js
+var blockHeaderByCidAggregator []byte
+
+//go:embed blockmessages_by_methodname.js
+var blockMessagesByMethodNameAggregator []byte
+
+//go:embed actormessages_by_methodname.js
+var actorMessagesByMethodNameAggregator []byte
+
+//go:embed blockheaders_by_miner.js
+var blockHeadersByMinerAggregator []byte
+
+//go:embed deals_by_addr.js
+var dealsByAddrAggregator []byte
+
+//go:embed all_methods.js
+var allMethodsAggregator []byte
+
+//go:embed all_methods_for_actor.js
+var allMethodsForActorAggregator []byte
+
+//go:embed blocks_for_message.js
+var blocksForMessageAggregator []byte
+
+//go:embed count_and_methodnames_of_messages_for_blockheader.js
+var countAndMethodNameOfMessagesForBlockHeaderAggregator []byte
+
+//go:embed messages_for_block.js
+var messagesForBlockAggregator []byte
+
+//go:embed count_of_messages_for_blockheader_by_methodname.js
+var countOfMessagesForBlockHeaderByMethodNameAggregator []byte
+
+//go:embed blockheadermessages_by_methodname.js
+var blockHeaderMessagesByMethodNameAggregator []byte
+
+//go:embed richlist.js
+var richListAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -156,4 +273,140 @@ func GetMinersBlockRewardAggregator() []byte {
 
 func GetBurnMonitorAggregator() []byte {
 	return burnMonitorAggregator
+}
+
+func GetLatestTipSetAggregator() []byte {
+	return latestTipSetAggregator
+}
+
+func GetTotalBlockCountAggregator() []byte {
+	return totalBlockCountAggregator
+}
+
+func GetActorStateAggregator() []byte {
+	return actorStateAggregator
+}
+
+func GetTipSetAggregator() []byte {
+	return tipsetAggregator
+}
+
+func GetMinerInfoAggregator() []byte {
+	return minerInfoAggregator
+}
+
+func GetBalanceAggregator() []byte {
+	return balanceAggregator
+}
+
+func GetMinersForOwnerAggregator() []byte {
+	return minersForOwnerAggregator
+}
+
+func GetMessagesForActorAggregator() []byte {
+	return messagesForActorAggregator
+}
+
+func GetTransferMessagesAggregator() []byte {
+	return transferMessagesAggregator
+}
+
+func GetTimeOfTraceAggregator() []byte {
+	return timeOfTraceAggregator
+}
+
+func GetCreateTimeAggregator() []byte {
+	return createTimeAggregator
+}
+
+func GetGasCostForSectorAggregator() []byte {
+	return gasCostForSectorAggregator
+}
+
+func GetTransferMessageForLargeAmountAggregator() []byte {
+	return transferMessageForLargeAmountAggregator
+}
+
+func GetDealsAggregator() []byte {
+	return dealsAggregator
+}
+
+func GetDetailForDealAggregator() []byte {
+	return detailForDealAggregator
+}
+
+func GetBlockHeaderAggregator() []byte {
+	return blockHeaderAggregator
+}
+
+func GetTraceForMessageAggregator() []byte {
+	return traceForMessageAggregator
+}
+
+func GetBatchTraceForMessageAggregator() []byte {
+	return batchTraceForMessageAggregator
+}
+
+func GetChildTransfersForMessage() []byte {
+	return childTransfersForMessage
+}
+
+func GetAllOwnerAggregator() []byte {
+	return allOwnerAggregator
+}
+
+func GetParentTipSetAggregator() []byte {
+	return parentTipSetAggregator
+}
+
+func GetBlockHeaderByCidAggregator() []byte {
+	return blockHeaderByCidAggregator
+}
+
+func GetBlockMessagesByMethodNameAggregator() []byte {
+	return blockMessagesByMethodNameAggregator
+}
+
+func GetActorMessagesByMethodNameAggregator() []byte {
+	return actorMessagesByMethodNameAggregator
+}
+
+func GetBlockHeadersByMinerAggregator() []byte {
+	return blockHeadersByMinerAggregator
+}
+
+func GetDealsByAddrAggregator() []byte {
+	return dealsByAddrAggregator
+}
+
+func GetAllMethodsAggregator() []byte {
+	return allMethodsAggregator
+}
+
+func GetAllMethodsForActorAggregator() []byte {
+	return allMethodsForActorAggregator
+}
+
+func GetBlocksForMessageAggregator() []byte {
+	return blocksForMessageAggregator
+}
+
+func GetCountAndMethodNameOfMessagesForBlockHeaderAggregator() []byte {
+	return countAndMethodNameOfMessagesForBlockHeaderAggregator
+}
+
+func GetMessagesForBlockAggregator() []byte {
+	return messagesForBlockAggregator
+}
+
+func GetCountOfMessagesForBlockHeaderByMethodNameAggregator() []byte {
+	return countOfMessagesForBlockHeaderByMethodNameAggregator
+}
+
+func GetBlockHeaderMessagesByMethodNameAggregator() []byte {
+	return blockHeaderMessagesByMethodNameAggregator
+}
+
+func GetRichListAggregator() []byte {
+	return richListAggregator
 }
