@@ -90,7 +90,7 @@
     {
         $project: {
             Cid: "$Cid",
-            Epoch: "$Epoch",
+            Epoch: "$trace.Epoch",
             Value: "$message.Value",
             From: "$message.From",
             To: "$message.To",
