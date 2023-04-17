@@ -7,7 +7,8 @@
         $match: {
             $expr: {
                 $and: [
-                    {$eq: ["$Epoch", ctx.StartEpoch]},
+                    {$gte: ["$Epoch", ctx.StartEpoch]},
+                    {$lt: ["$Epoch", ctx.EndEpoch]},
                     {$or: [
                             {$in: ["$Cid", ctx.Cids]},
                             {$in: ["$SignedCid", ctx.Cids]}
