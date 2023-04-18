@@ -3,7 +3,8 @@
     {
         $match: {
             "Epoch": ctx.StartEpoch,
-            "Balance": {$ne: "0"}
+            "Balance": {$ne: "0"},
+            "Code" : {$in:["storageminer","account","multisig"]}
         }
     },
     {
