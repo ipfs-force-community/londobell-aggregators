@@ -44,7 +44,7 @@
             SeqIndex: "$SeqIndex",
             SubCallCount: "$SubCallCount",
             GasCost: "$GasCost",
-            Return: "$MsgRct.Return",
+            ReturnBson: "$MsgRct.Return",
             Version: "$message.Version",
             To: "$message.To",
             From: "$message.From",
