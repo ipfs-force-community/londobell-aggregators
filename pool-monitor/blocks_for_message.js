@@ -12,7 +12,7 @@
     {
         $match: {
             Messages: {$in: [ctx.Cid]},
-            Epoch: ctx.StartEpoch
+            Epoch: {$gte: 0}
         }
     },
     {
