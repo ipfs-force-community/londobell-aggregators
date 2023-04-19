@@ -54,7 +54,7 @@
             GasFeeCap: "$message.GasFeeCap",
             GasPremium: "$message.GasPremium",
             Method: "$message.Method",
-            Params: "$message.Params",
+            ParamsBson: "$message.Params",
             Detail: "$message.Detail",
             Actor: "$message.Detail.Actor"
         }
