@@ -6,7 +6,7 @@
                 $gte: ctx.StartEpoch,
                 $lt: ctx.EndEpoch,
             },
-            "Msg.From": ctx.Addr,
+            "Msg.From": {$in: ctx.Addrs},
             "Msg.To": "099",
             "Msg.Method": 0
         }
