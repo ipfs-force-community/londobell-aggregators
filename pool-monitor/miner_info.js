@@ -62,7 +62,7 @@
             PendingBeneficiaryTerm: "$Info.PendingBeneficiaryTerm",
             States: "$Info.State",
             Multiaddrs: "$Info.Multiaddrs",
-            PeerId: "$Info.PeerId"
+            PeerID: "$Info.PeerId"
         }
     }
 ]
