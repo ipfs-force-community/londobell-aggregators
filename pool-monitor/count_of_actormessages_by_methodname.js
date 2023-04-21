@@ -21,33 +21,51 @@
     {
         $project: {
             _id: 0,
-            Cid: "$Cid"
+            Cid: 1
         }
     },
     {
         $lookup: {
             from: "Message",
-            localField: "Cid",
-            foreignField: "_id",
+            let: {cid: "$Cid"},
+            pipeline: [
+                {
+                    $match:
+                        {
+                            $expr: {
+                                $and: [
+                                    {$eq: ["$_id", "$$cid"]},
+                                ]
+                            }
+                        }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        Method: "Detail.Method",
+                        From:1,
+                        To:1
+                    }
+                }
+            ],
             as: "message",
         }
     },
     {
         $unwind: "$message"
     },
+    // {
+    //     $group: {
+    //         _id: "$message.Method",
+    //         all_froms: {$push: "$message.From"},
+    //         all_tos: {$push: "$message.To"},
+    //     }
+    // },
     {
         $project: {
-            _id: 0,
-            Method: "$message.Detail.Method",
+            Method: "$message.Method",
             From: "$message.From",
-            To: "$message.To"
-        }
-    },
-    {
-        $group: {
-            _id: "$Method",
-            all_froms: {$push: "$From"},
-            all_tos: {$push: "$To"},
+            To: "$message.To",
         }
     }
 ]
