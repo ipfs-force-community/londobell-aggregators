@@ -19,16 +19,10 @@
     },
     {
         $project: {
+            _id: 0,
             From: "$Msg.From",
             To: "$Msg.To"
         }
-    },
-    {
-        $group: {
-            _id: "$_id",
-            Froms: {$push: "$From"},
-            Tos: {$push: "$To"},
-        }
-    }, // todo: 同一actor 地址转换
+    },// todo: 同一actor 地址转换
 ]
 

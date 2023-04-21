@@ -13,7 +13,7 @@
     },
     {
         $project: {
-            _id: 1,
+            _id: 0,
             Cid: 1,
             "Msg.From": 1,
             "Msg.To": 1
@@ -48,10 +48,9 @@
         $unwind: "$message"
     },
     {
-        $group: {
-            _id: "$_id",
-           Froms: {$push: "$Msg.From"},
-            Tos: {$push: "$Msg.To"},
+        $project: {
+           From: "$Msg.From",
+            To: "$Msg.To",
         }
     }
 ]
