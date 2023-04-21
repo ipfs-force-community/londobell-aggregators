@@ -13,8 +13,10 @@
     },
     {
         $project: {
-            _id: 0,
-            Cid: "$Cid"
+            _id: 1,
+            Cid: 1,
+            "Msg.From": 1,
+            "Msg.To": 1
         }
     },
     {
@@ -32,6 +34,11 @@
                                 ]
                             }
                         }
+                },
+                {
+                    $project: {
+                        _id: 1
+                    }
                 }
             ],
             as: "message",
@@ -41,17 +48,10 @@
         $unwind: "$message"
     },
     {
-        $project: {
-            _id: 0,
-            From: "$message.From",
-            To: "$message.To"
-        }
-    },
-    {
         $group: {
-            _id: 0,
-            all_froms: {$push: "$From"},
-            all_tos: {$push: "$To"},
+            _id: "$_id",
+           Froms: {$push: "$Msg.From"},
+            Tos: {$push: "$Msg.To"},
         }
     }
 ]
