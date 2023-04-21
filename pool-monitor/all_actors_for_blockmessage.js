@@ -27,9 +27,12 @@
     {
         $group: {
             _id: 0,
-            all_froms: {$push: "$From"},
-            all_tos: {$push: "$To"},
+            AllFroms: {$push: "$From"},
+            AllTos: {$push: "$To"},
         }
     }, // todo: 同一actor 地址转换
+    {
+        $out: "actors"
+    }
 ]
 
