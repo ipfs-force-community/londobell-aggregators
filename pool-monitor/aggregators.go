@@ -130,6 +130,9 @@ var transferMessageForLargeAmountAggregator []byte
 //go:embed deals.js
 var dealsAggregator []byte
 
+//go:embed deal_by_id.js
+var dealByIDAggregator []byte
+
 //go:embed detail_for_deal.js
 var detailForDealAggregator []byte
 
@@ -366,6 +369,10 @@ func GetTransferMessageForLargeAmountAggregator() []byte {
 
 func GetDealsAggregator() []byte {
 	return dealsAggregator
+}
+
+func GetDealByIDAggregator() []byte {
+	return dealByIDAggregator
 }
 
 func GetDetailForDealAggregator() []byte {
