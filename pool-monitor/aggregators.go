@@ -187,6 +187,9 @@ var blockHeaderMessagesByMethodNameAggregator []byte
 //go:embed richlist.js
 var richListAggregator []byte
 
+//go:embed deal_by_id.js
+var dealByIDAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -409,4 +412,8 @@ func GetBlockHeaderMessagesByMethodNameAggregator() []byte {
 
 func GetRichListAggregator() []byte {
 	return richListAggregator
+}
+
+func GetDealByIDAggregator() []byte {
+	return dealByIDAggregator
 }
