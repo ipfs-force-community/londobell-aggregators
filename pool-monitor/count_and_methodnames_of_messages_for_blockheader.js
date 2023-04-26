@@ -84,9 +84,8 @@
     },
     {
         $group: {
-            _id: 0,
-            AllMethods: {$addToSet: "$message.Detail.Method"},
-            TotalCount: {$sum: 1}
+            _id: "$message.Detail.Method",
+            count:{$sum:1}
         }
     }
 ]
