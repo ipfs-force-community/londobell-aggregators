@@ -85,7 +85,7 @@
     {
         $group: {
             _id: "$message.Detail.Method",
-            count:{$sum:1}
+            Count:{$sum:1}
         }
     }
 ]
