@@ -24,15 +24,55 @@
         }
     },
     {
-        $lookup: {
+        $project: {
+            "_id": 0,
+            "Cid": 1,
+            "Epoch": 1,
+            "MsgRct.ExitCode": 1
+        }
+    },
+    {
+        $sort: {
+            "Epoch": -1
+        }
+    },
+    {
+        $lookup:  {
             from: "Message",
-            localField: "Cid",
-            foreignField: "_id",
-            as: "message",
+            let: {cid: "$Cid"},
+            pipeline: [
+                {
+                    $match:
+                        {
+                            $expr: {
+                                $and: [
+                                    {$eq: [ "$_id", "$$cid"]},
+                                ]
+                            }
+                        }
+                },
+                {
+                    $project: {
+                        _id: 1,
+                        "SignedCid": 1,
+                        "From": 1,
+                        "To": 1,
+                        "Value": 1,
+                        "Detail.Method": 1
+                    }
+                }
+            ],
+            as: "message"
         }
     },
     {
         $unwind: "$message"
+    },
+    {
+        $skip: ctx.Skip
+    },
+    {
+        $limit: ctx.Limit
     },
     {
         $project: {
