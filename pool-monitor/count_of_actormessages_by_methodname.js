@@ -42,7 +42,7 @@
                 {
                     $project: {
                         _id: 0,
-                        Method: "Detail.Method",
+                        Method: "$Detail.Method",
                         From:1,
                         To:1
                     }
