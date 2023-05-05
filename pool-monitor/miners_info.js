@@ -1,3 +1,4 @@
+//MinerSectorHealth
 [
     {
         $match: {
