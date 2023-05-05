@@ -30,7 +30,7 @@
                         $expr: {
                             $and: [
                                 {$eq: ["$_id", "$$mcid"]},
-                                {$gte: [{$toDecimal: "$Value"}, 1e19]}, // todo: 2e22
+                                {$gte: [{$toDecimal: "$Value"}, 1e22]}, // todo: 2e22
                             ],
                         },
                     },
@@ -57,6 +57,12 @@
                                 {$eq: ["$Depth", 1]},
                                 {$eq: ["$Epoch", "$$epoch"]},
                                 {$eq: ["$_id", {$concat: [{$arrayElemAt: ["$$ids", 0]}, "-", {$arrayElemAt: ["$$ids", 1]}]}]},
+                                {$or: [
+                                        {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
+                                        {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
+                                        {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
+                                    ]
+                                },
                             ],
                         },
                     },
