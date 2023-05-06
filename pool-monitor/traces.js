@@ -1,3 +1,5 @@
+// ExecTrace
+// todo: 多条trace可能对应一条message(cid)，这种情况得到的trace会变多
 [
     {
         $match: {

@@ -1,7 +1,7 @@
 // ExecTrace
 // Sort by method name
-// todo: 分库查询
 // todo: db.ExecTrace.createIndex({"Epoch":1,"SubCallCount":1}, {"sparse": true});
+// only allow to search explicit messages
 [
     {
         $match: {
@@ -11,7 +11,13 @@
                             {$eq: ["$Cid", ctx.Cid]},
                             {$eq: ["$SignedCid", ctx.Cid]}
                         ]},
-                    {$eq: ["$Depth", 1]} // not inclued cron, which may contained burn pledge
+                    {$eq: ["$Depth", 1]}, // not inclued cron, which may contained burn pledge
+                    {$or: [
+                            {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
+                            {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
+                            {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
+                        ]
+                    },
                 ]
             }
         }
