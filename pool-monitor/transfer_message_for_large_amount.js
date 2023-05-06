@@ -1,14 +1,14 @@
 // ExecTrace
 // todo: 只包含显式Send方法？ 内部调用方法value较大（比如引入智能合约后）？
-// todo: create index
+// todo: trace表添加Value值，缩小sort范围
 [
     {
         $match: {
             $expr: {
                 $and: [
+                    {$eq: ["$MsgRct.ExitCode", 0]},
                     {$gte: ["$Epoch", ctx.StartEpoch]},
                     {$lt: ["$Epoch", ctx.EndEpoch]},
-                    {$eq: ["$MsgRct.ExitCode", 0]}
                 ]
             }
         }
@@ -18,12 +18,9 @@
             "_id": 0,
             "Epoch": 1,
             "SignedCid": 1,
-            "Cid": 1
-        }
-    },
-    {
-        $sort: {
-            Epoch : -1
+            "Cid": 1,
+            "Msg.From": 1,
+            "Msg.To": 1
         }
     },
     {
@@ -43,12 +40,24 @@
                         },
                     },
                 },
+                {
+                    $project: {
+                        _id: 0,
+                        "Detail.Method": 1,
+                        "Value": 1
+                    }
+                },
             ],
             as: "message",
         }
     },
     {
         $unwind: "$message"
+    },
+    {
+        $sort: {
+            Epoch : -1
+        }
     },
     // {
     //     $lookup: {
@@ -122,8 +131,8 @@
                 }
             },
             Epoch: "$Epoch",
-            From: "$message.From",
-            To: "$message.To",
+            From: "$Msg.From",
+            To: "$Msg.To",
             Value: "$message.Value",
             Method: "$message.Detail.Method"
         }
