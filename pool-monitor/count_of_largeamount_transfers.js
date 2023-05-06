@@ -28,7 +28,7 @@
                             $expr: {
                                 $and: [
                                     {$eq: ["$_id", "$$cid"]},
-                                    {$gt: [{$toDecimal: "$Value"}, 1e19]} // todo: 2e22
+                                    {$gt: [{$toDecimal: "$Value"}, 1e22]} // todo: 2e22
                                 ]
                             }
                         }
