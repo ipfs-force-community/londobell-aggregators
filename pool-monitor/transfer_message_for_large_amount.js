@@ -14,6 +14,14 @@
         }
     },
     {
+        $project: {
+            "_id": 0,
+            "Epoch": 1,
+            "SignedCid": 1,
+            "Cid": 1
+        }
+    },
+    {
         $sort: {
             Epoch : -1
         }
@@ -42,60 +50,60 @@
     {
         $unwind: "$message"
     },
-    {
-        $lookup: {
-            from: "ExecTrace",
-            let: {
-                ids: {$split: ["$_id", "-"]},
-                epoch: "$Epoch"
-            },
-            pipeline: [
-                {
-                    $match: {
-                        $expr: {
-                            $and: [
-                                {$eq: ["$Depth", 1]},
-                                {$eq: ["$Epoch", "$$epoch"]},
-                                {$eq: ["$_id", {$concat: [{$arrayElemAt: ["$$ids", 0]}, "-", {$arrayElemAt: ["$$ids", 1]}]}]},
-                                {$or: [
-                                        {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
-                                        {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
-                                        {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
-                                    ]
-                                },
-                            ],
-                        },
-                    },
-                },
-            ],
-            as: "parentTrace",
-        }
-    },
-    {
-        $unwind: "$parentTrace"
-    },
-    {
-        $lookup: {
-            from: "Message",
-            let: {cid: "$parentTrace.Cid"},
-            pipeline: [
-                {
-                    $match:
-                        {
-                            $expr: {
-                                $and: [
-                                    {$eq: ["$_id", "$$cid"]}
-                                ]
-                            }
-                        }
-                }
-            ],
-            as: "parentMessage",
-        }
-    },
-    {
-        $unwind: "$parentMessage",
-    },
+    // {
+    //     $lookup: {
+    //         from: "ExecTrace",
+    //         let: {
+    //             ids: {$split: ["$_id", "-"]},
+    //             epoch: "$Epoch"
+    //         },
+    //         pipeline: [
+    //             {
+    //                 $match: {
+    //                     $expr: {
+    //                         $and: [
+    //                             {$eq: ["$Depth", 1]},
+    //                             {$eq: ["$Epoch", "$$epoch"]},
+    //                             {$eq: ["$_id", {$concat: [{$arrayElemAt: ["$$ids", 0]}, "-", {$arrayElemAt: ["$$ids", 1]}]}]},
+    //                             {$or: [
+    //                                     {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
+    //                                     {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
+    //                                     {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
+    //                                 ]
+    //                             },
+    //                         ],
+    //                     },
+    //                 },
+    //             },
+    //         ],
+    //         as: "parentTrace",
+    //     }
+    // },
+    // {
+    //     $unwind: "$parentTrace"
+    // },
+    // {
+    //     $lookup: {
+    //         from: "Message",
+    //         let: {cid: "$parentTrace.Cid"},
+    //         pipeline: [
+    //             {
+    //                 $match:
+    //                     {
+    //                         $expr: {
+    //                             $and: [
+    //                                 {$eq: ["$_id", "$$cid"]}
+    //                             ]
+    //                         }
+    //                     }
+    //             }
+    //         ],
+    //         as: "parentMessage",
+    //     }
+    // },
+    // {
+    //     $unwind: "$parentMessage",
+    // },
     {
         $skip: ctx.Skip
     },
@@ -108,16 +116,16 @@
             Cid: {
                 $cond: {
                     if:{
-                        $eq:["$parentTrace.SignedCid", null]
-                    }, then: "$parentTrace.Cid",
-                    else: "$parentTrace.SignedCid"
+                        $eq:["$SignedCid", null]
+                    }, then: "$Cid",
+                    else: "$SignedCid"
                 }
             },
             Epoch: "$Epoch",
             From: "$message.From",
             To: "$message.To",
             Value: "$message.Value",
-            Method: "$parentMessage.Detail.Method"
+            Method: "$message.Detail.Method"
         }
     }
 ]
