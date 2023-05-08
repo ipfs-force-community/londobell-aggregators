@@ -13,14 +13,19 @@
             }
         }
     },
+    // {
+    //     $project: {
+    //         "_id": 0,
+    //         "Epoch": 1,
+    //         "SignedCid": 1,
+    //         "Cid": 1,
+    //         "Msg.From": 1,
+    //         "Msg.To": 1
+    //     }
+    // },
     {
-        $project: {
-            "_id": 0,
-            "Epoch": 1,
-            "SignedCid": 1,
-            "Cid": 1,
-            "Msg.From": 1,
-            "Msg.To": 1
+        $sort: {
+            Epoch : -1
         }
     },
     {
@@ -40,24 +45,19 @@
                         },
                     },
                 },
-                {
-                    $project: {
-                        _id: 0,
-                        "Detail.Method": 1,
-                        "Value": 1
-                    }
-                },
+                // {
+                //     $project: {
+                //         _id: 0,
+                //         "Detail.Method": 1,
+                //         "Value": 1
+                //     }
+                // },
             ],
             as: "message",
         }
     },
     {
         $unwind: "$message"
-    },
-    {
-        $sort: {
-            Epoch : -1
-        }
     },
     // {
     //     $lookup: {
