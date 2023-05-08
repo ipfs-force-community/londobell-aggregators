@@ -146,10 +146,10 @@ var traceForMessageAggregator []byte
 var batchTraceForMessageAggregator []byte
 
 //go:embed child_transfers_for_message.js
-var childTransfersForMessage []byte
+var childTransfersForMessageAggregator []byte
 
 //go:embed all_owners.js
-var allOwnerAggregator []byte
+var allOwnersAggregator []byte
 
 //go:embed parent_tipset.js
 var parentTipSetAggregator []byte
@@ -391,12 +391,12 @@ func GetBatchTraceForMessageAggregator() []byte {
 	return batchTraceForMessageAggregator
 }
 
-func GetChildTransfersForMessage() []byte {
-	return childTransfersForMessage
+func GetChildTransfersForMessageAggregator() []byte {
+	return childTransfersForMessageAggregator
 }
 
-func GetAllOwnerAggregator() []byte {
-	return allOwnerAggregator
+func GetAllOwnersAggregator() []byte {
+	return allOwnersAggregator
 }
 
 func GetParentTipSetAggregator() []byte {

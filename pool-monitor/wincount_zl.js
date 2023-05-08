@@ -2,14 +2,14 @@
 [
   {
     $match: {
-      Epoch: {
-        $gte: ctx.StartEpoch,
-        $lt: ctx.EndEpoch,
-      },
       Depth: 1,
       "Msg.From": "00",
       "Msg.To": "02",
       "Msg.Method": 2,
+      Epoch: {
+        $gte: ctx.StartEpoch,
+        $lt: ctx.EndEpoch,
+      },
     },
   },
   {

@@ -4,13 +4,13 @@
 [
     {
         $match: {
+            Depth: 1,
+            "Msg.Method": {$in: [/*5,*/ 6, 7, 25, 26, 28]},
             Epoch: {
                 $gte: ctx.StartEpoch,
                 $lt: ctx.EndEpoch,
             },
-            "Msg.Method": {$in: [/*5,*/ 6, 7, 25, 26, 28]},
             // "MsgRct.ExitCode": 0, //todo
-            Depth: 1,
         },
     },
     {

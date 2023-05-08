@@ -1,13 +1,13 @@
 [
   {
     $match: {
+      Depth: 2,
+      "Msg.To": "099",
+      "Msg.Method": 0,
       Epoch: {
         $gte: ctx.StartEpoch,
         $lt: ctx.EndEpoch,
       },
-      "Msg.To": "099",
-      "Msg.Method": 0,
-      Depth: 2,
     },
   },
   {

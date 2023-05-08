@@ -2,13 +2,13 @@
 [
     {
         $match: {
+            "Msg.To": "099",
+            "Msg.Method": 0,
+            "Msg.From": {$in: ctx.Addrs},
             Epoch: {
                 $gte: ctx.StartEpoch,
                 $lt: ctx.EndEpoch,
             },
-            "Msg.From": {$in: ctx.Addrs},
-            "Msg.To": "099",
-            "Msg.Method": 0
         }
     },
     {

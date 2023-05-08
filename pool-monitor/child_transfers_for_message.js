@@ -7,12 +7,12 @@
         $match: {
             $expr: {
                 $and: [
+                    {$eq: ["$Depth", 1]}, // not inclued cron, which may contained burn pledge
                     {$or: [
                         {$eq: ["$Cid", ctx.Cid]},
                         {$eq: ["$SignedCid", ctx.Cid]}
                     ]},
-                    {$eq: ["$Depth", 1]}, // not inclued cron, which may contained burn pledge
-                    {$gt: ["$SubCallCount", 0]}
+                    {$gt: ["$SubCallCount", 0]},
                 ]
             }
         }

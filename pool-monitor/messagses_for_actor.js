@@ -6,6 +6,9 @@
         $match: {
             $expr: {
                 $and: [
+                    {$eq: ["$Depth", 1]},
+                    {$gte: ["$Epoch", ctx.StartEpoch]},
+                    {$lt: ["$Epoch", ctx.EndEpoch]},
                     {$or: [
                         {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1]}]},
                         {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1]}]},
@@ -15,10 +18,7 @@
                         {$in: ["$Msg.From", ctx.Addrs]},
                         {$in: ["$Msg.To", ctx.Addrs]}
                         ]
-                    },
-                    {$eq: ["$Depth", 1]},
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]}
+                    }
                 ]
             }
         }

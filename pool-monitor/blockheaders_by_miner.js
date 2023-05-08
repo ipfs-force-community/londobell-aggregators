@@ -4,9 +4,9 @@
         $match: {
             $expr: {
                 $and: [
-                    {$in: ["$Miner", ctx.Addrs]},
                     {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]}
+                    {$lt: ["$Epoch", ctx.EndEpoch]},
+                    {$in: ["$Miner", ctx.Addrs]}
                 ]
             }
         }

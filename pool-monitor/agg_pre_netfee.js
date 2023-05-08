@@ -1,13 +1,13 @@
 [
   {
     $match: {
+      Depth: 1,
+      "MsgRct.ExitCode": 0,
       Epoch: {
         $gte: ctx.StartEpoch,
         $lt: ctx.EndEpoch,
       },
       "Msg.Method": {$in: [25, 28]},
-      "MsgRct.ExitCode": 0,
-      Depth: 1,
     },
   },
   {
