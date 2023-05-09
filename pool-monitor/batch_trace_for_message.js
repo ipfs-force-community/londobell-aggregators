@@ -8,8 +8,6 @@
             $expr: {
                 $and: [
                     {$eq: ["$Depth", 1]}, // not inclued cron, which may contained burn pledge
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]},
                     {$or: [
                             {$in: ["$Cid", ctx.Cids]},
                             {$in: ["$SignedCid", ctx.Cids]}
@@ -20,6 +18,8 @@
                             {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
                         ]
                     },
+                    {$gte: ["$Epoch", ctx.StartEpoch]},
+                    {$lt: ["$Epoch", ctx.EndEpoch]},
                 ]
             }
         }
