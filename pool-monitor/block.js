@@ -16,6 +16,8 @@
                         {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
                         ]
                     }
+                    //{$ne: ["$GasCost",null]},
+                    //{$ne: ["$GasCost.GasUsed", null]}
                 ]
             }
         }

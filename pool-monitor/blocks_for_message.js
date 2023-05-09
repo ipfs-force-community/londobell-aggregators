@@ -11,8 +11,8 @@
 [
     {
         $match: {
-            Messages: {$in: [ctx.Cid]},
-            Epoch: {$gte: 0}
+            // Epoch: {$gte: 0},
+            Messages: {$in: [ctx.Cid]}
         }
     },
     {

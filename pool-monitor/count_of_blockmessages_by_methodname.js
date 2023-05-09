@@ -24,26 +24,52 @@
             Cid: "$Cid"
         }
     },
+    // {
+    //     $lookup: {
+    //         from: "Message",
+    //         localField: "Cid",
+    //         foreignField: "_id",
+    //         as: "message",
+    //     }
+    // },
     {
-        $lookup: {
+        $lookup:  {
             from: "Message",
-            localField: "Cid",
-            foreignField: "_id",
-            as: "message",
+            let: {cid: "$Cid"},
+            pipeline: [
+                {
+                    $match:
+                        {
+                            $expr: {
+                                $and: [
+                                    {$eq: [ "$_id", "$$cid"]},
+                                ]
+                            }
+                        }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        "Detail.Method": 1
+                    }
+                }
+            ],
+            as: "message"
         }
     },
     {
         $unwind: "$message"
     },
-    {
-        $project: {
-            _id: 0,
-            method: "$message.Detail.Method"
-        }
-    },
+    // {
+    //     $project: {
+    //         _id: 0,
+    //         method: "$message.Detail.Method"
+    //     }
+    // },
     {
         $group: {
-            _id: "$method",
+            // _id: "$method",
+            _id: "$message.Detail.Method",
             count: {$sum: 1}
         }
     }
