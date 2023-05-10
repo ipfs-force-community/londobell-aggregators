@@ -2,13 +2,16 @@
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$eq: ["$MsgRct.ExitCode", 0]},
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]}
-                ]
-            }
+            "MsgRct.ExitCode": 0,
+            "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}
+
+            // $expr: {
+            //     $and: [
+            //         {$eq: ["$MsgRct.ExitCode", 0]},
+            //         {$gte: ["$Epoch", ctx.StartEpoch]},
+            //         {$lt: ["$Epoch", ctx.EndEpoch]}
+            //     ]
+            // }
         }
     },
     {

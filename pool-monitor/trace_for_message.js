@@ -5,21 +5,11 @@
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$eq: ["$Depth", 1]}, // not inclued cron, which may contained burn pledge
-                    {$or: [
-                            {$eq: ["$Cid", ctx.Cid]},
-                            {$eq: ["$SignedCid", ctx.Cid]}
-                        ]},
-                    {$or: [
-                            {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
-                            {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
-                            {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
-                        ]
-                    },
-                ]
-            }
+            $and: [
+                {"Depth": 1},
+                {$or: [{"Cid": ctx.Cid}, {"SignedCid": ctx.Cid}]},
+                {$or: [{"Msg.From":{$regex: /^1/}}, {"Msg.From":{$regex: /^3/}}, {"Msg.From":{$regex: /^4/}}]},
+            ]
         }
     },
     {

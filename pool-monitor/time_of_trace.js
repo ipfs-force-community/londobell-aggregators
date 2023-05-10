@@ -3,16 +3,21 @@
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                        {$gte: ["$Epoch", ctx.StartEpoch]},
-                        {$lt: ["$Epoch", ctx.EndEpoch]},
-                    {$or:[
-                        {$in: ["$Msg.From", ctx.Addrs]},
-                        {$in: ["$Msg.To", ctx.Addrs]}
-                    ]}
-                ]
-            }
+            $and: [
+                {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
+                {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]}
+            ]
+
+            // $expr: {
+            //     $and: [
+            //             {$gte: ["$Epoch", ctx.StartEpoch]},
+            //             {$lt: ["$Epoch", ctx.EndEpoch]},
+            //         {$or:[
+            //             {$in: ["$Msg.From", ctx.Addrs]},
+            //             {$in: ["$Msg.To", ctx.Addrs]}
+            //         ]}
+            //     ]
+            // }
         }
     },
     {

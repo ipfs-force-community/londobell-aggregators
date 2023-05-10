@@ -4,69 +4,81 @@
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$eq: ["$Depth", 1]},
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]},
-                    {$or: [
-                        {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1]}]},
-                        {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1]}]},
-                        {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1]}]},
-                    ]},
-                    {$or:[
-                        {$in: ["$Msg.From", ctx.Addrs]},
-                        {$in: ["$Msg.To", ctx.Addrs]}
-                        ]
-                    }
-                ]
-            }
+            $and: [
+                {"Depth": 1},
+                // {$or: [{"Msg.From":{$regex: /^1/}}, {"Msg.From":{$regex: /^3/}}, {"Msg.From":{$regex: /^4/}}]},
+                {"MsgRct.GasUsed": {$gt: 0}},
+                {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
+                // {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]} // todo: 耗时
+
+            ]
         }
     },
-    {
-        $project: {
-            "_id": 0,
-            "Cid": 1,
-            "Epoch": 1,
-            "MsgRct.ExitCode": 1
-        }
-    },
+    // {
+    //     $project: {
+    //         "_id": 0,
+    //         "Cid": 1,
+    //         "Epoch": 1,
+    //         "MsgRct.ExitCode": 1
+    //     }
+    // },
     {
         $sort: {
             "Epoch": -1
         }
     },
+    // {
+    //     $lookup:  {
+    //         from: "Message",
+    //         let: {cid: "$Cid"},
+    //         pipeline: [
+    //             {
+    //                 $match:
+    //                     {
+    //                         $expr: {
+    //                             $and: [
+    //                                 {$eq: [ "$_id", "$$cid"]},
+    //                             ]
+    //                         }
+    //                     }
+    //             },
+    //             {
+    //                 $project: {
+    //                     _id: 1,
+    //                     "SignedCid": 1,
+    //                     "From": 1,
+    //                     "To": 1,
+    //                     "Value": 1,
+    //                     "Detail.Method": 1
+    //                 }
+    //             }
+    //         ],
+    //         as: "message"
+    //     }
+    // },
     {
-        $lookup:  {
+        $lookup: {
             from: "Message",
-            let: {cid: "$Cid"},
-            pipeline: [
-                {
-                    $match:
-                        {
-                            $expr: {
-                                $and: [
-                                    {$eq: [ "$_id", "$$cid"]},
-                                ]
-                            }
-                        }
-                },
-                {
-                    $project: {
-                        _id: 1,
-                        "SignedCid": 1,
-                        "From": 1,
-                        "To": 1,
-                        "Value": 1,
-                        "Detail.Method": 1
-                    }
-                }
-            ],
-            as: "message"
-        }
+            localField: "Cid",
+            foreignField: "_id",
+            as: "message",
+        },
     },
     {
         $unwind: "$message"
+    },
+    {
+        $project: {
+            _id: 0,
+            Epoch: 1,
+            "MsgRct.ExitCode": 1,
+            "message.SignedCid": 1,
+            "message._id": 1,
+            "message.From": 1,
+            "message.To": 1,
+            "message.Value": 1,
+            "message.Detail.Method": 1
+        }
     },
     {
         $skip: ctx.Skip

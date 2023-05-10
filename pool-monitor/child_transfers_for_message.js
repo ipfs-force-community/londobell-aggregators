@@ -5,16 +5,22 @@
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$eq: ["$Depth", 1]}, // not inclued cron, which may contained burn pledge
-                    {$or: [
-                        {$eq: ["$Cid", ctx.Cid]},
-                        {$eq: ["$SignedCid", ctx.Cid]}
-                    ]},
-                    {$gt: ["$SubCallCount", 0]},
-                ]
-            }
+            $and: [
+                {"Depth": 1},
+                {"SubCallCount": {$gt: 0}},
+                {$or: [{"Cid": ctx.Cid}, {"SignedCid": ctx.Cid}]},
+            ]
+
+            // $expr: {
+            //     $and: [
+            //         {$eq: ["$Depth", 1]}, // not inclued cron, which may contained burn pledge
+            //         {$or: [
+            //             {$eq: ["$Cid", ctx.Cid]},
+            //             {$eq: ["$SignedCid", ctx.Cid]}
+            //         ]},
+            //         {$gt: ["$SubCallCount", 0]},
+            //     ]
+            // }
         }
     },
     {

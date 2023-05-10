@@ -3,12 +3,14 @@
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]},
-                ]
-            }
+            "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
+
+            // $expr: {
+            //     $and: [
+            //         {$gte: ["$Epoch", ctx.StartEpoch]},
+            //         {$lt: ["$Epoch", ctx.EndEpoch]},
+            //     ]
+            // }
         }
     },
     {

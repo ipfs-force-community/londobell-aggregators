@@ -2,19 +2,22 @@
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$eq: ["$MsgRct.ExitCode", 0]}, //
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]}
-                ]
-            }
+            "MsgRct.ExitCode": 0,
+            "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
+
+            // $expr: {
+            //     $and: [
+            //         {$eq: ["$MsgRct.ExitCode", 0]}, //
+            //         {$gte: ["$Epoch", ctx.StartEpoch]},
+            //         {$lt: ["$Epoch", ctx.EndEpoch]}
+            //     ]
+            // }
         }
     },
     {
         $project: {
             _id: 0,
-            Cid: "$Cid"
+            Cid: 1
         }
     },
     {
@@ -32,6 +35,11 @@
                                 ]
                             }
                         }
+                },
+                {
+                    $project: {
+                        _id: 1
+                    }
                 }
             ],
             as: "message",
@@ -39,11 +47,6 @@
     },
     {
         $unwind: "$message"
-    },
-    {
-        $project: {
-            _id: 1
-        }
     },
     {
         $group: {

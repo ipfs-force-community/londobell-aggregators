@@ -3,24 +3,13 @@
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$eq: ["$Depth", 1]},
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]}, // todo: range epoch query too slow
-                    {$or: [
-                            {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
-                            {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
-                            {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
-                        ]
-                    },
-                    {$or:[
-                            {$in: ["$Msg.From", ctx.Addrs]},
-                            {$in: ["$Msg.To", ctx.Addrs]}
-                        ]
-                    },
-                ]
-            }
+            $and: [
+                {"Depth": 1},
+                // {$or: [{"Msg.From":{$regex: /^1/}}, {"Msg.From":{$regex: /^3/}}, {"Msg.From":{$regex: /^4/}}]},
+                {"MsgRct.GasUsed": {$gt: 0}},
+                {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
+                {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]},
+            ]
         }
     },
     {

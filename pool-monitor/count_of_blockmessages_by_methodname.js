@@ -1,21 +1,14 @@
 // ExecTrace 90个高度2秒
 // db.ExecTrace.createIndex({"Epoch":1,"Depth":1,"Msg.From":1}, {"sparse": true});
+
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]},
-                    {$eq: ["$Depth", 1]},
-                    {$or: [
-                            {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
-                            {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
-                            {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
-                        ]
-                    },
-                ]
-            }
+            $and: [
+                {"Depth": 1},
+                {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
+                {$or: [{"Msg.From":{$regex: /^1/}}, {"Msg.From":{$regex: /^3/}}, {"Msg.From":{$regex: /^4/}}]}
+            ]
         }
     },
     {
@@ -35,7 +28,7 @@
     {
         $lookup:  {
             from: "Message",
-            let: {cid: "$Cid"},
+            let: {cid: "$Cid", epoch: "$Epoch", from: "$Msg.From", to: "$Msg.To"},
             pipeline: [
                 {
                     $match:
@@ -43,6 +36,9 @@
                             $expr: {
                                 $and: [
                                     {$eq: [ "$_id", "$$cid"]},
+                                    {$eq: [ "$Detail.PackedHeight", "$$epoch"]},
+                                    {$eq: [ "$From", "$$from"]},
+                                    {$eq: [ "$To", "$$to"]},
                                 ]
                             }
                         }
@@ -60,15 +56,8 @@
     {
         $unwind: "$message"
     },
-    // {
-    //     $project: {
-    //         _id: 0,
-    //         method: "$message.Detail.Method"
-    //     }
-    // },
     {
         $group: {
-            // _id: "$method",
             _id: "$message.Detail.Method",
             count: {$sum: 1}
         }

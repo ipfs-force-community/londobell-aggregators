@@ -3,18 +3,11 @@
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$or:[
-                            {$in: ["$Msg.From", ctx.Addrs]},
-                            {$in: ["$Msg.To", ctx.Addrs]}
-                        ]
-                    },
-                    {$eq: ["$MsgRct.ExitCode", 0]},
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]}
-                ]
-            }
+            $and: [
+                {"MsgRct.ExitCode": 0},
+                {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
+                {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]}
+            ]
         }
     },
     {
@@ -33,7 +26,8 @@
                             $expr: {
                                 $and: [
                                     {$eq: ["$_id", "$$cid"]},
-                                    {$gt: [{$toDecimal: "$Value"}, 0]}
+                                    { $regexMatch: { input: "$Value", regex: "^.{1,}$" } }
+                                    // {$gt: [{$toDecimal: "$Value"}, 0]}
                                 ]
                             }
                         }

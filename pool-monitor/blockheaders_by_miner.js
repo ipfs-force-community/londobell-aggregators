@@ -2,13 +2,16 @@
 [
     {
         $match: {
-            $expr: {
-                $and: [
-                    {$gte: ["$Epoch", ctx.StartEpoch]},
-                    {$lt: ["$Epoch", ctx.EndEpoch]},
-                    {$in: ["$Miner", ctx.Addrs]}
-                ]
-            }
+            "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
+            Miners: {$in: ctx.Addrs}
+
+            // $expr: {
+            //     $and: [
+            //         {$gte: ["$Epoch", ctx.StartEpoch]},
+            //         {$lt: ["$Epoch", ctx.EndEpoch]},
+            //         {$in: ["$Miner", ctx.Addrs]}
+            //     ]
+            // }
         }
     },
     {
