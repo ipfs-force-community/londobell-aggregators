@@ -26,8 +26,8 @@
                             $expr: {
                                 $and: [
                                     {$eq: ["$_id", "$$cid"]},
-                                    { $regexMatch: { input: "$Value", regex: "^.{1,}$" } }
-                                    // {$gt: [{$toDecimal: "$Value"}, 0]}
+                                    // { $regexMatch: { input: "$Value", regex: "^.{1,}$" } }
+                                    {$gt: [{$toDecimal: "$Value"}, 0]}
                                 ]
                             }
                         }
