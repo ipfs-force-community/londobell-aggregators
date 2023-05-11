@@ -66,11 +66,11 @@
                         {
                             $expr: {
                                 $and: [
+                                    {$eq: ["$Detail.PackedHeight", "$$epoch"]},
                                     {$or: [
                                             {$in: ["$_id", "$$cids"]},
                                             {$in: ["$SignedCid", "$$cids"]}
                                         ]},
-                                    {$eq: ["$Detail.PackedHeight", "$$epoch"]}
                                 ]
                             }
                         }

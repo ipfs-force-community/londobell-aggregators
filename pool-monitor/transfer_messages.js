@@ -87,7 +87,8 @@
             From: "$message.From",
             To: "$message.To",
             Value: "$message.Value",
-            Method: "$message.Detail.Method"
+            Method: "$message.Detail.Method",
+            Depth: "$Depth"
             // Method: {
             //     $cond: {
             //         if: {

@@ -201,7 +201,8 @@
             From: "$From",
             To: "$To",
             Value: "$Value",
-            Method: "$Detail.Method"
+            Method: "$Detail.Method",
+            Depth: "$trace.Depth"
         }
     }
 ]

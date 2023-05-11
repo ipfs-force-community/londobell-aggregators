@@ -6,11 +6,9 @@
         $match: {
             $and: [
                 {"Depth": 1},
-                // {$or: [{"Msg.From":{$regex: /^1/}}, {"Msg.From":{$regex: /^3/}}, {"Msg.From":{$regex: /^4/}}]},
-                {"MsgRct.GasUsed": {$gt: 0}},
+                {$or: [{"Msg.From":{$regex: /^1/}}, {"Msg.From":{$regex: /^3/}}, {"Msg.From":{$regex: /^4/}}]},
                 {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
-                // {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]} // todo: 耗时
-
+                {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]} // todo: 耗时
             ]
         }
     },

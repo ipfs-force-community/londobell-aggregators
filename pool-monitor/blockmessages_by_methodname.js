@@ -8,20 +8,6 @@
                 {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
                 {$or: [{"Msg.From":{$regex: /^1/}}, {"Msg.From":{$regex: /^3/}}, {"Msg.From":{$regex: /^4/}}]},
             ]
-
-            // $expr: {
-            //     $and: [
-            //         {$eq: ["$Depth", 1]},
-            //         {$gte: ["$Epoch", ctx.StartEpoch]},
-            //         {$lt: ["$Epoch", ctx.EndEpoch]},
-            //         {$or: [
-            //                 {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
-            //                 {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
-            //                 {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
-            //             ]
-            //         }
-            //     ]
-            // }
         }
     },
     {
@@ -44,6 +30,14 @@
                               ]
                           }
                       }
+              },
+              {
+                  $project: {
+                      // _id: 1,
+                      // "SignedCid": 1,
+                      Value: 1,
+                      "Detail.Method": 1
+                  }
               }
           ],
           as: "message"
@@ -64,9 +58,9 @@
             SignedCid:
                 {$cond: {
                         if:{
-                            $eq:["$message.SignedCid", null]
-                        }, then: "$message._id",
-                        else: "$message.SignedCid"
+                            $eq:["$SignedCid", null]
+                        }, then: "$_id",
+                        else: "$SignedCid"
                     }
                 },
             Epoch: "$Epoch",
