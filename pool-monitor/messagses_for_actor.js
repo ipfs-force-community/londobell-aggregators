@@ -13,6 +13,13 @@
         }
     },
     // {
+    //     $match: {
+    //         $and:[
+    //             {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]} // todo: 耗时
+    //         ]
+    //     }
+    // },
+    // {
     //     $project: {
     //         "_id": 0,
     //         "Cid": 1,

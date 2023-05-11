@@ -59,7 +59,7 @@
                 {$cond: {
                         if:{
                             $eq:["$SignedCid", null]
-                        }, then: "$_id",
+                        }, then: "$Cid",
                         else: "$SignedCid"
                     }
                 },
