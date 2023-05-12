@@ -223,6 +223,9 @@ var countOfLargeAmountTransfersAggregator []byte
 //go:embed richlist.js
 var richListAggregator []byte
 
+//go:embed mined_by_miner_range.js
+var minedByMinerRangeAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -493,4 +496,8 @@ func GetBlockHeaderMessagesByMethodNameAggregator() []byte {
 
 func GetRichListAggregator() []byte {
 	return richListAggregator
+}
+
+func GetMinedByMinerRangeAggregator() []byte {
+	return minedByMinerRangeAggregator
 }
