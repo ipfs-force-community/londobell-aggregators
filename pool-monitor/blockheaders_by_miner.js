@@ -3,7 +3,7 @@
     {
         $match: {
             "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
-            Miners: {$in: ctx.Addrs}
+            Miner: {$in: ctx.Addrs}
 
             // $expr: {
             //     $and: [
