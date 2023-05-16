@@ -58,6 +58,9 @@ var sealAndPowerLbAggregator []byte
 //go:embed wincount_zl.js
 var wincountZlAggregator []byte
 
+//go:embed wincount_for_miner.js
+var wincountForMinerAggregator []byte
+
 //go:embed traces.js
 var tracesAggregator []byte
 
@@ -296,6 +299,10 @@ func GetSealAndPowerLbAggregator() []byte {
 
 func GetWincountZlAggregator() []byte {
 	return wincountZlAggregator
+}
+
+func GetWincountForMinerAggregator() []byte {
+	return wincountForMinerAggregator
 }
 
 func GetTracesAggregator() []byte {
