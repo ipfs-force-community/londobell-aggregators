@@ -38,14 +38,21 @@
     $unwind: "$wincountMatches",
   },
   {
-    $group: {
-      _id: "$wincountMatches.Detail.Params.Miner",
-      TotalWincount: {
-        $sum: "$wincountMatches.Detail.Params.WinCount",
-      },
-      TotalGasReward: { //get for per epoch
-        $sum: {$toDecimal: "$wincountMatches.Detail.Params.GasReward"}
-      }
-    },
-  },
+    $project: {
+      Miner: "$wincountMatches.Detail.Params.Miner",
+      Wincount: "$wincountMatches.Detail.Params.WinCount",
+      GasReward: {$toDecimal: "$wincountMatches.Detail.Params.GasReward"}
+    }
+  }
+  // {
+  //   $group: {
+  //     _id: "$wincountMatches.Detail.Params.Miner",
+  //     TotalWincount: {
+  //       $sum: "$wincountMatches.Detail.Params.WinCount",
+  //     },
+  //     TotalGasReward: { //get for per epoch
+  //       $sum: {$toDecimal: "$wincountMatches.Detail.Params.GasReward"}
+  //     }
+  //   },
+  // },
 ]
