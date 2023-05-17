@@ -6,38 +6,25 @@
             $and: [
                 {"MsgRct.ExitCode": 0},
                 {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
-                {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]}
+                {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]},
+                // {"Msg.Value": {$ne:"0"}},
             ]
+        }
+    },
+    {
+        $addFields: {
+            Value: {$toDecimal: "$Msg.Value"}
+        }
+    },
+    {
+        $match: {
+            Value: {$gt: 0}
         }
     },
     {
         $sort: {
             "Epoch": -1
         }
-    },
-    {
-        $lookup: {
-            from: "Message",
-            let: {cid: "$Cid"},
-            pipeline: [
-                {
-                    $match:
-                        {
-                            $expr: {
-                                $and: [
-                                    {$eq: ["$_id", "$$cid"]},
-                                    // { $regexMatch: { input: "$Value", regex: "^.{1,}$" } }
-                                    {$gt: [{$toDecimal: "$Value"}, 0]}
-                                ]
-                            }
-                        }
-                }
-            ],
-            as: "message",
-        }
-    },
-    {
-        $unwind: "$message"
     },
     // {
     //     $lookup: {
@@ -70,6 +57,17 @@
     },
     {
         $limit: ctx.Limit
+    },
+    {
+        $lookup: {
+            from: "Message",
+            localField: "Cid",
+            foreignField: "_id",
+            as: "message",
+        },
+    },
+    {
+        $unwind: "$message"
     },
     {
         $project: {

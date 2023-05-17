@@ -449,9 +449,9 @@ func GetAllActorsForBlockMessageAggregator() []byte {
 	return allActorsForBlockMessageAggregator
 }
 
-func GetTransferCountForActorAggregator() []byte {
-	return transferCountForActorAggregator
-}
+//func GetTransferCountForActorAggregator() []byte {
+//	return transferCountForActorAggregator
+//}
 
 func GetMinedCountForMinersAggregator() []byte {
 	return minedCountForMinersAggregator

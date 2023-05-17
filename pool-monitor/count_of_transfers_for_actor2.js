@@ -3,52 +3,16 @@
     {
         $match: {
             "MsgRct.ExitCode": 0,
-            "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}
-
-            // $expr: {
-            //     $and: [
-            //         {$eq: ["$MsgRct.ExitCode", 0]},
-            //         {$gte: ["$Epoch", ctx.StartEpoch]},
-            //         {$lt: ["$Epoch", ctx.EndEpoch]}
-            //     ]
-            // }
+            "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
+            "Msg.Value": {$ne:"0"},
         }
     },
     {
         $project: {
             _id: 0,
-            Cid: 1,
             "Msg.From": 1,
             "Msg.To": 1
         }
-    },
-    {
-        $lookup: {
-            from: "Message",
-            let: {cid: "$Cid"},
-            pipeline: [
-                {
-                    $match:
-                        {
-                            $expr: {
-                                $and: [
-                                    {$eq: ["$_id", "$$cid"]},
-                                    {$gt: [{$toDecimal: "$Value"}, 0]}
-                                ]
-                            }
-                        }
-                },
-                {
-                    $project: {
-                        _id: 1
-                    }
-                }
-            ],
-            as: "message",
-        }
-    },
-    {
-        $unwind: "$message"
     },
     {
         $project: {

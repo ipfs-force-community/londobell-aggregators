@@ -143,42 +143,20 @@
 // ]
 
 
-// Message
+// ExecTrace
 // todo: 合约子调用相同的消息只保留一条，会有问题  2s
 [
     {
         $match: {
-            "Detail.PackedHeight": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
-            "Value": {$regex: "^.{23,}$"} // 10000Fil
+            "MsgRct.ExitCode": 0,
+            "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
+            "Msg.Value": {$regex: "^.{23,}$"} // 10000Fil
         }
     },
     {
         $sort: {
-            "Detail.PackedHeight" : -1
+            "Epoch" : -1
         }
-    },
-    {
-        $lookup: {
-            from: "ExecTrace",
-            let: {id: "$_id"},
-            pipeline: [
-                {
-                    $match:
-                        {
-                            $expr: {
-                                $and: [
-                                    {$eq: ["$Cid", "$$id"]},
-                                    {$eq: ["$MsgRct.ExitCode", 0]}
-                                ]
-                            }
-                        }
-                }
-            ],
-            as: "trace",
-        }
-    },
-    {
-        $unwind: "$trace"
     },
     {
         $skip: ctx.Skip
@@ -187,22 +165,33 @@
         $limit: ctx.Limit
     },
     {
+        $lookup: {
+            from: "Message",
+            localField: "Cid",
+            foreignField: "_id",
+            as: "message",
+        },
+    },
+    {
+        $unwind: "$message"
+    },
+    {
         $project: {
             _id: 0,
             Cid: {
                 $cond: {
                     if:{
                         $eq:["$SignedCid", null]
-                    }, then: "$_id",
+                    }, then: "$Cid",
                     else: "$SignedCid"
                 }
             },
-            Epoch: "$Detail.PackedHeight",
-            From: "$From",
-            To: "$To",
-            Value: "$Value",
-            Method: "$Detail.Method",
-            Depth: "$trace.Depth"
+            Epoch: "$Epoch",
+            From: "$Msg.From",
+            To: "$Msg.To",
+            Value: "$Msg.Value",
+            Method: "$message.Detail.Method",
+            Depth: "$Depth"
         }
     }
 ]
