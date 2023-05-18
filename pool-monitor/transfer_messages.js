@@ -1,5 +1,6 @@
 // ExecTrace
 // todo: parent_from 不为f1、f3、f4时，不显示cid
+// 未用索引前，7天很慢 7d3s
 [
     {
         $match: {
@@ -7,20 +8,20 @@
                 {"MsgRct.ExitCode": 0},
                 {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
                 {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]},
-                // {"Msg.Value": {$ne:"0"}},
+                {"Msg.Value": {$ne:"0"}},
             ]
         }
     },
-    {
-        $addFields: {
-            Value: {$toDecimal: "$Msg.Value"}
-        }
-    },
-    {
-        $match: {
-            Value: {$gt: 0}
-        }
-    },
+    // {
+    //     $addFields: {
+    //         Value: {$toDecimal: "$Msg.Value"}
+    //     }
+    // },
+    // {
+    //     $match: {
+    //         Value: {$gt: 0}
+    //     }
+    // },
     {
         $sort: {
             "Epoch": -1
