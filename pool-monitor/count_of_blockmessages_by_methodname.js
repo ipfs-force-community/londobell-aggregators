@@ -14,7 +14,10 @@
     {
         $project: {
             _id: 0,
-            Cid: "$Cid"
+            Cid: 1,
+            Epoch: 1,
+            "Msg.From":1,
+            "Msg.To":1
         }
     },
     // {
