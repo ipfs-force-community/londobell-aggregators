@@ -235,6 +235,9 @@ var allMethodNamesForActor []byte
 //go:embed mined_by_miner_range.js
 var minedByMinerRangeAggregator []byte
 
+//go:embed all_blockMethodNames.js
+var allBlockMethodNamesAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -521,4 +524,8 @@ func GetCountOfMessageForActorAggregator() []byte {
 
 func GetAllMethodNamesForActor() []byte {
 	return allMethodNamesForActor
+}
+
+func GetAllBlockMethodNamesAggregator() []byte {
+	return allBlockMethodNamesAggregator
 }
