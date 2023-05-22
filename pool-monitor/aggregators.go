@@ -226,6 +226,12 @@ var countOfLargeAmountTransfersAggregator []byte
 //go:embed richlist.js
 var richListAggregator []byte
 
+//go:embed count_of_messages_for_actor.js
+var countOfMessageForActorAggregator []byte
+
+//go:embed all_methodNames_for_actor.js
+var allMethodNamesForActor []byte
+
 //go:embed mined_by_miner_range.js
 var minedByMinerRangeAggregator []byte
 
@@ -507,4 +513,12 @@ func GetRichListAggregator() []byte {
 
 func GetMinedByMinerRangeAggregator() []byte {
 	return minedByMinerRangeAggregator
+}
+
+func GetCountOfMessageForActorAggregator() []byte {
+	return countOfMessageForActorAggregator
+}
+
+func GetAllMethodNamesForActor() []byte {
+	return allMethodNamesForActor
 }

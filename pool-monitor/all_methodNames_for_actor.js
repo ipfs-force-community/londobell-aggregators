@@ -3,14 +3,13 @@
     {
         $match: {
             "ActorID": ctx.Addr,
-            "ExitCode": 0,
-            "Value": {$gt: "0"},
+            "IsBlock": true,
             "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
         }
     },
     {
         $group: {
-            _id: 0,
+            _id: "$MethodName",
             Count: {$sum: 1}
         }
     }

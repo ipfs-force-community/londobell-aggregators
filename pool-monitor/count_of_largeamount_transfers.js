@@ -16,7 +16,7 @@
     {
         $group: {
             _id: 0,
-            count: {$sum: 1}
+            Count: {$sum: 1}
         }
     }
 ]
