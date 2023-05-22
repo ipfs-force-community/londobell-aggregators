@@ -238,6 +238,15 @@ var minedByMinerRangeAggregator []byte
 //go:embed all_blockMethodNames.js
 var allBlockMethodNamesAggregator []byte
 
+//go:embed all_methodNames_for_actors.js
+var allMethodNamesForActorsAggregator []byte
+
+//go:embed all_actors_msgscount.js
+var allActorsMsgsCountAggregator []byte
+
+//go:embed all_miners_minedCount.js
+var allMinersMinedCountAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -528,4 +537,16 @@ func GetAllMethodNamesForActor() []byte {
 
 func GetAllBlockMethodNamesAggregator() []byte {
 	return allBlockMethodNamesAggregator
+}
+
+func GetAllMethodNamesForActorsAggregator() []byte {
+	return allMethodNamesForActorsAggregator
+}
+
+func GetAllActorsMsgsCountAggregator() []byte {
+	return allActorsMsgsCountAggregator
+}
+
+func GetAllMinersMinedCountAggregator() []byte {
+	return allMinersMinedCountAggregator
 }

@@ -1,126 +1,140 @@
-// ExecTrace
-// todo: parent_from 不为f1、f3、f4时，不显示cid
-// 未用索引前，7天很慢 7d3s
+// ActorMessage
 [
     {
         $match: {
-            $and: [
-                {"MsgRct.ExitCode": 0},
-                {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
-                {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]},
-                {"Msg.Value": {$ne:"0"}},
-            ]
+            "ExitCode": 0,
+            "Value": {$gt: "0"},
+            "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
         }
     },
-    // {
-    //     $addFields: {
-    //         Value: {$toDecimal: "$Msg.Value"}
-    //     }
-    // },
-    // {
-    //     $match: {
-    //         Value: {$gt: 0}
-    //     }
-    // },
     {
-        $sort: {
-            "Epoch": -1
+        $group: {
+            _id: "$ActorID",
+            Count: {$sum: 1}
         }
-    },
-    // {
-    //     $lookup: {
-    //         from: "ExecTrace",
-    //         let: {
-    //             ids: {$split: ["$_id", "-"]},
-    //             epoch: "$Epoch"
-    //         },
-    //         pipeline: [
-    //             {
-    //                 $match: {
-    //                     $expr: {
-    //                         $and: [
-    //                             {$eq: ["$Depth", 1]},
-    //                             {$eq: ["$Epoch", "$$epoch"]},
-    //                             {$eq: ["$_id", {$concat: [{$arrayElemAt: ["$$ids", 0]}, "-", {$arrayElemAt: ["$$ids", 1]}]}]},
-    //                         ],
-    //                     },
-    //                 },
-    //             },
-    //         ],
-    //         as: "parentTrace",
-    //     }
-    // },
-    // {
-    //     $unwind: "$parentTrace"
-    // },
-    {
-        $skip: ctx.Skip
-    },
-    {
-        $limit: ctx.Limit
-    },
-    {
-        $lookup: {
-            from: "Message",
-            localField: "Cid",
-            foreignField: "_id",
-            as: "message",
-        },
-    },
-    {
-        $unwind: "$message"
-    },
-    {
-        $project: {
-            _id: 0,
-            Cid: {
-                $cond: {
-                    if:{
-                        $eq:["$SignedCid", null]
-                    }, then: "$Cid",
-                    else: "$SignedCid"
-                }
-            },
-            // parent_from: "$parentTrace.Msg.From",
-            Epoch: "$Epoch",
-            From: "$message.From",
-            To: "$message.To",
-            Value: "$message.Value",
-            Method: "$message.Detail.Method",
-            Depth: "$Depth"
-            // Method: {
-            //     $cond: {
-            //         if: {
-            //             $in: ["$Msg.From", ctx.Addrs],
-            //         },
-            //         then: 0,
-            //         else:1,
-            //     },
-            // } // 0: send; 1: receive;
-            // // for miner method=1 & from="02":区块奖励; method=0:其他惩罚(暂不细分)
-        }
-    },
-    // {
-    //     $addFields: {
-    //         Cid: {
-    //             $cond: {
-    //                 if: {
-    //                     $or: [
-    //                         {$eq: ["1", {$substrBytes: ["$parent_from", 0, 1] }]},
-    //                         {$eq: ["3", {$substrBytes: ["$parent_from", 0, 1] }]},
-    //                         {$eq: ["4", {$substrBytes: ["$parent_from", 0, 1] }]}
-    //                     ]
-    //                 }, then: {
-    //                     $cond: {
-    //                         if:{
-    //                             $eq:["$parentTrace.SignedCid", null]
-    //                         }, then: "$parentTrace.Cid",
-    //                         else: "$parentTrace.SignedCid"
-    //                     }
-    //                 },
-    //                 else: ""
-    //             }
-    //         }
-    //     }
-    // }
+    }
 ]
+
+// [
+//     {
+//         $match: {
+//             $and: [
+//                 {"MsgRct.ExitCode": 0},
+//                 {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
+//                 {$or: [{"Msg.From": {$in: ctx.Addrs}}, {"Msg.To": {$in: ctx.Addrs}}]},
+//                 {"Msg.Value": {$ne:"0"}},
+//             ]
+//         }
+//     },
+//     // {
+//     //     $addFields: {
+//     //         Value: {$toDecimal: "$Msg.Value"}
+//     //     }
+//     // },
+//     // {
+//     //     $match: {
+//     //         Value: {$gt: 0}
+//     //     }
+//     // },
+//     {
+//         $sort: {
+//             "Epoch": -1
+//         }
+//     },
+//     // {
+//     //     $lookup: {
+//     //         from: "ExecTrace",
+//     //         let: {
+//     //             ids: {$split: ["$_id", "-"]},
+//     //             epoch: "$Epoch"
+//     //         },
+//     //         pipeline: [
+//     //             {
+//     //                 $match: {
+//     //                     $expr: {
+//     //                         $and: [
+//     //                             {$eq: ["$Depth", 1]},
+//     //                             {$eq: ["$Epoch", "$$epoch"]},
+//     //                             {$eq: ["$_id", {$concat: [{$arrayElemAt: ["$$ids", 0]}, "-", {$arrayElemAt: ["$$ids", 1]}]}]},
+//     //                         ],
+//     //                     },
+//     //                 },
+//     //             },
+//     //         ],
+//     //         as: "parentTrace",
+//     //     }
+//     // },
+//     // {
+//     //     $unwind: "$parentTrace"
+//     // },
+//     {
+//         $skip: ctx.Skip
+//     },
+//     {
+//         $limit: ctx.Limit
+//     },
+//     {
+//         $lookup: {
+//             from: "Message",
+//             localField: "Cid",
+//             foreignField: "_id",
+//             as: "message",
+//         },
+//     },
+//     {
+//         $unwind: "$message"
+//     },
+//     {
+//         $project: {
+//             _id: 0,
+//             Cid: {
+//                 $cond: {
+//                     if:{
+//                         $eq:["$SignedCid", null]
+//                     }, then: "$Cid",
+//                     else: "$SignedCid"
+//                 }
+//             },
+//             // parent_from: "$parentTrace.Msg.From",
+//             Epoch: "$Epoch",
+//             From: "$message.From",
+//             To: "$message.To",
+//             Value: "$message.Value",
+//             Method: "$message.Detail.Method",
+//             Depth: "$Depth"
+//             // Method: {
+//             //     $cond: {
+//             //         if: {
+//             //             $in: ["$Msg.From", ctx.Addrs],
+//             //         },
+//             //         then: 0,
+//             //         else:1,
+//             //     },
+//             // } // 0: send; 1: receive;
+//             // // for miner method=1 & from="02":区块奖励; method=0:其他惩罚(暂不细分)
+//         }
+//     },
+//     // {
+//     //     $addFields: {
+//     //         Cid: {
+//     //             $cond: {
+//     //                 if: {
+//     //                     $or: [
+//     //                         {$eq: ["1", {$substrBytes: ["$parent_from", 0, 1] }]},
+//     //                         {$eq: ["3", {$substrBytes: ["$parent_from", 0, 1] }]},
+//     //                         {$eq: ["4", {$substrBytes: ["$parent_from", 0, 1] }]}
+//     //                     ]
+//     //                 }, then: {
+//     //                     $cond: {
+//     //                         if:{
+//     //                             $eq:["$parentTrace.SignedCid", null]
+//     //                         }, then: "$parentTrace.Cid",
+//     //                         else: "$parentTrace.SignedCid"
+//     //                     }
+//     //                 },
+//     //                 else: ""
+//     //             }
+//     //         }
+//     //     }
+//     // }
+// ]
