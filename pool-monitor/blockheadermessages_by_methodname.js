@@ -134,6 +134,7 @@
                                             {$in: ["$SignedCid", "$$cids"]}
                                         ]},
                                     {$eq:["$Epoch", "$$epoch"]},
+                                    {$eq: ["$Msg.MethodName", ctx.MethodName]}
                                 ]
                             }
                         }
@@ -171,7 +172,7 @@
                                             {$eq: ["$_id", "$$cid"]},
                                             {$eq: ["$SignedCid", "$$cid"]}
                                         ]},
-                                    {$eq: ["$Detail.Method", ctx.MethodName]},
+                                    // {$eq: ["$Detail.Method", ctx.MethodName]},
                                 ]
                             }
                         }
