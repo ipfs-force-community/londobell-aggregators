@@ -5,11 +5,8 @@
 [
     {
         $match: {
-            $and: [
-                {"Depth": 1},
-                {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
-                {$or: [{"Msg.From":{$regex: /^1/}}, {"Msg.From":{$regex: /^3/}}, {"Msg.From":{$regex: /^4/}}]},
-            ]
+            "IsBlock": true,
+            "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
         }
     },
     {
@@ -24,22 +21,12 @@
         $limit: ctx.Limit
     },
     {
-        $lookup:
-            {
-                from: "Message",
-                let: {cid: "$Cid"},
-                pipeline: [
-                    {
-                        $match:
-                            {
-                                $expr: {
-                                    $and: [{$eq: [ "$_id", "$$cid"]}]
-                                }
-                            }
-                    }
-                ],
-                as: "blockmessage"
-            }
+        $lookup: {
+            from: "Message",
+            localField: "Cid",
+            foreignField: "_id",
+            as: "blockmessage",
+        },
     },
     {
         $unwind: "$blockmessage"

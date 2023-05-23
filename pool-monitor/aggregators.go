@@ -193,8 +193,8 @@ var countOfMessagesForBlockHeaderByMethodNameAggregator []byte
 //go:embed blockheadermessages_by_methodname.js
 var blockHeaderMessagesByMethodNameAggregator []byte
 
-//go:embed all_actors_for_blockmessage.js
-var allActorsForBlockMessageAggregator []byte
+////go:embed all_actors_for_blockmessage.js
+//var allActorsForBlockMessageAggregator []byte
 
 //go:embed count_of_transfer_for_actor.js
 var transferCountForActorAggregator []byte
@@ -463,9 +463,9 @@ func GetBlocksForMessageAggregator() []byte {
 	return blocksForMessageAggregator
 }
 
-func GetAllActorsForBlockMessageAggregator() []byte {
-	return allActorsForBlockMessageAggregator
-}
+//func GetAllActorsForBlockMessageAggregator() []byte {
+//	return allActorsForBlockMessageAggregator
+//}
 
 //func GetTransferCountForActorAggregator() []byte {
 //	return transferCountForActorAggregator

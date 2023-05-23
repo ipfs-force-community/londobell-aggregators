@@ -6,9 +6,8 @@
     {
         $match: {
             $and: [
-                {"Depth": 1},
+                {"IsBlock": true},
                 {$or: [{"Cid": ctx.Cid}, {"SignedCid": ctx.Cid}]},
-                {$or: [{"Msg.From":{$regex: /^1/}}, {"Msg.From":{$regex: /^3/}}, {"Msg.From":{$regex: /^4/}}]},
             ]
         }
     },
