@@ -2,7 +2,7 @@
 [
     {
         $match: {
-            "IsBlock": 1,
+            "IsBlock": true,
             "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
         }
     },
