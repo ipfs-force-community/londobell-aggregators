@@ -9,7 +9,7 @@
     {
         $group: {
             _id: 0,
-            _MethodNames: {$addToSet: "$Msg.MethodName"},
+            MethodNames: {$addToSet: "$Msg.MethodName"},
         }
     }
 ]
