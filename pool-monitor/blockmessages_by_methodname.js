@@ -4,7 +4,7 @@
     {
         $match: {
             "IsBlock": true,
-            "MethodName": ctx.MethodName,
+            "Msg.MethodName": ctx.MethodName,
             "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
         }
     },
@@ -31,11 +31,11 @@
                     }
                 },
             Epoch: "$Epoch",
-            From: "$From",
-            To: "$To",
-            Value: "$Value",
-            ExitCode: "$ExitCode",
-            Method: "$MethodName"
+            From: "$Msg.From",
+            To: "$Msg.To",
+            Value: "$Msg.Value",
+            ExitCode: "$MsgRct.ExitCode",
+            Method: "$Msg.MethodName"
         }
     }
 ]
