@@ -8,8 +8,8 @@
     },
     {
         $group: {
-            _id: 0,
-            MethodNames: {$addToSet: "$Msg.MethodName"},
+            _id: "$Msg.MethodName",
+            Count:{$sum:1}
         }
     }
 ]
