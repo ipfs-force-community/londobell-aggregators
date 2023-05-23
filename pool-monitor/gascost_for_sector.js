@@ -9,12 +9,12 @@
                 {"Msg.Method": {$in: [/*5,*/ 6, 7, 25, 26, 28]}},
                 {Epoch: {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
                 {$or: [
-                        // {$eq: ["$Detail.Method", "SubmitWindowedPoSt"]},
-                        {$eq: ["$Msg.MethodName", "PreCommitSector"]},
-                        {$eq: ["$Msg.MethodName", "ProveCommitSector"]},
-                        {$eq: ["$Msg.MethodName", "PreCommitSectorBatch"]},
-                        {$eq: ["$Msg.MethodName", "ProveCommitAggregate"]},
-                        {$eq: ["$Msg.MethodName", "PreCommitSectorBatch2"]},
+                        // {"Msg.MethodName": "SubmitWindowedPoSt"},
+                        {"Msg.MethodName": "PreCommitSector"},
+                        {"Msg.MethodName": "ProveCommitSector"},
+                        {"Msg.MethodName": "PreCommitSectorBatch"},
+                        {"Msg.MethodName": "ProveCommitAggregate"},
+                        {"Msg.MethodName": "PreCommitSectorBatch2"},
                     ]
                 }
             ],
