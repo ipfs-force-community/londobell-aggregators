@@ -247,6 +247,9 @@ var allActorsMsgsCountAggregator []byte
 //go:embed all_miners_minedCount.js
 var allMinersMinedCountAggregator []byte
 
+//go:embed count_of_blockmessages.js
+var countOfBlockMessagesAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -549,4 +552,8 @@ func GetAllActorsMsgsCountAggregator() []byte {
 
 func GetAllMinersMinedCountAggregator() []byte {
 	return allMinersMinedCountAggregator
+}
+
+func GetCountOfBlockMessagesAggregator() []byte {
+	return countOfBlockMessagesAggregator
 }
