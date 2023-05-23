@@ -35,6 +35,14 @@
             To: "$To",
             Value: "$Value",
             Method: "$MethodName",
+            Depth: {
+                $cond: {
+                    if:{
+                        $eq:["$IsBlock", true]
+                    }, then: 1,
+                    else: 2
+                }
+            },
             IsBlock: "$IsBlock"
         }
     }
