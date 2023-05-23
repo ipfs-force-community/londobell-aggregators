@@ -166,17 +166,6 @@
         $limit: ctx.Limit
     },
     {
-        $lookup: {
-            from: "Message",
-            localField: "Cid",
-            foreignField: "_id",
-            as: "message",
-        },
-    },
-    {
-        $unwind: "$message"
-    },
-    {
         $project: {
             _id: 0,
             Cid: {
@@ -191,7 +180,7 @@
             From: "$Msg.From",
             To: "$Msg.To",
             Value: "$Msg.Value",
-            Method: "$message.Detail.Method",
+            Method: "$Msg.MethodName",
             Depth: "$Depth"
         }
     }
