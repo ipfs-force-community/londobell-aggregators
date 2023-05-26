@@ -1,14 +1,14 @@
-// EventsRoot
+// EvmInitCode
 [
     {
         $match: {
-            _id: ctx.Cid
+            _id: ctx.Addr
         }
     },
     {
         $project: {
             _id: 0,
-            Events: 1
+            InitCode: 1
         }
     }
 ]

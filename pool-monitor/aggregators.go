@@ -259,6 +259,9 @@ var getCidByHashAggregator []byte
 //go:embed eventsroot.js
 var eventsRootAggregator []byte
 
+//go:embed get_evminitcode_by_ActorID.js
+var getEvmInitCodeByActorIDAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -577,4 +580,8 @@ func GetGetCidByHashAggregator() []byte {
 
 func GetEventsRootAggregator() []byte {
 	return eventsRootAggregator
+}
+
+func GetEvmInitCodeByActorIDAggregator() []byte {
+	return getEvmInitCodeByActorIDAggregator
 }
