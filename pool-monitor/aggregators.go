@@ -253,8 +253,8 @@ var countOfBlockMessagesAggregator []byte
 //go:embed transfermsgs_for_actor.js
 var transferMsgsForActorAggregator []byte
 
-//go:embed get_cid_by_hash.js
-var getCidByHashAggregator []byte
+//go:embed messagecid_by_hash.js
+var messageCidByHashAggregator []byte
 
 //go:embed eventsroot.js
 var eventsRootAggregator []byte
@@ -574,8 +574,8 @@ func GetTransferMsgsForActorAggregator() []byte {
 	return transferMsgsForActorAggregator
 }
 
-func GetGetCidByHashAggregator() []byte {
-	return getCidByHashAggregator
+func GetMessageCidByHashAggregator() []byte {
+	return messageCidByHashAggregator
 }
 
 func GetEventsRootAggregator() []byte {
