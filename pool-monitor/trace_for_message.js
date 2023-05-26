@@ -49,7 +49,8 @@
             GasPremium: "$message.GasPremium",
             GasCost: "$GasCost",
             MethodNum: "$message.Method",
-            Seq: "$Seq"
+            Seq: "$Seq",
+            EventsRoot: "$MsgRct.EventsRoot"
         }
     }
 ]
