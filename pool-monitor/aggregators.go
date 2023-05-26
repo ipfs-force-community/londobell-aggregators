@@ -256,6 +256,9 @@ var transferMsgsForActorAggregator []byte
 //go:embed get_cid_by_hash.js
 var getCidByHashAggregator []byte
 
+//go:embed eventsroot.js
+var eventsRootAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -570,4 +573,8 @@ func GetTransferMsgsForActorAggregator() []byte {
 
 func GetGetCidByHashAggregator() []byte {
 	return getCidByHashAggregator
+}
+
+func GetEventsRootAggregator() []byte {
+	return eventsRootAggregator
 }
