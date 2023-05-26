@@ -52,6 +52,7 @@
             Seq: "$Seq",
             EventsRoot: "$MsgRct.EventsRoot",
             ParamsBson: "$message.Params",
+            ReturnsBson: "$MsgRct.Return",
             Actor: "$message.Detail.Actor"
         }
     }
