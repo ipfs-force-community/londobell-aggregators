@@ -50,7 +50,9 @@
             GasCost: "$GasCost",
             MethodNum: "$message.Method",
             Seq: "$Seq",
-            EventsRoot: "$MsgRct.EventsRoot"
+            EventsRoot: "$MsgRct.EventsRoot",
+            ParamsBson: "$message.Params",
+            Actor: "$message.Detail.Actor"
         }
     }
 ]
