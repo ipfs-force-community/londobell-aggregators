@@ -253,6 +253,9 @@ var countOfBlockMessagesAggregator []byte
 //go:embed transfermsgs_for_actor.js
 var transferMsgsForActorAggregator []byte
 
+//go:embed get_cid_by_hash.js
+var getCidByHashAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -563,4 +566,8 @@ func GetCountOfBlockMessagesAggregator() []byte {
 
 func GetTransferMsgsForActorAggregator() []byte {
 	return transferMsgsForActorAggregator
+}
+
+func GetGetCidByHashAggregator() []byte {
+	return getCidByHashAggregator
 }

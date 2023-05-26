@@ -47,7 +47,9 @@
             GasLimit: "$message.GasLimit",
             GasFeeCap: "$message.GasFeeCap",
             GasPremium: "$message.GasPremium",
-            GasCost: "$GasCost"
+            GasCost: "$GasCost",
+            MethodNum: "$message.Method",
+            Seq: "$Seq"
         }
     }
 ]
