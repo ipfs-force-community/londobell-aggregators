@@ -1,11 +1,10 @@
-// ExecTrace 90个高度2秒
+// ExplicitMessage 90个高度2秒
 // db.ExecTrace.createIndex({"Epoch":1,"Depth":1,"Msg.From":1}, {"sparse": true});
 
 [
     {
         $match: {
-            "IsBlock": true,
-            "Msg.MethodName": ctx.MethodName,
+            "MethodName": ctx.MethodName,
             "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
         }
     },
