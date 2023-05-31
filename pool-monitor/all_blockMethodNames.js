@@ -1,3 +1,18 @@
+// // ExplicitMessage
+// [
+//     {
+//         $match: {
+//             "MethodName": {$exists: true},
+//         }
+//     },
+//     {
+//         $group: {
+//             _id: 0,
+//             MethodNames: {$addToSet: "$MethodName"},
+//         }
+//     }
+// ]
+
 // ExecTrace
 [
     {
