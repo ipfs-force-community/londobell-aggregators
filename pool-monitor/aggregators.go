@@ -148,8 +148,8 @@ var traceForMessageAggregator []byte
 //go:embed batch_trace_for_message.js
 var batchTraceForMessageAggregator []byte
 
-//go:embed child_transfers_for_message.js
-var childTransfersForMessageAggregator []byte
+//go:embed child_calls_for_message.js
+var childCallsForMessageAggregator []byte
 
 //go:embed all_owners.js
 var allOwnersAggregator []byte
@@ -264,6 +264,9 @@ var getEvmInitCodeByActorIDAggregator []byte
 
 //go:embed hash_by_messagecid.js
 var hashByMessageCidAggregator []byte
+
+//go:embed child_transfers_for_message.js
+var childTransfersForMessageAggregator []byte
 
 func GetAddressAggregator() []byte {
 	return addressAggregator
@@ -437,8 +440,8 @@ func GetBatchTraceForMessageAggregator() []byte {
 	return batchTraceForMessageAggregator
 }
 
-func GetChildTransfersForMessageAggregator() []byte {
-	return childTransfersForMessageAggregator
+func GetChildCallsForMessageAggregator() []byte {
+	return childCallsForMessageAggregator
 }
 
 func GetAllOwnersAggregator() []byte {
@@ -591,4 +594,8 @@ func GetEvmInitCodeByActorIDAggregator() []byte {
 
 func GetHashByMessageCidAggregator() []byte {
 	return hashByMessageCidAggregator
+}
+
+func GetChildTransfersForMessageAggregator() []byte {
+	return childTransfersForMessageAggregator
 }

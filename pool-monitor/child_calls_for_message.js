@@ -6,21 +6,10 @@
     {
         $match: {
             $and: [
-                {"Depth": 1},
+                {"IsBlock": true},
                 {"SubCallCount": {$gt: 0}},
                 {$or: [{"Cid": ctx.Cid}, {"SignedCid": ctx.Cid}]},
             ]
-
-            // $expr: {
-            //     $and: [
-            //         {$eq: ["$Depth", 1]}, // not inclued cron, which may contained burn pledge
-            //         {$or: [
-            //             {$eq: ["$Cid", ctx.Cid]},
-            //             {$eq: ["$SignedCid", ctx.Cid]}
-            //         ]},
-            //         {$gt: ["$SubCallCount", 0]},
-            //     ]
-            // }
         }
     },
     {
@@ -52,6 +41,15 @@
                             ]
                         }
                     }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        To: "$Msg.To",
+                        From: "$Msg.From",
+                        Value: "$Msg.Value",
+                        MethodName: "$Msg.MethodName",
+                    }
                 }
             ],
             as: "childTrace",
@@ -61,31 +59,9 @@
         $unwind: "$childTrace"
     },
     {
-        $lookup: {
-            from: "Message",
-            let: {cid: "$childTrace.Cid"},
-            pipeline: [
-                {
-                    $match: {
-                        $expr: {
-                            $and: [
-                                {$eq: ["$_id", "$$cid"]},
-                                {$gt: [{$toDecimal: "$Value"}, 0]}
-                            ]
-                        }
-                    }
-                }
-            ],
-            as: "childMessage"
-        }
-    },
-    {
-        $unwind: "$childMessage"
-    },
-    {
         $group: {
             _id: "$Epoch",
-            TransferList: {$addToSet: "$childMessage"},
+            TransferList: {$push: "$childTrace"},
             rawMessage: {$addToSet: "$message"},
             GasCost: {$addToSet: "$GasCost"},
             rawMsgRct: {$addToSet: "$MsgRct"},
