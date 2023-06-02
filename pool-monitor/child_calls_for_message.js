@@ -42,15 +42,15 @@
                         }
                     }
                 },
-                {
-                    $project: {
-                        _id: 0,
-                        To: "$Msg.To",
-                        From: "$Msg.From",
-                        Value: "$Msg.Value",
-                        MethodName: "$Msg.MethodName",
-                    }
-                }
+                // {
+                //     $project: {
+                //         _id: 0,
+                //         To: "$Msg.To",
+                //         From: "$Msg.From",
+                //         Value: "$Msg.Value",
+                //         MethodName: "$Msg.MethodName",
+                //     }
+                // }
             ],
             as: "childTrace",
         }
