@@ -42,15 +42,15 @@
                         }
                     }
                 },
-                // {
-                //     $project: {
-                //         _id: 0,
-                //         To: "$Msg.To",
-                //         From: "$Msg.From",
-                //         Value: "$Msg.Value",
-                //         MethodName: "$Msg.MethodName",
-                //     }
-                // }
+                {
+                    $project: {
+                        _id: 0,
+                        To: "$Msg.To",
+                        From: "$Msg.From",
+                        Value: "$Msg.Value",
+                        MethodName: "$Msg.MethodName",
+                    }
+                }
             ],
             as: "childTrace",
         }
@@ -61,7 +61,7 @@
     {
         $group: {
             _id: "$Epoch",
-            TransferList: {$addToSet: "$childTrace"},
+            InnerCalls: {$addToSet: "$childTrace"},
             rawMessage: {$addToSet: "$message"},
             GasCost: {$addToSet: "$GasCost"},
             rawMsgRct: {$addToSet: "$MsgRct"},
