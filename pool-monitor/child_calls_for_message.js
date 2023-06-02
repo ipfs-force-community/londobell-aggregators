@@ -61,7 +61,7 @@
     {
         $group: {
             _id: "$Epoch",
-            TransferList: {$push: "$childTrace"},
+            TransferList: {$addToSet: "$childTrace"},
             rawMessage: {$addToSet: "$message"},
             GasCost: {$addToSet: "$GasCost"},
             rawMsgRct: {$addToSet: "$MsgRct"},
