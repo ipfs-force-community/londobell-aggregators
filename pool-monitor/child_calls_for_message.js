@@ -61,7 +61,7 @@
     {
         $group: {
             _id: "$Epoch",
-            InnerCalls: {$addToSet: "$childTrace"},
+            InnerCalls: {$push: "$childTrace"},
             rawMessage: {$addToSet: "$message"},
             GasCost: {$addToSet: "$GasCost"},
             rawMsgRct: {$addToSet: "$MsgRct"},
