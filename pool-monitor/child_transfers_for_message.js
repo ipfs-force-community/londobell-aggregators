@@ -128,6 +128,10 @@
             GasLimit: "$rawMessage.GasLimit",
             GasFeeCap: "$rawMessage.GasFeeCap",
             GasPremium: "$rawMessage.GasPremium",
+            ParamsBson: "$rawMessage.Params",
+            ReturnsBson: "$rawMsgRct.Return",
+            MethodNum: "$rawMessage.Method",
+            Actor: "$rawMessage.Detail.Actor"
         }
     }
 ]
