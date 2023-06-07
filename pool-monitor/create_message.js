@@ -12,6 +12,7 @@
                 {$or: [
                     {"Detail.Return.RobustAddress": ctx.Addr},
                     {"Detail.Return.ActorID": ctx.ID},
+                    {"Detail.Return.IDAddress": ctx.IDStr},
                 ]},
                 {"MsgRct.ExitCode": 0},
             ]
