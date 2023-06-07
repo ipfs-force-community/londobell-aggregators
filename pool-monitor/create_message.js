@@ -6,9 +6,15 @@
 [
     {
         $match: {
-            "Msg.To": ctx.To,
-            "Msg.Method": ctx.Method,
-            "Detail.Return.RobustAddress": ctx.Addr
+            $and: [
+                {"IsBlock":true},
+                {"Msg.MethodName": ctx.MethodName},
+                {$or: [
+                    {"Detail.Return.RobustAddress": ctx.Addr},
+                    {"Detail.Return.ActorID": ctx.ID},
+                ]},
+                {"MsgRct.ExitCode": 0},
+            ]
         }
     },
     {
