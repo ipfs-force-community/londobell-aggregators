@@ -268,6 +268,9 @@ var hashByMessageCidAggregator []byte
 //go:embed child_transfers_for_message.js
 var childTransfersForMessageAggregator []byte
 
+//go:embed initcode_for_evm.js
+var initCodeForEvmAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -598,4 +601,8 @@ func GetHashByMessageCidAggregator() []byte {
 
 func GetChildTransfersForMessageAggregator() []byte {
 	return childTransfersForMessageAggregator
+}
+
+func GetInitCodeForEvmAggregator() []byte {
+	return initCodeForEvmAggregator
 }
