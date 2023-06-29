@@ -7,35 +7,36 @@
     },
     {
         $lookup: {
-            from: "Message",
-            let: {cids: "$Messages"},
+            from: "ExecTrace",
+            let: {cids: "$Messages", epoch: "$Epoch"},
             pipeline: [
                 {
                     $match:
                         {
                             $expr: {
                                 $and: [
+                                    {$eq: ["$IsBlock", true]},
+                                    {$eq: ["$Epoch", "$$epoch"]},
+                                    {$eq: ["$Msg.MethodName", ctx.MethodName]},
                                     {$or: [
-                                            {$in: ["$_id", "$$cids"]},
+                                            {$in: ["$Cid", "$$cids"]},
                                             {$in: ["$SignedCid", "$$cids"]}
                                         ]},
-                                    // {$eq: ["$Detail.PackedHeight", ctx.StartEpoch]},
-                                    {$eq: ["$Detail.Method", ctx.MethodName]},
                                 ]
                             }
                         }
                 }
             ],
-            as: "message"
+            as: "trace"
         }
     },
     {
-        $unwind: "$message"
+        $unwind: "$trace"
     },
     {
         $group: {
-            _id: 0,
+            _id: "$Epoch",
             totalCount: {$sum: 1}
         }
-    },
+    }
 ]
