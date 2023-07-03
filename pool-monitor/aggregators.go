@@ -271,6 +271,18 @@ var childTransfersForMessageAggregator []byte
 //go:embed initcode_for_evm.js
 var initCodeForEvmAggregator []byte
 
+//go:embed events_by_actor.js
+var eventsByActorAggregator []byte
+
+//go:embed count_of_events_for_actor.js
+var countOfEventsForActorAggregator []byte
+
+//go:embed events_for_message.js
+var eventsForMessageAggregator []byte
+
+//go:embed events_for_epochrange.js
+var eventsForEpochRangeAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -605,4 +617,20 @@ func GetChildTransfersForMessageAggregator() []byte {
 
 func GetInitCodeForEvmAggregator() []byte {
 	return initCodeForEvmAggregator
+}
+
+func GetEventsByActorAggregator() []byte {
+	return eventsByActorAggregator
+}
+
+func GetCountOfEventsForActorAggregator() []byte {
+	return countOfEventsForActorAggregator
+}
+
+func GetEventsForMessageAggregator() []byte {
+	return eventsForMessageAggregator
+}
+
+func GetEventsForEpochRangeAggregator() []byte {
+	return eventsForEpochRangeAggregator
 }
