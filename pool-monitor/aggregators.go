@@ -283,6 +283,18 @@ var eventsForMessageAggregator []byte
 //go:embed events_for_epochrange.js
 var eventsForEpochRangeAggregator []byte
 
+//go:embed start_dealid.js
+var startDealIDAggregator []byte
+
+//go:embed end_dealid.js
+var endDealIDAggregator []byte
+
+//go:embed startepoch_for_deal.js
+var startEpochForDealAggregator []byte
+
+//go:embed count_of_deals_by_addr.js
+var countOfDealsByAddrAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -633,4 +645,20 @@ func GetEventsForMessageAggregator() []byte {
 
 func GetEventsForEpochRangeAggregator() []byte {
 	return eventsForEpochRangeAggregator
+}
+
+func GetStartDealIDAggregator() []byte {
+	return startDealIDAggregator
+}
+
+func GetEndDealIDAggregator() []byte {
+	return endDealIDAggregator
+}
+
+func GetStartEpochForDealAggregator() []byte {
+	return startEpochForDealAggregator
+}
+
+func GetCountOfDealsByAddrAggregator() []byte {
+	return countOfDealsByAddrAggregator
 }
