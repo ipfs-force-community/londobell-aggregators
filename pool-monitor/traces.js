@@ -58,7 +58,8 @@
             Method: "$message.Method",
             ParamsBson: "$message.Params",
             Detail: "$message.Detail",
-            Actor: "$message.Detail.Actor"
+            Actor: "$message.Detail.Actor",
+            IsBlock: "$IsBlock"
         }
     }
 ]
