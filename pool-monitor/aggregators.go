@@ -271,6 +271,9 @@ var childTransfersForMessageAggregator []byte
 //go:embed initcode_for_evm.js
 var initCodeForEvmAggregator []byte
 
+//go:embed test_contract_transfer.js
+var testContractTransferAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -605,4 +608,8 @@ func GetChildTransfersForMessageAggregator() []byte {
 
 func GetInitCodeForEvmAggregator() []byte {
 	return initCodeForEvmAggregator
+}
+
+func GetTestContractTransferAggregator() []byte {
+	return testContractTransferAggregator
 }
