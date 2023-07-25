@@ -295,6 +295,36 @@ var startEpochForDealAggregator []byte
 //go:embed count_of_deals_by_addr.js
 var countOfDealsByAddrAggregator []byte
 
+//go:embed transfer_blockreward_for_actor.js
+var transferBlockRewardForActorAggregator []byte
+
+//go:embed count_of_transfer_blockreward_for_actor.js
+var countOfTransferBlockRewardForActorAggregator []byte
+
+//go:embed transfer_burn_for_actor.js
+var transferBurnForActorAggregator []byte
+
+//go:embed count_of_transfer_burn_for_actor.js
+var countOfTransferBurnForActorAggregator []byte
+
+//go:embed transfer_send_for_actor.js
+var transferSendForActorAggregator []byte
+
+//go:embed count_of_transfer_send_for_actor.js
+var countOfTransferSendForActorAggregator []byte
+
+//go:embed transfer_receive_for_actor.js
+var transferReceiveForActorAggregator []byte
+
+//go:embed count_of_transfer_receive_for_actor.js
+var countOfTransferReceiveForActorAggregator []byte
+
+//go:embed transfer_send_and_receive_for_actor.js
+var transferSendAndReceiveForActorAggregator []byte
+
+//go:embed count_of_transfer_send_and_receive_for_actor.js
+var countOfTransferSendAndReceiveForActorAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -661,4 +691,44 @@ func GetStartEpochForDealAggregator() []byte {
 
 func GetCountOfDealsByAddrAggregator() []byte {
 	return countOfDealsByAddrAggregator
+}
+
+func GetTransferBlockRewardForActorAggregator() []byte {
+	return transferBlockRewardForActorAggregator
+}
+
+func GetCountOfTransferBlockRewardForActorAggregator() []byte {
+	return countOfTransferBlockRewardForActorAggregator
+}
+
+func GetTransferBurnForActorAggregator() []byte {
+	return transferBurnForActorAggregator
+}
+
+func GetCountOfTransferBurnForActorAggregator() []byte {
+	return countOfTransferBurnForActorAggregator
+}
+
+func GetTransferSendForActorAggregator() []byte {
+	return transferSendForActorAggregator
+}
+
+func GetCountOfTransferSendForActorAggregator() []byte {
+	return countOfTransferSendForActorAggregator
+}
+
+func GetTransferReceiveForActorAggregator() []byte {
+	return transferReceiveForActorAggregator
+}
+
+func GetCountOfTransferReceiveForActorAggregator() []byte {
+	return countOfTransferReceiveForActorAggregator
+}
+
+func GetTransferSendAndReceiveForActorAggregator() []byte {
+	return transferSendAndReceiveForActorAggregator
+}
+
+func GetCountOfTransferSendAndReceiveForActorAggregator() []byte {
+	return countOfTransferSendAndReceiveForActorAggregator
 }
