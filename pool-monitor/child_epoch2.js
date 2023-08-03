@@ -27,8 +27,22 @@
     {
         $project: {
             CurrentTipset: "$current.Cids",
-            ChildEpoch: "$child._id",
-            ChildTipset: "$child.Cids"
+            ChildEpoch: {
+                $cond: {
+                    if: {
+                        $eq: ["$current._id", "$child._id"]
+                    }, then: 0,
+                    else: "$current.Cids"
+                }
+            },
+            ChildTipset: {
+                $cond: {
+                    if: {
+                        $eq: ["$current._id", "$child._id"]
+                    }, then: null,
+                    else: "$child.Cids"
+                }
+            }
         }
     }
 ]
