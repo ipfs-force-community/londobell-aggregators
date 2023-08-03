@@ -325,6 +325,9 @@ var transferSendAndReceiveForActorAggregator []byte
 //go:embed count_of_transfer_send_and_receive_for_actor.js
 var countOfTransferSendAndReceiveForActorAggregator []byte
 
+//go:embed child_epoch2.js
+var childEpoch2Aggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -731,4 +734,8 @@ func GetTransferSendAndReceiveForActorAggregator() []byte {
 
 func GetCountOfTransferSendAndReceiveForActorAggregator() []byte {
 	return countOfTransferSendAndReceiveForActorAggregator
+}
+
+func GetChildEpoch2Aggregator() []byte {
+	return childEpoch2Aggregator
 }
