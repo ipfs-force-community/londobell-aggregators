@@ -32,7 +32,7 @@
                     if: {
                         $eq: ["$current._id", "$child._id"]
                     }, then: 0,
-                    else: "$current.Cids"
+                    else: "$child._id"
                 }
             },
             ChildTipset: {
