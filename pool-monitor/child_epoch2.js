@@ -30,7 +30,10 @@
             ChildEpoch: {
                 $cond: {
                     if: {
-                        $eq: ["$current._id", "$child._id"]
+                        $or: [
+                            {$ne: ["$current._id", ctx.StartEpoch]},
+                            {$eq: ["$current._id", "$child._id"]}
+                        ]
                     }, then: 0,
                     else: "$child._id"
                 }
@@ -38,7 +41,10 @@
             ChildTipset: {
                 $cond: {
                     if: {
-                        $eq: ["$current._id", "$child._id"]
+                        $or: [
+                            {$ne: ["$current._id", ctx.StartEpoch]},
+                            {$eq: ["$current._id", "$child._id"]}
+                        ]
                     }, then: null,
                     else: "$child.Cids"
                 }
