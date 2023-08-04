@@ -4,7 +4,6 @@
         $match: {
             ActorID: ctx.Addr,
             IsBlock: true,
-            Type: "from",
             Epoch: {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}
         }
     },
