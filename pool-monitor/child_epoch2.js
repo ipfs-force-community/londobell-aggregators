@@ -26,7 +26,17 @@
     },
     {
         $project: {
-            CurrentTipset: "$current.Cids",
+            CurrentTipset: {
+                $cond: {
+                    if: {
+                        $or: [
+                            {$ne: ["$current._id", ctx.StartEpoch]},
+                            {$eq: ["$current._id", "$child._id"]}
+                        ]
+                    }, then: null,
+                    else: "$current.Cids"
+                }
+            },
             ChildEpoch: {
                 $cond: {
                     if: {
