@@ -1,17 +1,31 @@
-// ActorBalance
+// ActorAddress
 [
     {
         $match: {
-            "Addresses":{$in: [ctx.Addr]}
+            $or: [
+                {"_id": ctx.Addr},
+                {"RobustAddress": ctx.Addr},
+                {"DelegatedAddress": ctx.Addr}
+            ]
         }
-    },
-    {
-        $limit: 1
     },
     {
         $project: {
             _id: 0,
-            Addresses: 1
+            ActorID: "$_id",
+            RobustAddress: "$RobustAddress",
+            DelegatedAddress: "$DelegatedAddress"
         }
-    }
+    },
+    // {
+    //     $project: {
+    //         Address: {
+    //             $concatArrays: [
+    //                 ["$_id"],
+    //                 ["$RobustAddress"],
+    //                 ["$DelegatedAddress"]
+    //             ]
+    //         }
+    //     }
+    // }
 ]

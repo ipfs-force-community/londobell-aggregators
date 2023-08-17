@@ -325,6 +325,12 @@ var transferSendAndReceiveForActorAggregator []byte
 //go:embed count_of_transfer_send_and_receive_for_actor.js
 var countOfTransferSendAndReceiveForActorAggregator []byte
 
+//go:embed count_of_tipset.js
+var countOfTipsetAggregator []byte
+
+//go:embed tipsets_list.js
+var tipsetsListAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -731,4 +737,12 @@ func GetTransferSendAndReceiveForActorAggregator() []byte {
 
 func GetCountOfTransferSendAndReceiveForActorAggregator() []byte {
 	return countOfTransferSendAndReceiveForActorAggregator
+}
+
+func GetCountOfTipsetAggregator() []byte {
+	return countOfTipsetAggregator
+}
+
+func GetTipsetsListAggregator() []byte {
+	return tipsetsListAggregator
 }
