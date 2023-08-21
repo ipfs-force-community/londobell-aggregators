@@ -36,4 +36,4 @@
       Method: "$MethodName",
     },
   },
-];
+]
