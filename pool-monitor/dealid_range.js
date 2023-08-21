@@ -2,12 +2,12 @@
 [
     {
         $match: {
-            "Epoch": {$gt: ctx.StartEpoch} // Start: DealProposal的首epoch
+            "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}
         }
     },
     {
         $sort: {
-            "Epoch": -1, "_id": -1
+         "Epoch": ctx.Sort, "_id": ctx.Sort
         }
     },
     {
@@ -16,7 +16,7 @@
     {
         $project: {
             _id: 0,
-            EndDealID: "$_id",
+            DealID: "$_id",
         }
     }
 ]

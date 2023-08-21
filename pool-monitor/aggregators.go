@@ -283,11 +283,8 @@ var eventsForMessageAggregator []byte
 //go:embed events_for_epochrange.js
 var eventsForEpochRangeAggregator []byte
 
-//go:embed start_dealid.js
-var startDealIDAggregator []byte
-
-//go:embed end_dealid.js
-var endDealIDAggregator []byte
+//go:embed dealid_range.js
+var dealIDRangeAggregator []byte
 
 //go:embed startepoch_for_deal.js
 var startEpochForDealAggregator []byte
@@ -683,12 +680,8 @@ func GetEventsForEpochRangeAggregator() []byte {
 	return eventsForEpochRangeAggregator
 }
 
-func GetStartDealIDAggregator() []byte {
-	return startDealIDAggregator
-}
-
-func GetEndDealIDAggregator() []byte {
-	return endDealIDAggregator
+func GetDealIDRangeAggregator() []byte {
+	return dealIDRangeAggregator
 }
 
 func GetStartEpochForDealAggregator() []byte {
