@@ -229,6 +229,9 @@ var richListAggregator []byte
 //go:embed count_of_messages_for_actor.js
 var countOfMessageForActorAggregator []byte
 
+//go:embed messages_for_actor_no_skip.js
+var messagesForActorNoSkip []byte
+
 //go:embed all_methodNames_for_actor.js
 var allMethodNamesForActor []byte
 
@@ -613,6 +616,10 @@ func GetMinedByMinerRangeAggregator() []byte {
 
 func GetCountOfMessageForActorAggregator() []byte {
 	return countOfMessageForActorAggregator
+}
+
+func GetMessagesForActorNoSkip() []byte {
+	return messagesForActorNoSkip
 }
 
 func GetAllMethodNamesForActor() []byte {
