@@ -169,6 +169,9 @@ var actorMessagesByMethodNameAggregator []byte
 //go:embed blockheaders_by_miner.js
 var blockHeadersByMinerAggregator []byte
 
+//go:embed blockheaders_by_miner_noskip.js
+var blockHeadersByMinerNoSkipAggregator []byte
+
 //go:embed deals_by_addr.js
 var dealsByAddrAggregator []byte
 
@@ -334,8 +337,15 @@ var countOfTipsetAggregator []byte
 //go:embed tipsets_list.js
 var tipsetsListAggregator []byte
 
+//go:embed actormessages_by_methodname_noskip.js
+var actorMessagesByMethodNameNoskipAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
+}
+
+func GetActorMessagesByMethodNameNoskipAggregator()[]byte  {
+	return actorMessagesByMethodNameNoskipAggregator
 }
 
 func GetAggPreNetfeeAggregator() []byte {
@@ -532,6 +542,10 @@ func GetActorMessagesByMethodNameAggregator() []byte {
 
 func GetBlockHeadersByMinerAggregator() []byte {
 	return blockHeadersByMinerAggregator
+}
+
+func GetBlockHeadersByMinerNoSkipAggregator() []byte {
+	return blockHeadersByMinerNoSkipAggregator
 }
 
 func GetDealsByAddrAggregator() []byte {
