@@ -4,9 +4,7 @@
         $match: {
             "ActorID": ctx.Addr,
             "ExitCode": 0,
-            "Type": "from",
-            "To": "099",
-            "Value": {$gt: "0"},
+            "TransferType": "Burn",
             "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
         }
     },

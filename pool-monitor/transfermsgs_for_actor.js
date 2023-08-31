@@ -4,7 +4,7 @@
         $match: {
             "ActorID": ctx.Addr,
             "ExitCode": 0,
-            "Value": {$gt: "0"},
+            "TransferType": {$in: ["Blockreward", "Burn", "Send", "Receive"]},
             "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
         }
     },
