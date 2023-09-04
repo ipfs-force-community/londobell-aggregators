@@ -112,6 +112,9 @@ var minersForOwnerAggregator []byte
 //go:embed messagses_for_actor.js
 var messagesForActorAggregator []byte
 
+//go:embed messagses_for_create.js
+var messagesForCreateAggregator []byte
+
 //go:embed transfer_messages.js
 var transferMessagesAggregator []byte
 
@@ -165,6 +168,9 @@ var blockMessagesByMethodNameAggregator []byte
 
 //go:embed actormessages_by_methodname.js
 var actorMessagesByMethodNameAggregator []byte
+
+//go:embed createmessages_by_methodname.js
+var createMessagesByMethodNameAggregator []byte
 
 //go:embed blockheaders_by_miner.js
 var blockHeadersByMinerAggregator []byte
@@ -341,7 +347,7 @@ func GetAddressAggregator() []byte {
 	return addressAggregator
 }
 
-func GetActorMessagesByMethodNameNoskipAggregator()[]byte  {
+func GetActorMessagesByMethodNameNoskipAggregator() []byte {
 	return actorMessagesByMethodNameNoskipAggregator
 }
 
@@ -465,6 +471,10 @@ func GetMessagesForActorAggregator() []byte {
 	return messagesForActorAggregator
 }
 
+func GetMessagesForCreateAggregator() []byte {
+	return messagesForCreateAggregator
+}
+
 func GetTransferMessagesAggregator() []byte {
 	return transferMessagesAggregator
 }
@@ -535,6 +545,10 @@ func GetBlockMessagesByMethodNameAggregator() []byte {
 
 func GetActorMessagesByMethodNameAggregator() []byte {
 	return actorMessagesByMethodNameAggregator
+}
+
+func GetCreateMessagesByMethodNameAggregator() []byte {
+	return createMessagesByMethodNameAggregator
 }
 
 func GetBlockHeadersByMinerAggregator() []byte {
