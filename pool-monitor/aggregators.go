@@ -241,14 +241,14 @@ var latestTipsetAggregator []byte
 //go:embed messagecid_by_hash.js
 var messagecidByHashAggregator []byte
 
+//go:embed messages_for_actor.js
+var messagesForActorAggregator []byte
+
 //go:embed messages_for_actor_no_skip.js
 var messagesForActorNoSkipAggregator []byte
 
 //go:embed messages_for_block.js
 var messagesForBlockAggregator []byte
-
-//go:embed messagses_for_actor.js
-var messagsesForActorAggregator []byte
 
 //go:embed mined_by_miner_range.js
 var minedByMinerRangeAggregator []byte
@@ -604,14 +604,14 @@ func GetLatestTipsetAggregator() []byte {
 func GetMessagecidByHashAggregator() []byte {
 	return messagecidByHashAggregator
 }
+func GetMessagesForActorAggregator() []byte {
+	return messagesForActorAggregator
+}
 func GetMessagesForActorNoSkipAggregator() []byte {
 	return messagesForActorNoSkipAggregator
 }
 func GetMessagesForBlockAggregator() []byte {
 	return messagesForBlockAggregator
-}
-func GetMessagsesForActorAggregator() []byte {
-	return messagsesForActorAggregator
 }
 func GetMinedByMinerRangeAggregator() []byte {
 	return minedByMinerRangeAggregator
