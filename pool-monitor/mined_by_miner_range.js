@@ -2,8 +2,8 @@
 [
     {
         $match: {
+            "Miner": ctx.Addr,
             "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
-            "Miner": ctx.Addr
         }
     },
     {
