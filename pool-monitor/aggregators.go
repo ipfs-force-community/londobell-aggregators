@@ -343,15 +343,6 @@ var tipsetsListAggregator []byte
 //go:embed actormessages_by_methodname_noskip.js
 var actorMessagesByMethodNameNoskipAggregator []byte
 
-//go:embed transfermsgs_for_actor_noskip.js
-var transferMsgsFroActorNoSkipAggregator []byte
-
-//go:embed transfer_type_for_actor_noskip.js
-var transferTypeForActorNoSkipAggregator []byte
-
-//go:embed transfer_send_and_receive_for_actor_noskip.js
-var transferSendAndReceiveForActorNoSkipAggregator []byte
-
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -782,16 +773,4 @@ func GetCountOfTipsetAggregator() []byte {
 
 func GetTipsetsListAggregator() []byte {
 	return tipsetsListAggregator
-}
-
-func GetTransferMsgsFroActorNoSkipAggregator() []byte {
-	return transferMsgsFroActorNoSkipAggregator
-}
-
-func GetTransferTypeForActorNoSkipAggregator() []byte {
-	return transferTypeForActorNoSkipAggregator
-}
-
-func GetTransferSendAndReceiveForActorNoSkipAggregator() []byte {
-	return transferSendAndReceiveForActorNoSkipAggregator
 }
