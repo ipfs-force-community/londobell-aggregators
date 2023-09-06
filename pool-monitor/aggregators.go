@@ -121,6 +121,9 @@ var transferMessagesAggregator []byte
 //go:embed time_of_trace.js
 var timeOfTraceAggregator []byte
 
+//go:embed time_of_create.js
+var timeOfCreateAggregator []byte
+
 //go:embed createtime.js
 var createTimeAggregator []byte
 
@@ -481,6 +484,10 @@ func GetTransferMessagesAggregator() []byte {
 
 func GetTimeOfTraceAggregator() []byte {
 	return timeOfTraceAggregator
+}
+
+func GetTimeOfCreateAggregator() []byte {
+	return timeOfCreateAggregator
 }
 
 func GetCreateTimeAggregator() []byte {

@@ -5,6 +5,7 @@
 		$match: {
 			"ActorID": ctx.Addr,
 			"IsBlock": true,
+			"MethodName": ctx.MethodName,
 		}
 	},
 	{
@@ -12,6 +13,9 @@
 			Epoch: -1
 		}
 	},
+    {
+        $skip: ctx.Skip
+    },	
 	{
 		$limit: ctx.Limit
 	},
