@@ -64,7 +64,8 @@
             PendingBeneficiaryTerm: "$miner.Info.PendingBeneficiaryTerm",
             States: "$miner.Info.State",
             Multiaddrs: "$miner.Info.Multiaddrs",
-            PeerId: "$miner.Info.PeerID"
+            PeerId: "$miner.Info.PeerID",
+            UnprovenSectorCount: "$Detail.Unproven"
         }
     }
 ]
