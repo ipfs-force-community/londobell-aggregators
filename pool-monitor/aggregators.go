@@ -355,6 +355,54 @@ var transferTypeForActorNoSkipAggregator []byte
 //go:embed transfer_send_and_receive_for_actor_noskip.js
 var transferSendAndReceiveForActorNoSkipAggregator []byte
 
+//go:embed miner/period_blockrewards.js
+var minerPeriodBlockrewardsAggregator []byte
+
+//go:embed miner/period_wincounts.js
+var minerPeriodWincountsAggregator []byte
+
+//go:embed miner/period_gascosts.js
+var minerPeriodGascostsAggregator []byte
+
+//go:embed miner/period_gascosts_for_publishdeals.js
+var minerPeriodGascostsForPublishdealsAggregator []byte
+
+//go:embed miner/period_punishments.js
+var minerPeriodPunishmentsAggregator []byte
+
+//go:embed miner/period_sectors_diff.js
+var minerPeriodSectorsDiffAggregator []byte
+
+//go:embed miner/period_pledge_diff.js
+var minerPeriodPledgeDiffAggregator []byte
+
+//go:embed miner/period_sector_expirations.js
+var minerPeriodSectorExpirationsAggregator []byte
+
+//go:embed miner/qapower_history.js
+var minerQAPowerHistoryAggregator []byte
+
+//go:embed miner/sectorhealth_history.js
+var minerSectorhealthHistoryAggregator []byte
+
+//go:embed miner/pledge_history.js
+var minerPledgeHistoryAggregator []byte
+
+//go:embed miner/sector_range.js
+var minerSectorRangeAggregator []byte
+
+//go:embed miner/period_sector_expirations.js
+var minerPeriodSectorExpirationAggregator []byte
+
+//go:embed miner/sector_detail.js
+var minerSectorDetailAggregator []byte
+
+//go:embed account/period_transfer.js
+var accountPeriodTransferAggregator []byte
+
+//go:embed account/period_gascost.js
+var accountPeriodGasCostAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -801,4 +849,68 @@ func GetTransferTypeForActorNoSkipAggregator() []byte {
 
 func GetTransferSendAndReceiveForActorNoSkipAggregator() []byte {
 	return transferSendAndReceiveForActorNoSkipAggregator
+}
+
+func GetMinerPeriodBlockrewardsAggregator() []byte {
+	return minerPeriodBlockrewardsAggregator
+}
+
+func GetMinerPeriodWincountsAggregator() []byte {
+	return minerPeriodWincountsAggregator
+}
+
+func GetMinerPeriodGascostsAggregator() []byte {
+	return minerPeriodGascostsAggregator
+}
+
+func GetMinerPeriodGascostsForPublishdealsAggregator() []byte {
+	return minerPeriodGascostsForPublishdealsAggregator
+}
+
+func GetMinerPeriodPunishmentsAggregator() []byte {
+	return minerPeriodPunishmentsAggregator
+}
+
+func GetMinerPeriodSectorsDiffAggregator() []byte {
+	return minerPeriodSectorsDiffAggregator
+}
+
+func GetMinerPeriodPledgeDiffAggregator() []byte {
+	return minerPeriodPledgeDiffAggregator
+}
+
+func GetMinerPeriodSectorExpirationsAggregator() []byte {
+	return minerPeriodSectorExpirationsAggregator
+}
+
+func GetMinerQAPowerHistoryAggregator() []byte {
+	return minerQAPowerHistoryAggregator
+}
+
+func GetMinerSectorhealthHistoryAggregator() []byte {
+	return minerSectorhealthHistoryAggregator
+}
+
+func GetMinerPledgeHistoryAggregator() []byte {
+	return minerPledgeHistoryAggregator
+}
+
+func GetMinerSectorRangeAggregator() []byte {
+	return minerSectorRangeAggregator
+}
+
+func GetMinerPeriodSectorExpirationAggregator() []byte {
+	return minerPeriodSectorExpirationAggregator
+}
+
+func GetMinerSectorDetailAggregator() []byte {
+	return minerSectorDetailAggregator
+}
+
+func GetAccountPeriodTransferAggregator() []byte {
+	return accountPeriodTransferAggregator
+}
+
+func GetAccountPeriodGasCostAggregator() []byte {
+	return accountPeriodGasCostAggregator
 }

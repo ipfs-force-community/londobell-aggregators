@@ -5,7 +5,7 @@
     {
         $match: {
             $and: [
-                {Depth: 1},
+                {IsBlock: true},
                 {"Msg.Method": {$in: [/*5,*/ 6, 7, 25, 26, 28]}},
                 {Epoch: {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
                 {$or: [
