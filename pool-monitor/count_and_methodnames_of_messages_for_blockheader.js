@@ -58,7 +58,7 @@
 },
     {
         $lookup: {
-            from: "ExecTrace",
+            from: "ActorMessage",
             let: {cids: "$Messages", epoch: "$Epoch"},
             pipeline: [
                 {
@@ -67,6 +67,7 @@
                             $expr: {
                                 $and: [
                                     {$eq: ["$IsBlock", true]},
+                                    {$eq:["$Type", "from"]},
                                     {$eq:["$Epoch", "$$epoch"]},
                                     {$or: [
                                             {$in: ["$Cid", "$$cids"]},
@@ -85,7 +86,7 @@
     },
     {
         $group: {
-            _id: "$trace.Msg.MethodName",
+            _id: "$trace.MethodName",
             Count:{$sum:1}
         }
     }
