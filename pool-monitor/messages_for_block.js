@@ -130,12 +130,13 @@
                             {
                                 $expr: {
                                     $and: [
+                                        {$eq: ["$IsBlock", true]},
+                                        {$eq:["$Type", "from"]},
+                                        {$eq:["$Epoch", "$$epoch"]},
                                         {$or: [
                                                 {$in: ["$Cid", "$$cids"]},
                                                 {$in: ["$SignedCid", "$$cids"]}
                                             ]},
-                                        {$eq:["$Epoch", "$$epoch"]},
-                                        {$eq:["$Type", "from"]}
                                     ]
                                 }
                             }
