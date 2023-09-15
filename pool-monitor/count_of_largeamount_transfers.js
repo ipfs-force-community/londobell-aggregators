@@ -4,7 +4,7 @@
         $match: {
             "MsgRct.ExitCode": 0,
             "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
-            "FIL": {$get: 10000} // todo 与之前逻辑一致,后续可以作为参数传入
+            "FIL": {$gte: 10000} // todo 与之前逻辑一致,后续可以作为参数传入
         }
     },
     // {
