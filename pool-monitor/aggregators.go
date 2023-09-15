@@ -403,6 +403,9 @@ var accountPeriodTransferAggregator []byte
 //go:embed account/period_gascost.js
 var accountPeriodGasCostAggregator []byte
 
+//go:embed blockmessages_for_epochrange.js.js
+var blockMessagesFroEpochRangeAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
 }
@@ -913,4 +916,8 @@ func GetAccountPeriodTransferAggregator() []byte {
 
 func GetAccountPeriodGasCostAggregator() []byte {
 	return accountPeriodGasCostAggregator
+}
+
+func GetBlockMessagesFroEpochRangeAggregator() []byte {
+	return blockMessagesFroEpochRangeAggregator
 }
