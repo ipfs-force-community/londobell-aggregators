@@ -150,13 +150,13 @@
     {
         $match: {
             "MsgRct.ExitCode": 0,
-            "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
-            "Msg.Value": {$regex: "^.{23,}$"} // 10000Fil
+            "Epoch": { $gte: ctx.StartEpoch, $lt: ctx.EndEpoch },
+            "FIL": { $gte: 10000 } // todo 与之前逻辑一致,后续可以作为参数传入
         }
     },
     {
         $sort: {
-            "Epoch" : -1
+            "Epoch": -1
         }
     },
     {
@@ -170,8 +170,8 @@
             _id: 0,
             Cid: {
                 $cond: {
-                    if:{
-                        $eq:["$SignedCid", null]
+                    if: {
+                        $eq: ["$SignedCid", null]
                     }, then: "$Cid",
                     else: "$SignedCid"
                 }
