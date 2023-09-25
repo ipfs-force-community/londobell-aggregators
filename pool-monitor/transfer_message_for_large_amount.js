@@ -166,8 +166,51 @@
         $limit: ctx.Limit
     },
     {
+        $addFields: {
+          target_id: {
+            $cond: {
+              if: { $eq: ["$Depth", 1] },
+              then: null, // 当 Depth 为 1 时，将 target_id 设置为 null，跳过查询步骤
+              else: {
+                $concat: [
+                  { $arrayElemAt: [{ $split: ["$_id", "-"] }, 0] },
+                  "-",
+                  { $arrayElemAt: [{ $split: ["$_id", "-"] }, 1] }
+                ]
+              }
+            }
+          }
+        }
+      },
+      {
+        $lookup: {
+          from: "ExecTrace",
+          localField: "target_id",
+          foreignField: "_id",
+          as: "targetData"
+        }
+      },
+      {
+        $addFields: {
+          Cid: {
+            $cond: {
+              if: { $eq: ["$Depth", 1] },
+              then: "$Cid",
+              else: { $arrayElemAt: ["$targetData.Cid", 0] }
+            }
+          },
+          SignedCid: {
+            $cond: {
+              if: { $eq: ["$Depth", 1] },
+              then: "$SignedCid",
+              else: { $arrayElemAt: ["$targetData.SignedCid", 0] }
+            }
+          }
+        }
+      },   
+    {
         $project: {
-            _id: 0,
+            _id: 0,            
             Cid: {
                 $cond: {
                     if: {
