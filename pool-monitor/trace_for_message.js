@@ -53,7 +53,8 @@
             EventsRoot: "$MsgRct.EventsRoot",
             ParamsBson: "$message.Params",
             ReturnsBson: "$MsgRct.Return",
-            Actor: "$message.Detail.Actor"
+            Actor: "$message.Detail.Actor",
+            Error: "$Error"
         }
     }
 ]
