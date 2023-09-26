@@ -89,7 +89,8 @@
             rawMessage: {$addToSet: "$message"},
             GasCost: {$addToSet: "$GasCost"},
             rawMsgRct: {$addToSet: "$MsgRct"},
-            rawDetail: {$addToSet: "$Detail"}
+            rawDetail: { $addToSet: "$Detail" },
+            Error: {$first: "$Error"}
         }
     },
     {
