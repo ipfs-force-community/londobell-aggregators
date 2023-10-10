@@ -27,6 +27,14 @@
                     else: "$SignedCid"
                 }
             },
+            RootCid: {
+                $cond: {
+                    if: {
+                        $eq: ["$RootSignedCid", null]
+                    }, then: "$RootCid",
+                    else: "$RootSignedCid"
+                }
+            },            
             Epoch: "$Epoch",
             From: "$From",
             To: "$To",
