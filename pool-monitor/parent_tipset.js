@@ -2,7 +2,7 @@
 [
     {
         $match: {
-            "_id": {$lt: ctx.StartEpoch}
+            "_id": {$lt: ctx.EndEpoch}
         }
     },
     {
