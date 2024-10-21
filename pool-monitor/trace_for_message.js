@@ -6,9 +6,8 @@
     {
         $match: {
             $and: [
-                {"Depth": 1},
+                {"IsBlock": true},
                 {$or: [{"Cid": ctx.Cid}, {"SignedCid": ctx.Cid}]},
-                {$or: [{"Msg.From":{$regex: /^1/}}, {"Msg.From":{$regex: /^3/}}, {"Msg.From":{$regex: /^4/}}]},
             ]
         }
     },
@@ -48,7 +47,14 @@
             GasLimit: "$message.GasLimit",
             GasFeeCap: "$message.GasFeeCap",
             GasPremium: "$message.GasPremium",
-            GasCost: "$GasCost"
+            GasCost: "$GasCost",
+            MethodNum: "$message.Method",
+            Seq: "$Seq",
+            EventsRoot: "$MsgRct.EventsRoot",
+            ParamsBson: "$message.Params",
+            ReturnsBson: "$MsgRct.Return",
+            Actor: "$message.Detail.Actor",
+            Error: "$Error"
         }
     }
 ]

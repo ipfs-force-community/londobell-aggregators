@@ -1,23 +1,17 @@
-// ExecTrace
+// ActorMessage
 [
     {
         $match: {
-            "MsgRct.ExitCode": 0,
+            "ActorID": ctx.Addr,
+            "ExitCode": 0,
+            "TransferType": {$in: ["Blockreward", "Burn", "Send", "Receive"]},
             "Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch},
-            "Msg.Value": {$ne:"0"},
         }
     },
     {
-        $project: {
+        $group: {
             _id: 0,
-            "Msg.From": 1,
-            "Msg.To": 1
-        }
-    },
-    {
-        $project: {
-           From: "$Msg.From",
-            To: "$Msg.To",
+            Count: {$sum: 1}
         }
     }
 ]

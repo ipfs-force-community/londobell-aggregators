@@ -6,29 +6,10 @@
     {
         $match: {
             $and: [
-                {"Depth": 1},
+                {"IsBlock": true},
                 {"Epoch": {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
-                {$or: [{"Msg.From":{$regex: /^1/}}, {"Msg.From":{$regex: /^3/}}, {"Msg.From":{$regex: /^4/}}]},
                 {$or: [{"Cid": {$in: ctx.Cids}}, {"SignedCid": {$in: ctx.Cids}}]}
             ]
-
-            // $expr: {
-            //     $and: [
-            //         {$eq: ["$Depth", 1]}, // not inclued cron, which may contained burn pledge
-            //         {$or: [
-            //                 {$in: ["$Cid", ctx.Cids]},
-            //                 {$in: ["$SignedCid", ctx.Cids]}
-            //             ]},
-            //         {$or: [
-            //                 {$eq: ["1", {$substrBytes: ["$Msg.From", 0, 1] }]},
-            //                 {$eq: ["3", {$substrBytes: ["$Msg.From", 0, 1] }]},
-            //                 {$eq: ["4", {$substrBytes: ["$Msg.From", 0, 1] }]}
-            //             ]
-            //         },
-            //         {$gte: ["$Epoch", ctx.StartEpoch]},
-            //         {$lt: ["$Epoch", ctx.EndEpoch]},
-            //     ]
-            // }
         }
     },
     {
@@ -67,7 +48,8 @@
             GasLimit: "$message.GasLimit",
             GasFeeCap: "$message.GasFeeCap",
             GasPremium: "$message.GasPremium",
-            GasCost: "$GasCost"
+            GasCost: "$GasCost",
+            Error:"$Error"
         }
     }
 ]

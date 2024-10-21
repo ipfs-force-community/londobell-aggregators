@@ -6,6 +6,7 @@
             Depth: 2,
             "Msg.From": "02",
             "Msg.Method": 14,
+            "Msg.MethodName": "ApplyRewards"
         }
     },
     {
@@ -20,7 +21,7 @@
                         $expr: {
                             $and: [
                                 {$eq: ["$$cid", "$_id"]},
-                                {$eq: ["$Detail.Method", "ApplyRewards"]},
+                                // {$eq: ["$Detail.Method", "ApplyRewards"]},
                             ],
                         },
                     },

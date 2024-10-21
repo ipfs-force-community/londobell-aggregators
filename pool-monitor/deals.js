@@ -1,10 +1,10 @@
 // DealProposal
-// 每小时记录一次
+// 每2小时记录一次，时间间隔不能太长，否则可能会有在该段时间内published deal又已slashed，导致未记录的情况
 // todo: 未来订单能续期后，主键需更改epoch-id
 [
     {
         $match: {
-            Epoch: ctx.StartEpoch
+            _id: {$gte: ctx.Start, $lt: ctx.End}
         },
     },
     {

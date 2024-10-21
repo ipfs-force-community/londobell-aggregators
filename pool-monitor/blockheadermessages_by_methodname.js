@@ -121,7 +121,7 @@
     },
     {
         $lookup: {
-            from: "ExecTrace",
+            from: "ActorMessage",
             let: {cids: "$Messages", "epoch": "$Epoch"},
             pipeline: [
                 {
@@ -129,11 +129,14 @@
                         {
                             $expr: {
                                 $and: [
+                                    {$eq: ["$IsBlock", true]},
+                                    {$eq:["$Type", "from"]},
+                                    {$eq:["$Epoch", "$$epoch"]},
+                                    {$eq: ["$MethodName", ctx.MethodName]},
                                     {$or: [
                                             {$in: ["$Cid", "$$cids"]},
                                             {$in: ["$SignedCid", "$$cids"]}
                                         ]},
-                                    {$eq:["$Epoch", "$$epoch"]},
                                 ]
                             }
                         }
@@ -158,32 +161,6 @@
         }
     },
     {
-        $lookup: {
-            from: "Message",
-            let: {cid: "$Cid"},
-            pipeline: [
-                {
-                    $match:
-                        {
-                            $expr: {
-                                $and: [
-                                    {$or: [
-                                            {$eq: ["$_id", "$$cid"]},
-                                            {$eq: ["$SignedCid", "$$cid"]}
-                                        ]},
-                                    {$eq: ["$Detail.Method", ctx.MethodName]},
-                                ]
-                            }
-                        }
-                }
-            ],
-            as: "message"
-        }
-    },
-    {
-        $unwind: "$message"
-    },
-    {
         $sort: {
             Cid: 1
         }
@@ -198,21 +175,11 @@
         $project: {
             Cid: "$Cid",
             Epoch: "$Epoch",
-            Value: "$message.Value",
-            From: "$message.From",
-            To: "$message.To",
-            ExitCode: "$trace.MsgRct.ExitCode",
-            Method: "$message.Detail.Method",
-            Params: "$message.Params", // []byte
-            Return: "$trace.MsgRct.Return",
-            ParamsDetail: "$message.Detail.Params",
-            ReturnDetail: "$trace.Detail.Return",
-            Version: "$message.Version",
-            Nonce: "$message.Nonce",
-            GasLimit: "$message.GasLimit",
-            GasFeeCap: "$message.GasFeeCap",
-            GasPremium: "$message.GasPremium",
-            GasCost: "$trace.GasCost",
+            Value: "$trace.Value",
+            From: "$trace.From",
+            To: "$trace.To",
+            ExitCode: "$trace.ExitCode",
+            Method: "$trace.MethodName",
         }
     }
 ]

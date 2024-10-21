@@ -112,11 +112,17 @@ var minersForOwnerAggregator []byte
 //go:embed messagses_for_actor.js
 var messagesForActorAggregator []byte
 
+//go:embed messagses_for_create.js
+var messagesForCreateAggregator []byte
+
 //go:embed transfer_messages.js
 var transferMessagesAggregator []byte
 
 //go:embed time_of_trace.js
 var timeOfTraceAggregator []byte
+
+//go:embed time_of_create.js
+var timeOfCreateAggregator []byte
 
 //go:embed createtime.js
 var createTimeAggregator []byte
@@ -148,8 +154,8 @@ var traceForMessageAggregator []byte
 //go:embed batch_trace_for_message.js
 var batchTraceForMessageAggregator []byte
 
-//go:embed child_transfers_for_message.js
-var childTransfersForMessageAggregator []byte
+//go:embed child_calls_for_message.js
+var childCallsForMessageAggregator []byte
 
 //go:embed all_owners.js
 var allOwnersAggregator []byte
@@ -166,8 +172,14 @@ var blockMessagesByMethodNameAggregator []byte
 //go:embed actormessages_by_methodname.js
 var actorMessagesByMethodNameAggregator []byte
 
+//go:embed createmessages_by_methodname.js
+var createMessagesByMethodNameAggregator []byte
+
 //go:embed blockheaders_by_miner.js
 var blockHeadersByMinerAggregator []byte
+
+//go:embed blockheaders_by_miner_noskip.js
+var blockHeadersByMinerNoSkipAggregator []byte
 
 //go:embed deals_by_addr.js
 var dealsByAddrAggregator []byte
@@ -193,8 +205,8 @@ var countOfMessagesForBlockHeaderByMethodNameAggregator []byte
 //go:embed blockheadermessages_by_methodname.js
 var blockHeaderMessagesByMethodNameAggregator []byte
 
-//go:embed all_actors_for_blockmessage.js
-var allActorsForBlockMessageAggregator []byte
+////go:embed all_actors_for_blockmessage.js
+//var allActorsForBlockMessageAggregator []byte
 
 //go:embed count_of_transfer_for_actor.js
 var transferCountForActorAggregator []byte
@@ -226,11 +238,180 @@ var countOfLargeAmountTransfersAggregator []byte
 //go:embed richlist.js
 var richListAggregator []byte
 
+//go:embed count_of_messages_for_actor.js
+var countOfMessageForActorAggregator []byte
+
+//go:embed messages_for_actor_no_skip.js
+var messagesForActorNoSkip []byte
+
+//go:embed all_methodNames_for_actor.js
+var allMethodNamesForActor []byte
+
 //go:embed mined_by_miner_range.js
 var minedByMinerRangeAggregator []byte
 
+//go:embed all_blockMethodNames.js
+var allBlockMethodNamesAggregator []byte
+
+//go:embed all_methodNames_for_actors.js
+var allMethodNamesForActorsAggregator []byte
+
+//go:embed all_actors_msgscount.js
+var allActorsMsgsCountAggregator []byte
+
+//go:embed all_miners_minedCount.js
+var allMinersMinedCountAggregator []byte
+
+//go:embed count_of_blockmessages.js
+var countOfBlockMessagesAggregator []byte
+
+//go:embed transfermsgs_for_actor.js
+var transferMsgsForActorAggregator []byte
+
+//go:embed messagecid_by_hash.js
+var messageCidByHashAggregator []byte
+
+//go:embed eventsroot.js
+var eventsRootAggregator []byte
+
+//go:embed get_evminitcode_by_ActorID.js
+var getEvmInitCodeByActorIDAggregator []byte
+
+//go:embed hash_by_messagecid.js
+var hashByMessageCidAggregator []byte
+
+//go:embed child_transfers_for_message.js
+var childTransfersForMessageAggregator []byte
+
+//go:embed initcode_for_evm.js
+var initCodeForEvmAggregator []byte
+
+//go:embed events_by_actor.js
+var eventsByActorAggregator []byte
+
+//go:embed count_of_events_for_actor.js
+var countOfEventsForActorAggregator []byte
+
+//go:embed events_for_message.js
+var eventsForMessageAggregator []byte
+
+//go:embed events_for_epochrange.js
+var eventsForEpochRangeAggregator []byte
+
+//go:embed dealid_range.js
+var dealIDRangeAggregator []byte
+
+//go:embed startepoch_for_deal.js
+var startEpochForDealAggregator []byte
+
+//go:embed count_of_deals_by_addr.js
+var countOfDealsByAddrAggregator []byte
+
+//go:embed transfer_blockreward_for_actor.js
+var transferBlockRewardForActorAggregator []byte
+
+//go:embed count_of_transfer_blockreward_for_actor.js
+var countOfTransferBlockRewardForActorAggregator []byte
+
+//go:embed transfer_burn_for_actor.js
+var transferBurnForActorAggregator []byte
+
+//go:embed count_of_transfer_burn_for_actor.js
+var countOfTransferBurnForActorAggregator []byte
+
+//go:embed transfer_send_for_actor.js
+var transferSendForActorAggregator []byte
+
+//go:embed count_of_transfer_send_for_actor.js
+var countOfTransferSendForActorAggregator []byte
+
+//go:embed transfer_receive_for_actor.js
+var transferReceiveForActorAggregator []byte
+
+//go:embed count_of_transfer_receive_for_actor.js
+var countOfTransferReceiveForActorAggregator []byte
+
+//go:embed transfer_send_and_receive_for_actor.js
+var transferSendAndReceiveForActorAggregator []byte
+
+//go:embed count_of_transfer_send_and_receive_for_actor.js
+var countOfTransferSendAndReceiveForActorAggregator []byte
+
+//go:embed count_of_tipset.js
+var countOfTipsetAggregator []byte
+
+//go:embed tipsets_list.js
+var tipsetsListAggregator []byte
+
+//go:embed actormessages_by_methodname_noskip.js
+var actorMessagesByMethodNameNoskipAggregator []byte
+
+//go:embed transfermsgs_for_actor_noskip.js
+var transferMsgsFroActorNoSkipAggregator []byte
+
+//go:embed transfer_type_for_actor_noskip.js
+var transferTypeForActorNoSkipAggregator []byte
+
+//go:embed transfer_send_and_receive_for_actor_noskip.js
+var transferSendAndReceiveForActorNoSkipAggregator []byte
+
+//go:embed miner/period_blockrewards.js
+var minerPeriodBlockrewardsAggregator []byte
+
+//go:embed miner/period_wincounts.js
+var minerPeriodWincountsAggregator []byte
+
+//go:embed miner/period_gascosts.js
+var minerPeriodGascostsAggregator []byte
+
+//go:embed miner/period_gascosts_for_publishdeals.js
+var minerPeriodGascostsForPublishdealsAggregator []byte
+
+//go:embed miner/period_punishments.js
+var minerPeriodPunishmentsAggregator []byte
+
+//go:embed miner/period_sectors_diff.js
+var minerPeriodSectorsDiffAggregator []byte
+
+//go:embed miner/period_pledge_diff.js
+var minerPeriodPledgeDiffAggregator []byte
+
+//go:embed miner/period_sector_expirations.js
+var minerPeriodSectorExpirationsAggregator []byte
+
+//go:embed miner/qapower_history.js
+var minerQAPowerHistoryAggregator []byte
+
+//go:embed miner/sectorhealth_history.js
+var minerSectorhealthHistoryAggregator []byte
+
+//go:embed miner/pledge_history.js
+var minerPledgeHistoryAggregator []byte
+
+//go:embed miner/sector_range.js
+var minerSectorRangeAggregator []byte
+
+//go:embed miner/period_sector_expirations.js
+var minerPeriodSectorExpirationAggregator []byte
+
+//go:embed miner/sector_detail.js
+var minerSectorDetailAggregator []byte
+
+//go:embed account/period_transfer.js
+var accountPeriodTransferAggregator []byte
+
+//go:embed account/period_gascost.js
+var accountPeriodGasCostAggregator []byte
+
+//go:embed blockmessages_for_epochrange.js.js
+var blockMessagesFroEpochRangeAggregator []byte
+
 func GetAddressAggregator() []byte {
 	return addressAggregator
+}
+
+func GetActorMessagesByMethodNameNoskipAggregator() []byte {
+	return actorMessagesByMethodNameNoskipAggregator
 }
 
 func GetAggPreNetfeeAggregator() []byte {
@@ -353,12 +534,20 @@ func GetMessagesForActorAggregator() []byte {
 	return messagesForActorAggregator
 }
 
+func GetMessagesForCreateAggregator() []byte {
+	return messagesForCreateAggregator
+}
+
 func GetTransferMessagesAggregator() []byte {
 	return transferMessagesAggregator
 }
 
 func GetTimeOfTraceAggregator() []byte {
 	return timeOfTraceAggregator
+}
+
+func GetTimeOfCreateAggregator() []byte {
+	return timeOfCreateAggregator
 }
 
 func GetCreateTimeAggregator() []byte {
@@ -401,8 +590,8 @@ func GetBatchTraceForMessageAggregator() []byte {
 	return batchTraceForMessageAggregator
 }
 
-func GetChildTransfersForMessageAggregator() []byte {
-	return childTransfersForMessageAggregator
+func GetChildCallsForMessageAggregator() []byte {
+	return childCallsForMessageAggregator
 }
 
 func GetAllOwnersAggregator() []byte {
@@ -425,8 +614,16 @@ func GetActorMessagesByMethodNameAggregator() []byte {
 	return actorMessagesByMethodNameAggregator
 }
 
+func GetCreateMessagesByMethodNameAggregator() []byte {
+	return createMessagesByMethodNameAggregator
+}
+
 func GetBlockHeadersByMinerAggregator() []byte {
 	return blockHeadersByMinerAggregator
+}
+
+func GetBlockHeadersByMinerNoSkipAggregator() []byte {
+	return blockHeadersByMinerNoSkipAggregator
 }
 
 func GetDealsByAddrAggregator() []byte {
@@ -445,9 +642,9 @@ func GetBlocksForMessageAggregator() []byte {
 	return blocksForMessageAggregator
 }
 
-func GetAllActorsForBlockMessageAggregator() []byte {
-	return allActorsForBlockMessageAggregator
-}
+//func GetAllActorsForBlockMessageAggregator() []byte {
+//	return allActorsForBlockMessageAggregator
+//}
 
 //func GetTransferCountForActorAggregator() []byte {
 //	return transferCountForActorAggregator
@@ -507,4 +704,220 @@ func GetRichListAggregator() []byte {
 
 func GetMinedByMinerRangeAggregator() []byte {
 	return minedByMinerRangeAggregator
+}
+
+func GetCountOfMessageForActorAggregator() []byte {
+	return countOfMessageForActorAggregator
+}
+
+func GetMessagesForActorNoSkip() []byte {
+	return messagesForActorNoSkip
+}
+
+func GetAllMethodNamesForActor() []byte {
+	return allMethodNamesForActor
+}
+
+func GetAllBlockMethodNamesAggregator() []byte {
+	return allBlockMethodNamesAggregator
+}
+
+func GetAllMethodNamesForActorsAggregator() []byte {
+	return allMethodNamesForActorsAggregator
+}
+
+func GetAllActorsMsgsCountAggregator() []byte {
+	return allActorsMsgsCountAggregator
+}
+
+func GetAllMinersMinedCountAggregator() []byte {
+	return allMinersMinedCountAggregator
+}
+
+func GetCountOfBlockMessagesAggregator() []byte {
+	return countOfBlockMessagesAggregator
+}
+
+func GetTransferMsgsForActorAggregator() []byte {
+	return transferMsgsForActorAggregator
+}
+
+func GetMessageCidByHashAggregator() []byte {
+	return messageCidByHashAggregator
+}
+
+func GetEventsRootAggregator() []byte {
+	return eventsRootAggregator
+}
+
+func GetEvmInitCodeByActorIDAggregator() []byte {
+	return getEvmInitCodeByActorIDAggregator
+}
+
+func GetHashByMessageCidAggregator() []byte {
+	return hashByMessageCidAggregator
+}
+
+func GetChildTransfersForMessageAggregator() []byte {
+	return childTransfersForMessageAggregator
+}
+
+func GetInitCodeForEvmAggregator() []byte {
+	return initCodeForEvmAggregator
+}
+
+func GetEventsByActorAggregator() []byte {
+	return eventsByActorAggregator
+}
+
+func GetCountOfEventsForActorAggregator() []byte {
+	return countOfEventsForActorAggregator
+}
+
+func GetEventsForMessageAggregator() []byte {
+	return eventsForMessageAggregator
+}
+
+func GetEventsForEpochRangeAggregator() []byte {
+	return eventsForEpochRangeAggregator
+}
+
+func GetDealIDRangeAggregator() []byte {
+	return dealIDRangeAggregator
+}
+
+func GetStartEpochForDealAggregator() []byte {
+	return startEpochForDealAggregator
+}
+
+func GetCountOfDealsByAddrAggregator() []byte {
+	return countOfDealsByAddrAggregator
+}
+
+func GetTransferBlockRewardForActorAggregator() []byte {
+	return transferBlockRewardForActorAggregator
+}
+
+func GetCountOfTransferBlockRewardForActorAggregator() []byte {
+	return countOfTransferBlockRewardForActorAggregator
+}
+
+func GetTransferBurnForActorAggregator() []byte {
+	return transferBurnForActorAggregator
+}
+
+func GetCountOfTransferBurnForActorAggregator() []byte {
+	return countOfTransferBurnForActorAggregator
+}
+
+func GetTransferSendForActorAggregator() []byte {
+	return transferSendForActorAggregator
+}
+
+func GetCountOfTransferSendForActorAggregator() []byte {
+	return countOfTransferSendForActorAggregator
+}
+
+func GetTransferReceiveForActorAggregator() []byte {
+	return transferReceiveForActorAggregator
+}
+
+func GetCountOfTransferReceiveForActorAggregator() []byte {
+	return countOfTransferReceiveForActorAggregator
+}
+
+func GetTransferSendAndReceiveForActorAggregator() []byte {
+	return transferSendAndReceiveForActorAggregator
+}
+
+func GetCountOfTransferSendAndReceiveForActorAggregator() []byte {
+	return countOfTransferSendAndReceiveForActorAggregator
+}
+
+func GetCountOfTipsetAggregator() []byte {
+	return countOfTipsetAggregator
+}
+
+func GetTipsetsListAggregator() []byte {
+	return tipsetsListAggregator
+}
+
+func GetTransferMsgsFroActorNoSkipAggregator() []byte {
+	return transferMsgsFroActorNoSkipAggregator
+}
+
+func GetTransferTypeForActorNoSkipAggregator() []byte {
+	return transferTypeForActorNoSkipAggregator
+}
+
+func GetTransferSendAndReceiveForActorNoSkipAggregator() []byte {
+	return transferSendAndReceiveForActorNoSkipAggregator
+}
+
+func GetMinerPeriodBlockrewardsAggregator() []byte {
+	return minerPeriodBlockrewardsAggregator
+}
+
+func GetMinerPeriodWincountsAggregator() []byte {
+	return minerPeriodWincountsAggregator
+}
+
+func GetMinerPeriodGascostsAggregator() []byte {
+	return minerPeriodGascostsAggregator
+}
+
+func GetMinerPeriodGascostsForPublishdealsAggregator() []byte {
+	return minerPeriodGascostsForPublishdealsAggregator
+}
+
+func GetMinerPeriodPunishmentsAggregator() []byte {
+	return minerPeriodPunishmentsAggregator
+}
+
+func GetMinerPeriodSectorsDiffAggregator() []byte {
+	return minerPeriodSectorsDiffAggregator
+}
+
+func GetMinerPeriodPledgeDiffAggregator() []byte {
+	return minerPeriodPledgeDiffAggregator
+}
+
+func GetMinerPeriodSectorExpirationsAggregator() []byte {
+	return minerPeriodSectorExpirationsAggregator
+}
+
+func GetMinerQAPowerHistoryAggregator() []byte {
+	return minerQAPowerHistoryAggregator
+}
+
+func GetMinerSectorhealthHistoryAggregator() []byte {
+	return minerSectorhealthHistoryAggregator
+}
+
+func GetMinerPledgeHistoryAggregator() []byte {
+	return minerPledgeHistoryAggregator
+}
+
+func GetMinerSectorRangeAggregator() []byte {
+	return minerSectorRangeAggregator
+}
+
+func GetMinerPeriodSectorExpirationAggregator() []byte {
+	return minerPeriodSectorExpirationAggregator
+}
+
+func GetMinerSectorDetailAggregator() []byte {
+	return minerSectorDetailAggregator
+}
+
+func GetAccountPeriodTransferAggregator() []byte {
+	return accountPeriodTransferAggregator
+}
+
+func GetAccountPeriodGasCostAggregator() []byte {
+	return accountPeriodGasCostAggregator
+}
+
+func GetBlockMessagesFroEpochRangeAggregator() []byte {
+	return blockMessagesFroEpochRangeAggregator
 }

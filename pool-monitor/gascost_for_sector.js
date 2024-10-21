@@ -4,12 +4,21 @@
 [
     {
         $match: {
-            Depth: 1,
-            "Msg.Method": {$in: [/*5,*/ 6, 7, 25, 26, 28]},
-            Epoch: {
-                $gte: ctx.StartEpoch,
-                $lt: ctx.EndEpoch,
-            },
+            $and: [
+                {IsBlock: true},
+                {"Msg.Method": {$in: [/*5,*/ 6, 7, 25, 26, 28]}},
+                {Epoch: {$gte: ctx.StartEpoch, $lt: ctx.EndEpoch}},
+                {$or: [
+                        // {"Msg.MethodName": "SubmitWindowedPoSt"},
+                        {"Msg.MethodName": "PreCommitSector"},
+                        {"Msg.MethodName": "ProveCommitSector"},
+                        {"Msg.MethodName": "PreCommitSectorBatch"},
+                        {"Msg.MethodName": "ProveCommitAggregate"},
+                        {"Msg.MethodName": "PreCommitSectorBatch2"},
+                    ]
+                }
+            ],
+
             // "MsgRct.ExitCode": 0, //todo
         },
     },
@@ -26,16 +35,6 @@
                             $and: [
                                 {
                                     $eq: ["$_id", "$$mcid"],
-                                },
-                                {
-                                    $or: [
-                                        // {$eq: ["$Detail.Method", "SubmitWindowedPoSt"]},
-                                        {$eq: ["$Detail.Method", "PreCommitSector"]},
-                                        {$eq: ["$Detail.Method", "ProveCommitSector"]},
-                                        {$eq: ["$Detail.Method", "PreCommitSectorBatch"]},
-                                        {$eq: ["$Detail.Method", "ProveCommitAggregate"]},
-                                        {$eq: ["$Detail.Method", "PreCommitSectorBatch2"]},
-                                    ]
                                 },
                             ],
                         },

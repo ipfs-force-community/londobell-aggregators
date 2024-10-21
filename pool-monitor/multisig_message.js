@@ -22,7 +22,8 @@
                             $expr: {
                                 $and: [
                                     {$eq: ["$_id", "$$cid"]},
-                                    {$eq: [{$substrBytes: ["$Detail.Actor", 6, {$add: [{$strLenBytes: "$Detail.Actor"}, -1]}]}, "multisig"]},
+                                    {$regexMatch: { input: "$Detail.Actor", regex: "multisig" }},
+                                    // {$eq: [{$substrBytes: ["$Detail.Actor", 6, {$add: [{$strLenBytes: "$Detail.Actor"}, -1]}]}, "multisig"]},
                                 ]
                             }
                         }
