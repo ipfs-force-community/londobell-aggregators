@@ -62,7 +62,8 @@
             PendingBeneficiaryTerm: "$Info.PendingBeneficiaryTerm",
             States: "$Info.State",
             Multiaddrs: "$Info.Multiaddrs",
-            PeerID: "$Info.PeerID"
+            PeerID: "$Info.PeerID",
+            UnprovenSectorCount: "$sectorHealth.Detail.Unproven"
         }
     }
 ]
